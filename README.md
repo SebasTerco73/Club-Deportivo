@@ -1,7 +1,7 @@
 # ⚽ TPI | CLUB DEPORTIVO | GRUPO 9
 
 ![STATUS](https://img.shields.io/badge/Status-En%20Desarrollo-green)
-![VS Code](https://img.shields.io/badge/Editor-Visual%20Studio-blueviolet?logo=visualstudio)
+![VS Code](https://img.shields.io/badge/IDE-Visual%20Studio-blueviolet?logo=visualstudio)
 ![C#](https://img.shields.io/badge/C%23-.NET-blueviolet?logo=csharp)
 ![MySQL](https://img.shields.io/badge/Database-MySQL-lightblue?logo=mysql)
 ![Git](https://img.shields.io/badge/Git-Control-red?logo=git)
