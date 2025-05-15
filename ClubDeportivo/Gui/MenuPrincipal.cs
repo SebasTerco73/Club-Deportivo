@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ClubDeportivo
 {
-    public partial class Form1 : Form
+    public partial class MenuPrincipal : Form
     {
-        public Form1()
+        public MenuPrincipal()
         {
             InitializeComponent();
 
@@ -25,12 +25,7 @@ namespace ClubDeportivo
             this.BackColor = grisClaro;
 
             // Color del título
-            label1.ForeColor = azulOscuro;
-
-            // Establecer el cursor como mano para cada botón
-            inicioSesionSocios.Cursor = Cursors.Hand;
-            registroUsuario.Cursor = Cursors.Hand;
-            inicioNoSocios.Cursor = Cursors.Hand;
+            lblIngreso.ForeColor = azulOscuro;
 
             // Estilo visual para los botones
             Button[] botones = { inicioSesionSocios, registroUsuario, inicioNoSocios };
@@ -55,29 +50,13 @@ namespace ClubDeportivo
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            // Acción para botón "Inicio sesión socios"
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            // Acción para botón "Registro"
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            // Acción para botón "Inicio sesión no socios"
-        }
+        internal string? rol;
+        internal string? usuario;
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Código al cargar el formulario (opcional)
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-            // Evento click del label (opcional)
+            lblIngreso.Text = "Bienvenido: " + usuario + " (" + rol + ")";
+            lblIngreso.Left = (this.ClientSize.Width - lblIngreso.Width) / 2;
         }
     }
 }
