@@ -42,6 +42,35 @@ INSERT INTO `roles` VALUES (120,'Administrador'),(121,'Empleado');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `socios`
+--
+
+DROP TABLE IF EXISTS `socios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `socios` (
+  `codSocio` int NOT NULL AUTO_INCREMENT,
+  `Documento` varchar(45) NOT NULL,
+  `NombreCompleto` varchar(45) NOT NULL,
+  `FechaNac` date NOT NULL,
+  `Telefono` varchar(45) NOT NULL,
+  `FechaInscripcion` date NOT NULL,
+  `FichaMedica` tinyint DEFAULT NULL,
+  `AptoMedico` tinyint DEFAULT NULL,
+  PRIMARY KEY (`codSocio`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `socios`
+--
+
+LOCK TABLES `socios` WRITE;
+/*!40000 ALTER TABLE `socios` DISABLE KEYS */;
+/*!40000 ALTER TABLE `socios` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `usuario`
 --
 
@@ -58,7 +87,7 @@ CREATE TABLE `usuario` (
   UNIQUE KEY `NombreUsu_UNIQUE` (`NombreUsu`),
   KEY `fk_usuario` (`RolUsu`),
   CONSTRAINT `fk_usuario` FOREIGN KEY (`RolUsu`) REFERENCES `roles` (`RolUsu`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +96,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'1','1',120,1);
+INSERT INTO `usuario` VALUES (1,'Ailen','1',120,1),(2,'Marcela','1',120,1),(3,'Neyel','1',120,1),(4,'Sebas','1',120,1);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -80,4 +109,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-15 19:29:07
+-- Dump completed on 2025-05-16 20:10:15
