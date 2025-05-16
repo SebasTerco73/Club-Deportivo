@@ -201,6 +201,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            ControlBox = false;
             Controls.Add(btnVolver);
             Controls.Add(btnLimpiar);
             Controls.Add(btnRegistrar);
@@ -219,7 +220,8 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "RegistroSocio";
-            Text = "RegistroSocio";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Registrar Socio";
             ResumeLayout(false);
             PerformLayout();
         }

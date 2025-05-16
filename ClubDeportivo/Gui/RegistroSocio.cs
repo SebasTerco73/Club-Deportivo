@@ -22,8 +22,11 @@ namespace ClubDeportivo.Gui
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Hide();
-            MenuPrincipal menu = new MenuPrincipal();
-            menu.Show();
+            Form? menuPrincipal = Application.OpenForms["MenuPrincipal"];
+            if (menuPrincipal != null)
+            {
+                menuPrincipal.Show();
+            }
         }
 
         private void LimpiarCampos()
@@ -45,18 +48,18 @@ namespace ClubDeportivo.Gui
         {
             try
             {
-                E_Socio socio = new E_Socio()
-                {
-                    Documento = int.Parse(txtDocumento.Text),
-                    NombreCompleto = txtNombreCompleto.Text,
-                    FechaNacimiento = dtpFechaNac.Value,
-                    Telefono = int.Parse(txtTelefono.Text),
-                    FechaInscripcion = dtpFechaInscripcion.Value,
-                    FichaMedica = cboFichaMedica.Text == "SI" ? true : false,
-                    AptoMedico = cboAptoMedico.Text == "SI" ? true : false
-                };
+                string documento = txtDocumento.Text;
+                string nombre = txtNombreCompleto.Text;
+                DateTime fechaNac = dtpFechaNac.Value;
+                string tel = txtTelefono.Text;
+                DateTime fechaInscri = dtpFechaInscripcion.Value;
+                bool FichaMedica = cboFichaMedica.Text.Equals("SI") ? true : false;
+                bool aptoMedico = cboAptoMedico.Text.Equals("SI") ? true : false;
 
-                string resultado = new Socios().Nuevo_Socio(socio);
+                E_Socio socio = new(documento, nombre, fechaNac, tel,
+                    fechaInscri, FichaMedica, aptoMedico);
+
+                string resultado = new Socios().RegistrarSocio(socio);
 
                 if (int.TryParse(resultado, out _))
                 {

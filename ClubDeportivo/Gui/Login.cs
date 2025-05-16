@@ -79,7 +79,7 @@ namespace login
             {
                 // quiere decir que el resultado tiene 1 fila por lo que el usuario EXISTE
                 lblMensajeError.Visible = false;
-                
+                MessageBox.Show("Ingreso exitoso", "MENSAJES DEL SISTEMA",MessageBoxButtons.OK, MessageBoxIcon.Information);
                 MenuPrincipal menuPrincipal = new MenuPrincipal();
                 menuPrincipal.usuario = txtUser.Text;
                 menuPrincipal.rol = Convert.ToString(tablaLogin.Rows[0][0]);
