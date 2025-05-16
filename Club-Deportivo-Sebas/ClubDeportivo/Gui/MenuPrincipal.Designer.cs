@@ -34,6 +34,8 @@
             registroUsuario = new Button();
             inicioNoSocios = new Button();
             logouds = new PictureBox();
+            btnListado = new Button();
+            btnSalir = new Button();
             ((System.ComponentModel.ISupportInitialize)logouds).BeginInit();
             SuspendLayout();
             // 
@@ -52,6 +54,7 @@
             inicioSesionSocios.Name = "inicioSesionSocios";
             inicioSesionSocios.UseCompatibleTextRendering = true;
             inicioSesionSocios.UseVisualStyleBackColor = false;
+            inicioSesionSocios.Click += inicioSesionSocios_Click;
             // 
             // registroUsuario
             // 
@@ -79,10 +82,30 @@
             logouds.Name = "logouds";
             logouds.TabStop = false;
             // 
+            // btnListado
+            // 
+            resources.ApplyResources(btnListado, "btnListado");
+            btnListado.BackColor = SystemColors.Control;
+            btnListado.Cursor = Cursors.Hand;
+            btnListado.ForeColor = SystemColors.MenuBar;
+            btnListado.Name = "btnListado";
+            btnListado.UseCompatibleTextRendering = true;
+            btnListado.UseVisualStyleBackColor = false;
+            // 
+            // btnSalir
+            // 
+            resources.ApplyResources(btnSalir, "btnSalir");
+            btnSalir.Name = "btnSalir";
+            btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.Click += button2_Click;
+            // 
             // MenuPrincipal
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
+            ControlBox = false;
+            Controls.Add(btnSalir);
+            Controls.Add(btnListado);
             Controls.Add(logouds);
             Controls.Add(inicioNoSocios);
             Controls.Add(registroUsuario);
@@ -107,6 +130,8 @@
         internal System.Windows.Forms.Button inicioSesionSocios;
         internal System.Windows.Forms.Button registroUsuario;
         internal System.Windows.Forms.Button inicioNoSocios;
+        internal Button btnListado;
+        private Button btnSalir;
     }
 }
 

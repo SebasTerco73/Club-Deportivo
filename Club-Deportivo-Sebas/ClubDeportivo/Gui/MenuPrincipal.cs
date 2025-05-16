@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClubDeportivo.Gui;
 
 namespace ClubDeportivo
 {
@@ -28,7 +29,7 @@ namespace ClubDeportivo
             lblIngreso.ForeColor = azulOscuro;
 
             // Estilo visual para los botones
-            Button[] botones = { inicioSesionSocios, registroUsuario, inicioNoSocios };
+            Button[] botones = { inicioSesionSocios, registroUsuario, inicioNoSocios, btnListado, btnSalir };
             foreach (Button btn in botones)
             {
                 btn.BackColor = azulOscuro;
@@ -57,6 +58,18 @@ namespace ClubDeportivo
         {
             lblIngreso.Text = "Bienvenido: " + usuario + " (" + rol + ")";
             lblIngreso.Left = (this.ClientSize.Width - lblIngreso.Width) / 2;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void inicioSesionSocios_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            RegistroSocio registro = new RegistroSocio();
+            registro.Show();
         }
     }
 }
