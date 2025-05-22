@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClubDeportivo.Entidades
 {
-    internal class E_Socio : Persona
+    internal class E_Socio : E_Persona
     {
         public int idSocio { get; }
         public DateTime fechaInscripcion { get; }

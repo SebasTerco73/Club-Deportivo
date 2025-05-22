@@ -11,9 +11,9 @@ namespace ClubDeportivo.Datos
 {
     internal class Socios
     {
-        public string RegistrarSocio(E_Socio socio)
+        public int RegistrarSocio(E_Socio socio)
         {
-            string salida;
+            int salida;
             MySqlConnection sqlCon = new MySqlConnection();
 
             try
@@ -22,13 +22,13 @@ namespace ClubDeportivo.Datos
                 MySqlCommand comando = new MySqlCommand("RegistrarSocio", sqlCon);
                 comando.CommandType = CommandType.StoredProcedure;
 
-                comando.Parameters.Add("p_Documento", MySqlDbType.VarChar).Value = socio.documento;
-                comando.Parameters.Add("p_NombreCompleto", MySqlDbType.VarChar).Value = socio.nombreCompleto;
-                comando.Parameters.Add("p_FechaNac", MySqlDbType.Date).Value = socio.fechaNacimiento;
-                comando.Parameters.Add("p_Telefono", MySqlDbType.VarChar).Value = socio.telefono;
-                comando.Parameters.Add("p_FechaInscripcion", MySqlDbType.Date).Value = socio.fechaInscripcion;
-                comando.Parameters.Add("p_FichaMedica", MySqlDbType.Bit).Value = socio.fichaMedica;
-                comando.Parameters.Add("p_AptoMedico", MySqlDbType.Bit).Value = socio.aptoMedico;
+                comando.Parameters.Add("s_Documento", MySqlDbType.VarChar).Value = socio.documento;
+                comando.Parameters.Add("s_NombreCompleto", MySqlDbType.VarChar).Value = socio.nombreCompleto;
+                comando.Parameters.Add("s_FechaNac", MySqlDbType.Date).Value = socio.fechaNacimiento;
+                comando.Parameters.Add("s_Telefono", MySqlDbType.VarChar).Value = socio.telefono;
+                comando.Parameters.Add("s_FechaInscripcion", MySqlDbType.Date).Value = socio.fechaInscripcion;
+                comando.Parameters.Add("s_FichaMedica", MySqlDbType.Bit).Value = socio.fichaMedica;
+                comando.Parameters.Add("s_AptoMedico", MySqlDbType.Bit).Value = socio.aptoMedico;
 
                 MySqlParameter rta = new MySqlParameter("rta", MySqlDbType.Int32);
                 rta.Direction = ParameterDirection.Output;
@@ -38,18 +38,17 @@ namespace ClubDeportivo.Datos
                 comando.ExecuteNonQuery();
 
                 // Si en null se le asigna -1
-                salida = Convert.ToString(rta.Value) ?? "-1";
+                salida = (rta.Value != DBNull.Value) ? Convert.ToInt32(rta.Value) : -1;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                salida = "Error: " + ex.Message;
+                salida = -1;
             }
             finally
             {
                 if (sqlCon.State == ConnectionState.Open)
                     sqlCon.Close();
             }
-
             return salida;
         }
     }

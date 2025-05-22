@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ClubDeportivo.Entidades
 {
-    internal class Persona
+    internal class E_Persona
     {
        
         public string documento { get; }
@@ -14,7 +14,7 @@ namespace ClubDeportivo.Entidades
         public DateTime fechaNacimiento { get; }
         public string telefono { get; }
 
-        public Persona(string documento, string nombreCompleto, DateTime fechaNacimiento, string telefono)
+        public E_Persona(string documento, string nombreCompleto, DateTime fechaNacimiento, string telefono)
         {
             this.documento = documento;
             this.nombreCompleto = nombreCompleto;
