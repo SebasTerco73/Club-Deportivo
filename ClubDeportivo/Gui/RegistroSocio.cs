@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClubDeportivo.Datos;
 using ClubDeportivo.Entidades;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ClubDeportivo.Gui
 {
@@ -19,6 +18,36 @@ namespace ClubDeportivo.Gui
         {
             InitializeComponent();
             pnlActividad.Hide();
+            cboCuotas.SelectedIndex = 0;
+            // Colores basados en el logo
+            Color azulOscuro = Color.FromArgb(10, 45, 74);   // Azul del título y botón
+            Color blanco = Color.White;
+            Color grisClaro = Color.FromArgb(240, 240, 240); // Color de fondo del formulario
+
+            // Color de fondo del formulario
+            this.BackColor = grisClaro;
+
+            // Estilo visual para los botones
+            Button[] botones = {btnRegistrar,btnVolver,btnLimpiar};
+            foreach (Button btn in botones)
+            {
+                btn.BackColor = azulOscuro;
+                btn.ForeColor = blanco;
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.FlatAppearance.BorderSize = 0;
+
+                // Hover: cambia a blanco con texto azul oscuro
+                btn.MouseEnter += (s, e) =>
+                {
+                    btn.BackColor = blanco;
+                    btn.ForeColor = azulOscuro;
+                };
+                btn.MouseLeave += (s, e) =>
+                {
+                    btn.BackColor = azulOscuro;
+                    btn.ForeColor = blanco;
+                };
+            }
         }
 
         private void btnVolver_Click(object sender, EventArgs e)

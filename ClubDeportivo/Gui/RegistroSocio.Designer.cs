@@ -68,7 +68,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(20, 69);
+            label1.Location = new Point(85, 78);
             label1.Name = "label1";
             label1.Size = new Size(70, 15);
             label1.TabIndex = 0;
@@ -77,7 +77,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(20, 100);
+            label2.Location = new Point(85, 109);
             label2.Name = "label2";
             label2.Size = new Size(107, 15);
             label2.TabIndex = 0;
@@ -86,7 +86,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(20, 131);
+            label3.Location = new Point(85, 140);
             label3.Name = "label3";
             label3.Size = new Size(119, 15);
             label3.TabIndex = 0;
@@ -95,7 +95,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(20, 163);
+            label4.Location = new Point(85, 172);
             label4.Name = "label4";
             label4.Size = new Size(52, 15);
             label4.TabIndex = 0;
@@ -104,7 +104,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(20, 195);
+            label5.Location = new Point(85, 204);
             label5.Name = "label5";
             label5.Size = new Size(99, 15);
             label5.TabIndex = 0;
@@ -112,21 +112,21 @@
             // 
             // dtpFechaNac
             // 
-            dtpFechaNac.Location = new Point(154, 131);
+            dtpFechaNac.Location = new Point(219, 140);
             dtpFechaNac.Name = "dtpFechaNac";
             dtpFechaNac.Size = new Size(229, 23);
             dtpFechaNac.TabIndex = 1;
             // 
             // dtpFechaInscripcion
             // 
-            dtpFechaInscripcion.Location = new Point(154, 189);
+            dtpFechaInscripcion.Location = new Point(219, 198);
             dtpFechaInscripcion.Name = "dtpFechaInscripcion";
             dtpFechaInscripcion.Size = new Size(229, 23);
             dtpFechaInscripcion.TabIndex = 2;
             // 
             // txtDocumento
             // 
-            txtDocumento.Location = new Point(154, 66);
+            txtDocumento.Location = new Point(219, 75);
             txtDocumento.Name = "txtDocumento";
             txtDocumento.Size = new Size(229, 23);
             txtDocumento.TabIndex = 3;
@@ -134,14 +134,14 @@
             // 
             // txtNombreCompleto
             // 
-            txtNombreCompleto.Location = new Point(154, 95);
+            txtNombreCompleto.Location = new Point(219, 104);
             txtNombreCompleto.Name = "txtNombreCompleto";
             txtNombreCompleto.Size = new Size(229, 23);
             txtNombreCompleto.TabIndex = 4;
             // 
             // txtTelefono
             // 
-            txtTelefono.Location = new Point(154, 160);
+            txtTelefono.Location = new Point(219, 169);
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(229, 23);
             txtTelefono.TabIndex = 5;
@@ -149,7 +149,7 @@
             // 
             // btnRegistrar
             // 
-            btnRegistrar.Location = new Point(20, 348);
+            btnRegistrar.Location = new Point(85, 357);
             btnRegistrar.Margin = new Padding(3, 2, 3, 2);
             btnRegistrar.Name = "btnRegistrar";
             btnRegistrar.Size = new Size(88, 26);
@@ -160,7 +160,7 @@
             // 
             // btnLimpiar
             // 
-            btnLimpiar.Location = new Point(172, 348);
+            btnLimpiar.Location = new Point(237, 357);
             btnLimpiar.Margin = new Padding(3, 2, 3, 2);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.Size = new Size(88, 26);
@@ -171,7 +171,7 @@
             // 
             // btnVolver
             // 
-            btnVolver.Location = new Point(322, 348);
+            btnVolver.Location = new Point(387, 357);
             btnVolver.Margin = new Padding(3, 2, 3, 2);
             btnVolver.Name = "btnVolver";
             btnVolver.Size = new Size(88, 26);
@@ -284,7 +284,7 @@
             pnlActividad.Controls.Add(comboBox2);
             pnlActividad.Controls.Add(label10);
             pnlActividad.Controls.Add(label11);
-            pnlActividad.Location = new Point(523, 46);
+            pnlActividad.Location = new Point(520, 46);
             pnlActividad.Name = "pnlActividad";
             pnlActividad.Size = new Size(254, 348);
             pnlActividad.TabIndex = 14;
@@ -352,7 +352,7 @@
             // ckbFicha
             // 
             ckbFicha.AutoSize = true;
-            ckbFicha.Location = new Point(97, 262);
+            ckbFicha.Location = new Point(162, 271);
             ckbFicha.Name = "ckbFicha";
             ckbFicha.Size = new Size(96, 19);
             ckbFicha.TabIndex = 15;
@@ -362,7 +362,7 @@
             // ckbApto
             // 
             ckbApto.AutoSize = true;
-            ckbApto.Location = new Point(258, 262);
+            ckbApto.Location = new Point(323, 271);
             ckbApto.Name = "ckbApto";
             ckbApto.Size = new Size(83, 19);
             ckbApto.TabIndex = 16;
