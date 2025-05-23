@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -60,6 +61,8 @@
             label11 = new Label();
             ckbFicha = new CheckBox();
             ckbApto = new CheckBox();
+            ttSocio = new ToolTip(components);
+            ttNoSocio = new ToolTip(components);
             pnlCuota.SuspendLayout();
             groupBox1.SuspendLayout();
             pnlActividad.SuspendLayout();
@@ -186,7 +189,7 @@
             pnlCuota.Controls.Add(label9);
             pnlCuota.Controls.Add(groupBox1);
             pnlCuota.Controls.Add(label8);
-            pnlCuota.Location = new Point(523, 46);
+            pnlCuota.Location = new Point(525, 26);
             pnlCuota.Name = "pnlCuota";
             pnlCuota.Size = new Size(254, 348);
             pnlCuota.TabIndex = 11;
@@ -257,23 +260,46 @@
             // 
             // btnSocio
             // 
-            btnSocio.Location = new Point(478, 146);
+            btnSocio.BackColor = Color.Transparent;
+            btnSocio.BackgroundImage = Properties.Resources.socios;
+            btnSocio.BackgroundImageLayout = ImageLayout.Zoom;
+            btnSocio.Cursor = Cursors.Hand;
+            btnSocio.FlatAppearance.BorderColor = Color.Red;
+            btnSocio.FlatAppearance.BorderSize = 0;
+            btnSocio.FlatStyle = FlatStyle.Flat;
+            btnSocio.ForeColor = Color.Transparent;
+            btnSocio.Location = new Point(438, 112);
             btnSocio.Name = "btnSocio";
-            btnSocio.Size = new Size(75, 23);
+            btnSocio.Size = new Size(57, 53);
             btnSocio.TabIndex = 12;
-            btnSocio.Text = "Socio";
-            btnSocio.UseVisualStyleBackColor = true;
+            ttSocio.SetToolTip(btnSocio, "Socios");
+            btnSocio.UseVisualStyleBackColor = false;
             btnSocio.Click += btnSocio_Click;
+            btnSocio.MouseDown += btnSocio_MouseDown;
+            btnSocio.MouseEnter += btnSocio_MouseEnter;
+            btnSocio.MouseLeave += btnSocio_MouseLeave;
+            btnSocio.MouseUp += btnSocio_MouseUp;
             // 
             // btnNoSocio
             // 
-            btnNoSocio.Location = new Point(478, 231);
+            btnNoSocio.BackColor = Color.Transparent;
+            btnNoSocio.BackgroundImage = Properties.Resources.noSocio;
+            btnNoSocio.BackgroundImageLayout = ImageLayout.Stretch;
+            btnNoSocio.FlatAppearance.BorderColor = Color.Black;
+            btnNoSocio.FlatAppearance.BorderSize = 0;
+            btnNoSocio.FlatStyle = FlatStyle.Flat;
+            btnNoSocio.ForeColor = Color.Black;
+            btnNoSocio.Location = new Point(438, 217);
             btnNoSocio.Name = "btnNoSocio";
-            btnNoSocio.Size = new Size(75, 23);
+            btnNoSocio.Size = new Size(57, 41);
             btnNoSocio.TabIndex = 13;
-            btnNoSocio.Text = "No socio";
-            btnNoSocio.UseVisualStyleBackColor = true;
+            ttNoSocio.SetToolTip(btnNoSocio, "No Socios");
+            btnNoSocio.UseVisualStyleBackColor = false;
             btnNoSocio.Click += btnNoSocio_Click;
+            btnNoSocio.MouseDown += btnNoSocio_MouseDown;
+            btnNoSocio.MouseEnter += btnNoSocio_MouseEnter;
+            btnNoSocio.MouseLeave += btnNoSocio_MouseLeave;
+            btnNoSocio.MouseUp += btnNoSocio_MouseUp;
             // 
             // pnlActividad
             // 
@@ -284,13 +310,14 @@
             pnlActividad.Controls.Add(comboBox2);
             pnlActividad.Controls.Add(label10);
             pnlActividad.Controls.Add(label11);
-            pnlActividad.Location = new Point(523, 46);
+            pnlActividad.Location = new Point(525, 26);
             pnlActividad.Name = "pnlActividad";
             pnlActividad.Size = new Size(254, 348);
             pnlActividad.TabIndex = 14;
             // 
             // textBox2
             // 
+            textBox2.Enabled = false;
             textBox2.Location = new Point(95, 274);
             textBox2.Name = "textBox2";
             textBox2.ReadOnly = true;
@@ -299,6 +326,7 @@
             // 
             // textBox1
             // 
+            textBox1.Enabled = false;
             textBox1.Location = new Point(95, 231);
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
@@ -373,12 +401,12 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(794, 399);
             ControlBox = false;
-            Controls.Add(ckbApto);
-            Controls.Add(ckbFicha);
             Controls.Add(btnNoSocio);
             Controls.Add(btnSocio);
+            Controls.Add(ckbApto);
+            Controls.Add(ckbFicha);
             Controls.Add(pnlActividad);
             Controls.Add(pnlCuota);
             Controls.Add(btnVolver);
@@ -394,6 +422,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            ForeColor = SystemColors.ControlText;
             Name = "RegistroSocio";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Registrar Socio";
@@ -441,5 +470,7 @@
         private TextBox textBox1;
         private CheckBox ckbFicha;
         private CheckBox ckbApto;
+        private ToolTip ttSocio;
+        private ToolTip ttNoSocio;
     }
 }

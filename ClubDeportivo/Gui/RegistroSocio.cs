@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClubDeportivo.Datos;
 using ClubDeportivo.Entidades;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ClubDeportivo.Gui
 {
@@ -19,8 +18,60 @@ namespace ClubDeportivo.Gui
         {
             InitializeComponent();
             pnlActividad.Hide();
-        }
+            cboCuotas.SelectedIndex = 0;
+            // Colores basados en el logo
+            Color azulOscuro = Color.FromArgb(10, 45, 74);   // Azul del título y botón
+            Color blanco = Color.White;
+            Color grisClaro = Color.FromArgb(240, 240, 240); // Color de fondo del formulario
 
+            Panel panelSombra = new Panel();
+            panelSombra.Name = "panelSombra";
+            panelSombra.Size = new Size(pnlCuota.Width, pnlCuota.Height);
+            panelSombra.Location = new Point(pnlCuota.Left + 8, pnlCuota.Top + 8);
+            panelSombra.BackColor = Color.DarkGray;
+            panelSombra.BringToFront(); // Por si querés verlo encima (opcional)
+            botonActivo = btnSocio;
+            botonActivo.BackColor = Color.FromArgb(173, 216, 230);
+            botonActivo.Size = new Size(65, 61);
+
+
+            this.Controls.Add(panelSombra); // Agregalo al formulario
+            this.Controls.SetChildIndex(pnlCuota, 0); // Asegurá que el panel principal esté arriba
+
+            // Color de fondo del formulario
+            this.BackColor = grisClaro;
+            pnlCuota.BackColor = Color.LightGray;
+            pnlCuota.BorderStyle = BorderStyle.FixedSingle;
+            pnlActividad.BackColor = Color.LightGray;
+            pnlActividad.BorderStyle = BorderStyle.FixedSingle;
+            panelSombra.Location = new Point(pnlCuota.Left + 3, pnlCuota.Top + 3);
+            panelSombra.BackColor = Color.DarkGray;
+
+
+            // Estilo visual para los botones
+            Button[] botones = { btnRegistrar, btnVolver, btnLimpiar };
+            foreach (Button btn in botones)
+            {
+                btn.BackColor = azulOscuro;
+                btn.ForeColor = blanco;
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.FlatAppearance.BorderSize = 0;
+
+                // Hover: cambia a blanco con texto azul oscuro
+                btn.MouseEnter += (s, e) =>
+                {
+                    btn.BackColor = blanco;
+                    btn.ForeColor = azulOscuro;
+                };
+                btn.MouseLeave += (s, e) =>
+                {
+                    btn.BackColor = azulOscuro;
+                    btn.ForeColor = blanco;
+                };
+                btnSocio.Click += Boton_Click;
+                btnNoSocio.Click += Boton_Click;
+            }
+        }
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -57,6 +108,12 @@ namespace ClubDeportivo.Gui
             pnlCuota.Visible = true;
             pnlActividad.Visible = false;
             txtDocumento.Focus();
+
+            botonActivo = btnSocio;
+            botonActivo.BackColor = Color.FromArgb(173, 216, 230);
+            botonActivo.Size = new Size(65, 61);
+            btnNoSocio.BackColor = Color.FromArgb(240, 240, 240);
+            btnNoSocio.Size = new Size(57, 53);
 
         }
         private void btnLimpiar_Click(object sender, EventArgs e)
@@ -135,7 +192,6 @@ namespace ClubDeportivo.Gui
                 pnlCuota.Show();
             }
         }
-
         private void btnNoSocio_Click(object sender, EventArgs e)
         {
             if (pnlCuota.Visible)
@@ -144,7 +200,6 @@ namespace ClubDeportivo.Gui
                 pnlActividad.Show();
             }
         }
-
         private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
@@ -171,7 +226,7 @@ namespace ClubDeportivo.Gui
             {
                 cboCuotas.Enabled = false;
             }
-            
+
         }
 
         private void rbtEfectivo_CheckedChanged(object sender, EventArgs e)
@@ -185,8 +240,91 @@ namespace ClubDeportivo.Gui
             {
                 cboCuotas.Enabled = true;
             }
+        }
 
-                
+        private void btnSocio_MouseEnter(object sender, EventArgs e)
+        {
+            if (botonActivo != btnSocio) // sólo si no está marcado
+            {
+                btnSocio.Size = new Size(65, 61);
+                btnSocio.BackColor = Color.LightBlue;
+            }
+        }
+
+        private void btnSocio_MouseLeave(object sender, EventArgs e)
+        {
+            if (botonActivo != btnSocio) // sólo si no está marcado
+            {
+                btnSocio.Size = new Size(57, 53);
+                btnSocio.BackColor = Color.Transparent; // o el color base
+            }
+        }
+
+        private void btnSocio_MouseDown(object sender, MouseEventArgs e)
+        {
+            btnSocio.Location = new Point(btnSocio.Location.X + 1, btnSocio.Location.Y + 1); // se mueve 1 px
+        }
+
+        private void btnSocio_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (!btnSocio.Enabled)
+            {
+                btnSocio.Location = new Point(btnSocio.Location.X - 1, btnSocio.Location.Y - 1); // vuelve
+            }
+        }
+
+        Button botonActivo = null;
+        private void Boton_Click(object sender, EventArgs e)
+        {
+
+            Button botonClickeado = sender as Button;
+
+            if (botonActivo == botonClickeado)
+            {
+                return;
+            }
+            else
+            {
+                // Desmarcamos el botón anterior (si había uno)
+                if (botonActivo != null)
+                    botonActivo.BackColor = Color.Transparent;
+                    botonActivo.Size = new Size(57, 53);
+
+                // Marcamos el nuevo
+                botonClickeado.BackColor = Color.FromArgb(173, 216, 230); // o el color que prefieras
+                botonActivo = botonClickeado;
+            }
+        }
+
+        private void btnNoSocio_MouseDown(object sender, MouseEventArgs e)
+        {
+            btnNoSocio.Location = new Point(btnNoSocio.Location.X + 1, btnNoSocio.Location.Y + 1); // se mueve 1 px
+        }
+
+        private void btnNoSocio_MouseEnter(object sender, EventArgs e)
+        {
+            if (botonActivo != btnNoSocio)
+            {
+                btnNoSocio.Size = new Size(65, 61);
+                btnNoSocio.BackColor = Color.LightBlue;
+            }
+        }
+
+        private void btnNoSocio_MouseLeave(object sender, EventArgs e)
+        {
+            if (botonActivo != btnNoSocio)
+            {
+                btnNoSocio.Size = new Size(57, 53);
+                btnNoSocio.BackColor = Color.Transparent;
+            }
+        }
+
+        private void btnNoSocio_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (!btnNoSocio.Enabled)
+            {
+                btnNoSocio.Location = new Point(btnNoSocio.Location.X - 1, btnNoSocio.Location.Y - 1); // vuelve
+            }
         }
     }
 }

@@ -20,8 +20,8 @@ namespace ClubDeportivo.Datos
             {
                 sqlCon = Conexion.getInstancia().CrearConexion();
                 string sql = @"INSERT INTO cuota
-                       (codSocio, fechaVencimiento, fechaPago, monto, estadoPago, medioPago) 
-                       VALUES (@codSocio, @fechaVencimiento, @fechaPago, @monto, @estadoPago, @medioPago);";
+                       (codSocio, fechaVencimiento, fechaPago, monto, estadoPago, medioPago,cantCuota) 
+                       VALUES (@codSocio, @fechaVencimiento, @fechaPago, @monto, @estadoPago, @medioPago, @cantCuotas);";
 
                 MySqlCommand comando = new MySqlCommand(sql, sqlCon);
 
@@ -31,6 +31,7 @@ namespace ClubDeportivo.Datos
                 comando.Parameters.Add("@monto", MySqlDbType.Decimal).Value = cuota.Monto;
                 comando.Parameters.Add("@estadoPago", MySqlDbType.Int16).Value = cuota.EstadoPago;
                 comando.Parameters.Add("@medioPago", MySqlDbType.VarChar).Value = cuota.MedioPago;
+                comando.Parameters.Add("@cantCuotas", MySqlDbType.Int32).Value = cuota.cantCuotas;
 
                 sqlCon.Open();
                 comando.ExecuteNonQuery();
