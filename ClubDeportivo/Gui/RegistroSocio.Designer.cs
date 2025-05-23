@@ -1,0 +1,445 @@
+﻿namespace ClubDeportivo.Gui
+{
+    partial class RegistroSocio
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            dtpFechaNac = new DateTimePicker();
+            dtpFechaInscripcion = new DateTimePicker();
+            txtDocumento = new TextBox();
+            txtNombreCompleto = new TextBox();
+            txtTelefono = new TextBox();
+            btnRegistrar = new Button();
+            btnLimpiar = new Button();
+            btnVolver = new Button();
+            pnlCuota = new Panel();
+            cboCuotas = new ComboBox();
+            label9 = new Label();
+            groupBox1 = new GroupBox();
+            rbtTarjeta = new RadioButton();
+            rbtEfectivo = new RadioButton();
+            label8 = new Label();
+            btnSocio = new Button();
+            btnNoSocio = new Button();
+            pnlActividad = new Panel();
+            textBox2 = new TextBox();
+            textBox1 = new TextBox();
+            label13 = new Label();
+            label12 = new Label();
+            comboBox2 = new ComboBox();
+            label10 = new Label();
+            label11 = new Label();
+            ckbFicha = new CheckBox();
+            ckbApto = new CheckBox();
+            pnlCuota.SuspendLayout();
+            groupBox1.SuspendLayout();
+            pnlActividad.SuspendLayout();
+            SuspendLayout();
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(20, 69);
+            label1.Name = "label1";
+            label1.Size = new Size(70, 15);
+            label1.TabIndex = 0;
+            label1.Text = "Documento";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(20, 100);
+            label2.Name = "label2";
+            label2.Size = new Size(107, 15);
+            label2.TabIndex = 0;
+            label2.Text = "Nombre Completo";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(20, 131);
+            label3.Name = "label3";
+            label3.Size = new Size(119, 15);
+            label3.TabIndex = 0;
+            label3.Text = "Fecha de Nacimiento";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(20, 163);
+            label4.Name = "label4";
+            label4.Size = new Size(52, 15);
+            label4.TabIndex = 0;
+            label4.Text = "Telefono";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(20, 195);
+            label5.Name = "label5";
+            label5.Size = new Size(99, 15);
+            label5.TabIndex = 0;
+            label5.Text = "Fecha inscripcion";
+            // 
+            // dtpFechaNac
+            // 
+            dtpFechaNac.Location = new Point(154, 131);
+            dtpFechaNac.Name = "dtpFechaNac";
+            dtpFechaNac.Size = new Size(229, 23);
+            dtpFechaNac.TabIndex = 1;
+            // 
+            // dtpFechaInscripcion
+            // 
+            dtpFechaInscripcion.Location = new Point(154, 189);
+            dtpFechaInscripcion.Name = "dtpFechaInscripcion";
+            dtpFechaInscripcion.Size = new Size(229, 23);
+            dtpFechaInscripcion.TabIndex = 2;
+            // 
+            // txtDocumento
+            // 
+            txtDocumento.Location = new Point(154, 66);
+            txtDocumento.Name = "txtDocumento";
+            txtDocumento.Size = new Size(229, 23);
+            txtDocumento.TabIndex = 3;
+            txtDocumento.KeyPress += txtDocumento_KeyPress;
+            // 
+            // txtNombreCompleto
+            // 
+            txtNombreCompleto.Location = new Point(154, 95);
+            txtNombreCompleto.Name = "txtNombreCompleto";
+            txtNombreCompleto.Size = new Size(229, 23);
+            txtNombreCompleto.TabIndex = 4;
+            // 
+            // txtTelefono
+            // 
+            txtTelefono.Location = new Point(154, 160);
+            txtTelefono.Name = "txtTelefono";
+            txtTelefono.Size = new Size(229, 23);
+            txtTelefono.TabIndex = 5;
+            txtTelefono.KeyPress += txtTelefono_KeyPress;
+            // 
+            // btnRegistrar
+            // 
+            btnRegistrar.Location = new Point(20, 348);
+            btnRegistrar.Margin = new Padding(3, 2, 3, 2);
+            btnRegistrar.Name = "btnRegistrar";
+            btnRegistrar.Size = new Size(88, 26);
+            btnRegistrar.TabIndex = 8;
+            btnRegistrar.Text = "REGISTRAR";
+            btnRegistrar.UseVisualStyleBackColor = true;
+            btnRegistrar.Click += btnRegistrar_Click;
+            // 
+            // btnLimpiar
+            // 
+            btnLimpiar.Location = new Point(172, 348);
+            btnLimpiar.Margin = new Padding(3, 2, 3, 2);
+            btnLimpiar.Name = "btnLimpiar";
+            btnLimpiar.Size = new Size(88, 26);
+            btnLimpiar.TabIndex = 9;
+            btnLimpiar.Text = "LIMPIAR";
+            btnLimpiar.UseVisualStyleBackColor = true;
+            btnLimpiar.Click += btnLimpiar_Click;
+            // 
+            // btnVolver
+            // 
+            btnVolver.Location = new Point(322, 348);
+            btnVolver.Margin = new Padding(3, 2, 3, 2);
+            btnVolver.Name = "btnVolver";
+            btnVolver.Size = new Size(88, 26);
+            btnVolver.TabIndex = 10;
+            btnVolver.Text = "VOLVER";
+            btnVolver.UseVisualStyleBackColor = true;
+            btnVolver.Click += btnVolver_Click;
+            // 
+            // pnlCuota
+            // 
+            pnlCuota.Controls.Add(cboCuotas);
+            pnlCuota.Controls.Add(label9);
+            pnlCuota.Controls.Add(groupBox1);
+            pnlCuota.Controls.Add(label8);
+            pnlCuota.Location = new Point(523, 46);
+            pnlCuota.Name = "pnlCuota";
+            pnlCuota.Size = new Size(254, 348);
+            pnlCuota.TabIndex = 11;
+            // 
+            // cboCuotas
+            // 
+            cboCuotas.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboCuotas.Enabled = false;
+            cboCuotas.FormattingEnabled = true;
+            cboCuotas.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6" });
+            cboCuotas.Location = new Point(133, 241);
+            cboCuotas.Name = "cboCuotas";
+            cboCuotas.Size = new Size(62, 23);
+            cboCuotas.TabIndex = 3;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(18, 249);
+            label9.Name = "label9";
+            label9.Size = new Size(109, 15);
+            label9.TabIndex = 2;
+            label9.Text = "Cantidad de cuotas";
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(rbtTarjeta);
+            groupBox1.Controls.Add(rbtEfectivo);
+            groupBox1.Location = new Point(36, 100);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(194, 100);
+            groupBox1.TabIndex = 1;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Medio de pago";
+            // 
+            // rbtTarjeta
+            // 
+            rbtTarjeta.AutoSize = true;
+            rbtTarjeta.Location = new Point(30, 63);
+            rbtTarjeta.Name = "rbtTarjeta";
+            rbtTarjeta.Size = new Size(115, 19);
+            rbtTarjeta.TabIndex = 1;
+            rbtTarjeta.Text = "Tarjeta de credito";
+            rbtTarjeta.UseVisualStyleBackColor = true;
+            rbtTarjeta.CheckedChanged += rbtTarjeta_CheckedChanged;
+            // 
+            // rbtEfectivo
+            // 
+            rbtEfectivo.AutoSize = true;
+            rbtEfectivo.Checked = true;
+            rbtEfectivo.Location = new Point(30, 28);
+            rbtEfectivo.Name = "rbtEfectivo";
+            rbtEfectivo.Size = new Size(67, 19);
+            rbtEfectivo.TabIndex = 0;
+            rbtEfectivo.TabStop = true;
+            rbtEfectivo.Text = "Efectivo";
+            rbtEfectivo.UseVisualStyleBackColor = true;
+            rbtEfectivo.CheckedChanged += rbtEfectivo_CheckedChanged;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(54, 37);
+            label8.Name = "label8";
+            label8.Size = new Size(153, 15);
+            label8.TabIndex = 0;
+            label8.Text = "Pago cuota mensual | Socio";
+            // 
+            // btnSocio
+            // 
+            btnSocio.Location = new Point(478, 146);
+            btnSocio.Name = "btnSocio";
+            btnSocio.Size = new Size(75, 23);
+            btnSocio.TabIndex = 12;
+            btnSocio.Text = "Socio";
+            btnSocio.UseVisualStyleBackColor = true;
+            btnSocio.Click += btnSocio_Click;
+            // 
+            // btnNoSocio
+            // 
+            btnNoSocio.Location = new Point(478, 231);
+            btnNoSocio.Name = "btnNoSocio";
+            btnNoSocio.Size = new Size(75, 23);
+            btnNoSocio.TabIndex = 13;
+            btnNoSocio.Text = "No socio";
+            btnNoSocio.UseVisualStyleBackColor = true;
+            btnNoSocio.Click += btnNoSocio_Click;
+            // 
+            // pnlActividad
+            // 
+            pnlActividad.Controls.Add(textBox2);
+            pnlActividad.Controls.Add(textBox1);
+            pnlActividad.Controls.Add(label13);
+            pnlActividad.Controls.Add(label12);
+            pnlActividad.Controls.Add(comboBox2);
+            pnlActividad.Controls.Add(label10);
+            pnlActividad.Controls.Add(label11);
+            pnlActividad.Location = new Point(523, 46);
+            pnlActividad.Name = "pnlActividad";
+            pnlActividad.Size = new Size(254, 348);
+            pnlActividad.TabIndex = 14;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(95, 274);
+            textBox2.Name = "textBox2";
+            textBox2.ReadOnly = true;
+            textBox2.Size = new Size(74, 23);
+            textBox2.TabIndex = 6;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(95, 231);
+            textBox1.Name = "textBox1";
+            textBox1.ReadOnly = true;
+            textBox1.Size = new Size(74, 23);
+            textBox1.TabIndex = 5;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(36, 277);
+            label13.Name = "label13";
+            label13.Size = new Size(40, 15);
+            label13.TabIndex = 4;
+            label13.Text = "Precio";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(36, 234);
+            label12.Name = "label12";
+            label12.Size = new Size(36, 15);
+            label12.TabIndex = 3;
+            label12.Text = "Cupo";
+            // 
+            // comboBox2
+            // 
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new Point(66, 171);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(121, 23);
+            comboBox2.TabIndex = 2;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(70, 117);
+            label10.Name = "label10";
+            label10.Size = new Size(111, 15);
+            label10.TabIndex = 1;
+            label10.Text = "Lista de Actividades";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(54, 37);
+            label11.Name = "label11";
+            label11.Size = new Size(162, 15);
+            label11.TabIndex = 0;
+            label11.Text = "Pago por actividad | No socio";
+            // 
+            // ckbFicha
+            // 
+            ckbFicha.AutoSize = true;
+            ckbFicha.Location = new Point(97, 262);
+            ckbFicha.Name = "ckbFicha";
+            ckbFicha.Size = new Size(96, 19);
+            ckbFicha.TabIndex = 15;
+            ckbFicha.Text = "Ficha medica";
+            ckbFicha.UseVisualStyleBackColor = true;
+            // 
+            // ckbApto
+            // 
+            ckbApto.AutoSize = true;
+            ckbApto.Location = new Point(258, 262);
+            ckbApto.Name = "ckbApto";
+            ckbApto.Size = new Size(83, 19);
+            ckbApto.TabIndex = 16;
+            ckbApto.Text = "Apto fisico";
+            ckbApto.UseVisualStyleBackColor = true;
+            // 
+            // RegistroSocio
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            ControlBox = false;
+            Controls.Add(ckbApto);
+            Controls.Add(ckbFicha);
+            Controls.Add(btnNoSocio);
+            Controls.Add(btnSocio);
+            Controls.Add(pnlActividad);
+            Controls.Add(pnlCuota);
+            Controls.Add(btnVolver);
+            Controls.Add(btnLimpiar);
+            Controls.Add(btnRegistrar);
+            Controls.Add(txtTelefono);
+            Controls.Add(txtNombreCompleto);
+            Controls.Add(txtDocumento);
+            Controls.Add(dtpFechaInscripcion);
+            Controls.Add(dtpFechaNac);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Name = "RegistroSocio";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Registrar Socio";
+            pnlCuota.ResumeLayout(false);
+            pnlCuota.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            pnlActividad.ResumeLayout(false);
+            pnlActividad.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
+        }
+
+        #endregion
+
+        private Label label1;
+        private Label label2;
+        private Label label3;
+        private Label label4;
+        private Label label5;
+        private DateTimePicker dtpFechaNac;
+        private DateTimePicker dtpFechaInscripcion;
+        private TextBox txtDocumento;
+        private TextBox txtNombreCompleto;
+        private TextBox txtTelefono;
+        private Button btnRegistrar;
+        private Button btnLimpiar;
+        private Button btnVolver;
+        private Panel pnlCuota;
+        private Label label9;
+        private GroupBox groupBox1;
+        private RadioButton rbtTarjeta;
+        private RadioButton rbtEfectivo;
+        private Label label8;
+        private Button btnNoSocio;
+        private ComboBox cboCuotas;
+        private Button btnSocio;
+        private Panel pnlActividad;
+        private Label label12;
+        private ComboBox comboBox2;
+        private Label label10;
+        private Label label11;
+        private Label label13;
+        private TextBox textBox2;
+        private TextBox textBox1;
+        private CheckBox ckbFicha;
+        private CheckBox ckbApto;
+    }
+}
