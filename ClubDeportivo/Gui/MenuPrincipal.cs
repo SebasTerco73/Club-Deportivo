@@ -76,5 +76,12 @@ namespace ClubDeportivo
             RegistroSocio registro = new RegistroSocio();
             registro.Show();
         }
+
+        private void btnListado_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ListadoVencimientos listado = new ListadoVencimientos();
+            listado.Show();
+        }
     }
 }

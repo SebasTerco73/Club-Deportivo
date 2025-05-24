@@ -148,7 +148,9 @@
             Controls.Add(txtUser);
             Controls.Add(labelContrasena);
             Controls.Add(labelUser);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
             Margin = new Padding(3, 2, 3, 2);
+            MaximizeBox = false;
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";

@@ -71,65 +71,72 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(20, 69);
+            label1.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic);
+            label1.Location = new Point(78, 70);
             label1.Name = "label1";
-            label1.Size = new Size(70, 15);
+            label1.Size = new Size(86, 19);
             label1.TabIndex = 0;
             label1.Text = "Documento";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(20, 100);
+            label2.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic);
+            label2.Location = new Point(34, 99);
             label2.Name = "label2";
-            label2.Size = new Size(107, 15);
+            label2.Size = new Size(130, 19);
             label2.TabIndex = 0;
             label2.Text = "Nombre Completo";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(20, 131);
+            label3.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic);
+            label3.Location = new Point(12, 132);
             label3.Name = "label3";
-            label3.Size = new Size(119, 15);
+            label3.Size = new Size(152, 19);
             label3.TabIndex = 0;
             label3.Text = "Fecha de Nacimiento";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(20, 163);
+            label4.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic);
+            label4.Location = new Point(97, 161);
             label4.Name = "label4";
-            label4.Size = new Size(52, 15);
+            label4.Size = new Size(67, 19);
             label4.TabIndex = 0;
             label4.Text = "Telefono";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(20, 195);
+            label5.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic);
+            label5.Location = new Point(36, 190);
             label5.Name = "label5";
-            label5.Size = new Size(99, 15);
+            label5.Size = new Size(130, 19);
             label5.TabIndex = 0;
             label5.Text = "Fecha inscripcion";
             // 
             // dtpFechaNac
             // 
-            dtpFechaNac.Location = new Point(154, 131);
+            dtpFechaNac.Font = new Font("Palatino Linotype", 9F, FontStyle.Bold);
+            dtpFechaNac.Location = new Point(170, 133);
             dtpFechaNac.Name = "dtpFechaNac";
-            dtpFechaNac.Size = new Size(229, 23);
+            dtpFechaNac.Size = new Size(229, 24);
             dtpFechaNac.TabIndex = 1;
             // 
             // dtpFechaInscripcion
             // 
-            dtpFechaInscripcion.Location = new Point(154, 189);
+            dtpFechaInscripcion.Font = new Font("Palatino Linotype", 9F, FontStyle.Bold);
+            dtpFechaInscripcion.Location = new Point(172, 190);
             dtpFechaInscripcion.Name = "dtpFechaInscripcion";
-            dtpFechaInscripcion.Size = new Size(229, 23);
+            dtpFechaInscripcion.Size = new Size(229, 24);
             dtpFechaInscripcion.TabIndex = 2;
             // 
             // txtDocumento
             // 
-            txtDocumento.Location = new Point(154, 66);
+            txtDocumento.Location = new Point(170, 70);
             txtDocumento.Name = "txtDocumento";
             txtDocumento.Size = new Size(229, 23);
             txtDocumento.TabIndex = 3;
@@ -137,14 +144,14 @@
             // 
             // txtNombreCompleto
             // 
-            txtNombreCompleto.Location = new Point(154, 95);
+            txtNombreCompleto.Location = new Point(170, 99);
             txtNombreCompleto.Name = "txtNombreCompleto";
             txtNombreCompleto.Size = new Size(229, 23);
             txtNombreCompleto.TabIndex = 4;
             // 
             // txtTelefono
             // 
-            txtTelefono.Location = new Point(154, 160);
+            txtTelefono.Location = new Point(172, 161);
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(229, 23);
             txtTelefono.TabIndex = 5;
@@ -208,9 +215,10 @@
             // label9
             // 
             label9.AutoSize = true;
+            label9.Font = new Font("Times New Roman", 9F, FontStyle.Bold);
             label9.Location = new Point(18, 249);
             label9.Name = "label9";
-            label9.Size = new Size(109, 15);
+            label9.Size = new Size(106, 15);
             label9.TabIndex = 2;
             label9.Text = "Cantidad de cuotas";
             // 
@@ -218,6 +226,7 @@
             // 
             groupBox1.Controls.Add(rbtTarjeta);
             groupBox1.Controls.Add(rbtEfectivo);
+            groupBox1.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox1.Location = new Point(36, 100);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(194, 100);
@@ -230,7 +239,7 @@
             rbtTarjeta.AutoSize = true;
             rbtTarjeta.Location = new Point(30, 63);
             rbtTarjeta.Name = "rbtTarjeta";
-            rbtTarjeta.Size = new Size(115, 19);
+            rbtTarjeta.Size = new Size(117, 19);
             rbtTarjeta.TabIndex = 1;
             rbtTarjeta.Text = "Tarjeta de credito";
             rbtTarjeta.UseVisualStyleBackColor = true;
@@ -242,7 +251,7 @@
             rbtEfectivo.Checked = true;
             rbtEfectivo.Location = new Point(30, 28);
             rbtEfectivo.Name = "rbtEfectivo";
-            rbtEfectivo.Size = new Size(67, 19);
+            rbtEfectivo.Size = new Size(66, 19);
             rbtEfectivo.TabIndex = 0;
             rbtEfectivo.TabStop = true;
             rbtEfectivo.Text = "Efectivo";
@@ -252,9 +261,10 @@
             // label8
             // 
             label8.AutoSize = true;
+            label8.Font = new Font("Times New Roman", 9F, FontStyle.Bold);
             label8.Location = new Point(54, 37);
             label8.Name = "label8";
-            label8.Size = new Size(153, 15);
+            label8.Size = new Size(149, 15);
             label8.TabIndex = 0;
             label8.Text = "Pago cuota mensual | Socio";
             // 
@@ -336,6 +346,7 @@
             // label13
             // 
             label13.AutoSize = true;
+            label13.Font = new Font("Times New Roman", 9F, FontStyle.Bold);
             label13.Location = new Point(36, 277);
             label13.Name = "label13";
             label13.Size = new Size(40, 15);
@@ -345,9 +356,10 @@
             // label12
             // 
             label12.AutoSize = true;
+            label12.Font = new Font("Times New Roman", 9F, FontStyle.Bold);
             label12.Location = new Point(36, 234);
             label12.Name = "label12";
-            label12.Size = new Size(36, 15);
+            label12.Size = new Size(35, 15);
             label12.TabIndex = 3;
             label12.Text = "Cupo";
             // 
@@ -362,27 +374,30 @@
             // label10
             // 
             label10.AutoSize = true;
+            label10.Font = new Font("Times New Roman", 9F, FontStyle.Bold);
             label10.Location = new Point(70, 117);
             label10.Name = "label10";
-            label10.Size = new Size(111, 15);
+            label10.Size = new Size(109, 15);
             label10.TabIndex = 1;
             label10.Text = "Lista de Actividades";
             // 
             // label11
             // 
             label11.AutoSize = true;
+            label11.Font = new Font("Times New Roman", 9F, FontStyle.Bold);
             label11.Location = new Point(54, 37);
             label11.Name = "label11";
-            label11.Size = new Size(162, 15);
+            label11.Size = new Size(154, 15);
             label11.TabIndex = 0;
             label11.Text = "Pago por actividad | No socio";
             // 
             // ckbFicha
             // 
             ckbFicha.AutoSize = true;
+            ckbFicha.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic);
             ckbFicha.Location = new Point(97, 262);
             ckbFicha.Name = "ckbFicha";
-            ckbFicha.Size = new Size(96, 19);
+            ckbFicha.Size = new Size(119, 23);
             ckbFicha.TabIndex = 15;
             ckbFicha.Text = "Ficha medica";
             ckbFicha.UseVisualStyleBackColor = true;
@@ -390,9 +405,10 @@
             // ckbApto
             // 
             ckbApto.AutoSize = true;
+            ckbApto.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic);
             ckbApto.Location = new Point(258, 262);
             ckbApto.Name = "ckbApto";
-            ckbApto.Size = new Size(83, 19);
+            ckbApto.Size = new Size(100, 23);
             ckbApto.TabIndex = 16;
             ckbApto.Text = "Apto fisico";
             ckbApto.UseVisualStyleBackColor = true;
@@ -403,8 +419,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(794, 399);
             ControlBox = false;
-            Controls.Add(ckbApto);
-            Controls.Add(ckbFicha);
             Controls.Add(btnNoSocio);
             Controls.Add(btnSocio);
             Controls.Add(ckbApto);
@@ -425,6 +439,8 @@
             Controls.Add(label2);
             Controls.Add(label1);
             ForeColor = SystemColors.ControlText;
+            FormBorderStyle = FormBorderStyle.Fixed3D;
+            MaximizeBox = false;
             Name = "RegistroSocio";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Registrar Socio";

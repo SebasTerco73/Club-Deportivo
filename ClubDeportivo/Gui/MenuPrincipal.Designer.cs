@@ -91,6 +91,7 @@
             btnListado.Name = "btnListado";
             btnListado.UseCompatibleTextRendering = true;
             btnListado.UseVisualStyleBackColor = false;
+            btnListado.Click += btnListado_Click;
             // 
             // btnSalir
             // 
