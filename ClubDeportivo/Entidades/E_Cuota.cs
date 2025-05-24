@@ -8,6 +8,7 @@ namespace ClubDeportivo.Entidades
 {
     internal class E_Cuota
     {
+        public int? idCuota { get; set; }
         
         public int CodSocio { get; set; }
         public DateTime FechaVencimiento { get; set; }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -60,6 +61,8 @@
             label11 = new Label();
             ckbFicha = new CheckBox();
             ckbApto = new CheckBox();
+            ttSocio = new ToolTip(components);
+            ttNoSocio = new ToolTip(components);
             pnlCuota.SuspendLayout();
             groupBox1.SuspendLayout();
             pnlActividad.SuspendLayout();
@@ -68,7 +71,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(85, 78);
+            label1.Location = new Point(20, 69);
             label1.Name = "label1";
             label1.Size = new Size(70, 15);
             label1.TabIndex = 0;
@@ -77,7 +80,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(85, 109);
+            label2.Location = new Point(20, 100);
             label2.Name = "label2";
             label2.Size = new Size(107, 15);
             label2.TabIndex = 0;
@@ -86,7 +89,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(85, 140);
+            label3.Location = new Point(20, 131);
             label3.Name = "label3";
             label3.Size = new Size(119, 15);
             label3.TabIndex = 0;
@@ -95,7 +98,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(85, 172);
+            label4.Location = new Point(20, 163);
             label4.Name = "label4";
             label4.Size = new Size(52, 15);
             label4.TabIndex = 0;
@@ -104,7 +107,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(85, 204);
+            label5.Location = new Point(20, 195);
             label5.Name = "label5";
             label5.Size = new Size(99, 15);
             label5.TabIndex = 0;
@@ -112,21 +115,21 @@
             // 
             // dtpFechaNac
             // 
-            dtpFechaNac.Location = new Point(219, 140);
+            dtpFechaNac.Location = new Point(154, 131);
             dtpFechaNac.Name = "dtpFechaNac";
             dtpFechaNac.Size = new Size(229, 23);
             dtpFechaNac.TabIndex = 1;
             // 
             // dtpFechaInscripcion
             // 
-            dtpFechaInscripcion.Location = new Point(219, 198);
+            dtpFechaInscripcion.Location = new Point(154, 189);
             dtpFechaInscripcion.Name = "dtpFechaInscripcion";
             dtpFechaInscripcion.Size = new Size(229, 23);
             dtpFechaInscripcion.TabIndex = 2;
             // 
             // txtDocumento
             // 
-            txtDocumento.Location = new Point(219, 75);
+            txtDocumento.Location = new Point(154, 66);
             txtDocumento.Name = "txtDocumento";
             txtDocumento.Size = new Size(229, 23);
             txtDocumento.TabIndex = 3;
@@ -134,14 +137,14 @@
             // 
             // txtNombreCompleto
             // 
-            txtNombreCompleto.Location = new Point(219, 104);
+            txtNombreCompleto.Location = new Point(154, 95);
             txtNombreCompleto.Name = "txtNombreCompleto";
             txtNombreCompleto.Size = new Size(229, 23);
             txtNombreCompleto.TabIndex = 4;
             // 
             // txtTelefono
             // 
-            txtTelefono.Location = new Point(219, 169);
+            txtTelefono.Location = new Point(154, 160);
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(229, 23);
             txtTelefono.TabIndex = 5;
@@ -149,7 +152,7 @@
             // 
             // btnRegistrar
             // 
-            btnRegistrar.Location = new Point(85, 357);
+            btnRegistrar.Location = new Point(20, 348);
             btnRegistrar.Margin = new Padding(3, 2, 3, 2);
             btnRegistrar.Name = "btnRegistrar";
             btnRegistrar.Size = new Size(88, 26);
@@ -160,7 +163,7 @@
             // 
             // btnLimpiar
             // 
-            btnLimpiar.Location = new Point(237, 357);
+            btnLimpiar.Location = new Point(172, 348);
             btnLimpiar.Margin = new Padding(3, 2, 3, 2);
             btnLimpiar.Name = "btnLimpiar";
             btnLimpiar.Size = new Size(88, 26);
@@ -171,7 +174,7 @@
             // 
             // btnVolver
             // 
-            btnVolver.Location = new Point(387, 357);
+            btnVolver.Location = new Point(322, 348);
             btnVolver.Margin = new Padding(3, 2, 3, 2);
             btnVolver.Name = "btnVolver";
             btnVolver.Size = new Size(88, 26);
@@ -186,7 +189,7 @@
             pnlCuota.Controls.Add(label9);
             pnlCuota.Controls.Add(groupBox1);
             pnlCuota.Controls.Add(label8);
-            pnlCuota.Location = new Point(523, 46);
+            pnlCuota.Location = new Point(525, 26);
             pnlCuota.Name = "pnlCuota";
             pnlCuota.Size = new Size(254, 348);
             pnlCuota.TabIndex = 11;
@@ -257,23 +260,46 @@
             // 
             // btnSocio
             // 
-            btnSocio.Location = new Point(478, 146);
+            btnSocio.BackColor = Color.Transparent;
+            btnSocio.BackgroundImage = Properties.Resources.socios;
+            btnSocio.BackgroundImageLayout = ImageLayout.Zoom;
+            btnSocio.Cursor = Cursors.Hand;
+            btnSocio.FlatAppearance.BorderColor = Color.Red;
+            btnSocio.FlatAppearance.BorderSize = 0;
+            btnSocio.FlatStyle = FlatStyle.Flat;
+            btnSocio.ForeColor = Color.Transparent;
+            btnSocio.Location = new Point(438, 112);
             btnSocio.Name = "btnSocio";
-            btnSocio.Size = new Size(75, 23);
+            btnSocio.Size = new Size(57, 53);
             btnSocio.TabIndex = 12;
-            btnSocio.Text = "Socio";
-            btnSocio.UseVisualStyleBackColor = true;
+            ttSocio.SetToolTip(btnSocio, "Socios");
+            btnSocio.UseVisualStyleBackColor = false;
             btnSocio.Click += btnSocio_Click;
+            btnSocio.MouseDown += btnSocio_MouseDown;
+            btnSocio.MouseEnter += btnSocio_MouseEnter;
+            btnSocio.MouseLeave += btnSocio_MouseLeave;
+            btnSocio.MouseUp += btnSocio_MouseUp;
             // 
             // btnNoSocio
             // 
-            btnNoSocio.Location = new Point(478, 231);
+            btnNoSocio.BackColor = Color.Transparent;
+            btnNoSocio.BackgroundImage = Properties.Resources.noSocio;
+            btnNoSocio.BackgroundImageLayout = ImageLayout.Stretch;
+            btnNoSocio.FlatAppearance.BorderColor = Color.Black;
+            btnNoSocio.FlatAppearance.BorderSize = 0;
+            btnNoSocio.FlatStyle = FlatStyle.Flat;
+            btnNoSocio.ForeColor = Color.Black;
+            btnNoSocio.Location = new Point(438, 217);
             btnNoSocio.Name = "btnNoSocio";
-            btnNoSocio.Size = new Size(75, 23);
+            btnNoSocio.Size = new Size(57, 41);
             btnNoSocio.TabIndex = 13;
-            btnNoSocio.Text = "No socio";
-            btnNoSocio.UseVisualStyleBackColor = true;
+            ttNoSocio.SetToolTip(btnNoSocio, "No Socios");
+            btnNoSocio.UseVisualStyleBackColor = false;
             btnNoSocio.Click += btnNoSocio_Click;
+            btnNoSocio.MouseDown += btnNoSocio_MouseDown;
+            btnNoSocio.MouseEnter += btnNoSocio_MouseEnter;
+            btnNoSocio.MouseLeave += btnNoSocio_MouseLeave;
+            btnNoSocio.MouseUp += btnNoSocio_MouseUp;
             // 
             // pnlActividad
             // 
@@ -284,13 +310,14 @@
             pnlActividad.Controls.Add(comboBox2);
             pnlActividad.Controls.Add(label10);
             pnlActividad.Controls.Add(label11);
-            pnlActividad.Location = new Point(520, 46);
+            pnlActividad.Location = new Point(525, 26);
             pnlActividad.Name = "pnlActividad";
             pnlActividad.Size = new Size(254, 348);
             pnlActividad.TabIndex = 14;
             // 
             // textBox2
             // 
+            textBox2.Enabled = false;
             textBox2.Location = new Point(95, 274);
             textBox2.Name = "textBox2";
             textBox2.ReadOnly = true;
@@ -299,6 +326,7 @@
             // 
             // textBox1
             // 
+            textBox1.Enabled = false;
             textBox1.Location = new Point(95, 231);
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
@@ -352,7 +380,7 @@
             // ckbFicha
             // 
             ckbFicha.AutoSize = true;
-            ckbFicha.Location = new Point(162, 271);
+            ckbFicha.Location = new Point(97, 262);
             ckbFicha.Name = "ckbFicha";
             ckbFicha.Size = new Size(96, 19);
             ckbFicha.TabIndex = 15;
@@ -362,7 +390,7 @@
             // ckbApto
             // 
             ckbApto.AutoSize = true;
-            ckbApto.Location = new Point(323, 271);
+            ckbApto.Location = new Point(258, 262);
             ckbApto.Name = "ckbApto";
             ckbApto.Size = new Size(83, 19);
             ckbApto.TabIndex = 16;
@@ -373,12 +401,14 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(794, 399);
             ControlBox = false;
             Controls.Add(ckbApto);
             Controls.Add(ckbFicha);
             Controls.Add(btnNoSocio);
             Controls.Add(btnSocio);
+            Controls.Add(ckbApto);
+            Controls.Add(ckbFicha);
             Controls.Add(pnlActividad);
             Controls.Add(pnlCuota);
             Controls.Add(btnVolver);
@@ -394,6 +424,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            ForeColor = SystemColors.ControlText;
             Name = "RegistroSocio";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Registrar Socio";
@@ -441,5 +472,7 @@
         private TextBox textBox1;
         private CheckBox ckbFicha;
         private CheckBox ckbApto;
+        private ToolTip ttSocio;
+        private ToolTip ttNoSocio;
     }
 }

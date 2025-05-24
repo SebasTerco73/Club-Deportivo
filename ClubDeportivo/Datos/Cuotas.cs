@@ -20,7 +20,7 @@ namespace ClubDeportivo.Datos
             {
                 sqlCon = Conexion.getInstancia().CrearConexion();
                 string sql = @"INSERT INTO cuota
-                       (codSocio, fechaVencimiento, fechaPago, monto, estadoPago, medioPago, cantCuota) 
+                       (codSocio, fechaVencimiento, fechaPago, monto, estadoPago, medioPago,cantCuota) 
                        VALUES (@codSocio, @fechaVencimiento, @fechaPago, @monto, @estadoPago, @medioPago, @cantCuotas);";
 
                 MySqlCommand comando = new MySqlCommand(sql, sqlCon);
