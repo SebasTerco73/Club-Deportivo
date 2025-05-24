@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegistroSocio));
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -63,9 +64,11 @@
             ckbApto = new CheckBox();
             ttSocio = new ToolTip(components);
             ttNoSocio = new ToolTip(components);
+            pictureBox1 = new PictureBox();
             pnlCuota.SuspendLayout();
             groupBox1.SuspendLayout();
             pnlActividad.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -413,12 +416,24 @@
             ckbApto.Text = "Apto fisico";
             ckbApto.UseVisualStyleBackColor = true;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(-1, -3);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(78, 63);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 17;
+            pictureBox1.TabStop = false;
+            // 
             // RegistroSocio
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(794, 399);
             ControlBox = false;
+            Controls.Add(pictureBox1);
             Controls.Add(btnNoSocio);
             Controls.Add(btnSocio);
             Controls.Add(ckbApto);
@@ -450,6 +465,7 @@
             groupBox1.PerformLayout();
             pnlActividad.ResumeLayout(false);
             pnlActividad.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -490,5 +506,6 @@
         private CheckBox ckbApto;
         private ToolTip ttSocio;
         private ToolTip ttNoSocio;
+        private PictureBox pictureBox1;
     }
 }
