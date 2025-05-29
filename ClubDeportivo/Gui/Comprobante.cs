@@ -71,8 +71,12 @@ namespace ClubDeportivo.Gui
 
             btbImprimir.Visible = true;
             MessageBox.Show("Operación existosa", "AVISO DEL SISTEMA",MessageBoxButtons.OK, MessageBoxIcon.Information);
-            MenuPrincipal principal = new MenuPrincipal();
-            principal.Show();
+            this.Hide();
+            Form? menuPrincipal = Application.OpenForms["MenuPrincipal"];
+            if (menuPrincipal != null)
+            {
+                menuPrincipal.Show();
+            }
             this.Close();
         }
         private void ImprimirForm1(object o, PrintPageEventArgs e)
