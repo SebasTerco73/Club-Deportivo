@@ -1,6 +1,6 @@
 ﻿namespace ClubDeportivo.Gui
 {
-    partial class RegistroSocio
+    partial class RegistroCliente
     {
         /// <summary>
         /// Required designer variable.
@@ -397,7 +397,7 @@
             ckbApto.Text = "Apto fisico";
             ckbApto.UseVisualStyleBackColor = true;
             // 
-            // RegistroSocio
+            // RegistroCliente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -423,9 +423,9 @@
             Controls.Add(label2);
             Controls.Add(label1);
             ForeColor = SystemColors.ControlText;
-            Name = "RegistroSocio";
+            Name = "RegistroCliente";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Registrar Socio";
+            Text = "Registrar Cliente";
             pnlCuota.ResumeLayout(false);
             pnlCuota.PerformLayout();
             groupBox1.ResumeLayout(false);

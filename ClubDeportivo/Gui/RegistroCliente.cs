@@ -17,10 +17,10 @@ using Org.BouncyCastle.Asn1.Crmf;
 
 namespace ClubDeportivo.Gui
 {
-    public partial class RegistroSocio : Form
+    public partial class RegistroCliente : Form
     {
         private E_Cuota ultimaCuotaRegistrada;
-        public RegistroSocio()
+        public RegistroCliente()
         {
             InitializeComponent();
             pnlActividad.Hide();

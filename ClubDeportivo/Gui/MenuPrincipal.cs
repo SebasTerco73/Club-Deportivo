@@ -73,7 +73,7 @@ namespace ClubDeportivo
         private void inicioSesionSocios_Click(object sender, EventArgs e)
         {
             this.Hide();
-            RegistroSocio registro = new RegistroSocio();
+            RegistroCliente registro = new RegistroCliente();
             registro.Show();
         }
     }
