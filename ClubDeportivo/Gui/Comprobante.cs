@@ -20,7 +20,8 @@ namespace ClubDeportivo.Gui
         public int identificador_c;
         public DateTime fechaPago_c;
         public DateTime fechaInscripcion_c;
-        public Comprobante(string nombre, float monto, DateTime fechaInscripcion, DateTime fechaPago, string forma, int identificador)
+        public int cuotas_c;
+        public Comprobante(string nombre, float monto, DateTime fechaInscripcion, DateTime fechaPago, string forma, int identificador, string cuotas)
         {
             InitializeComponent();
             nombre_c = nombre;
@@ -29,6 +30,7 @@ namespace ClubDeportivo.Gui
             fechaPago_c = fechaPago;
             forma_c = forma;
             identificador_c = identificador;
+            cuotas_c = int.Parse(cuotas);
             this.Load += Comprobante_Load;
         }
 
@@ -68,6 +70,7 @@ namespace ClubDeportivo.Gui
             lblFechaP.Text = fechaPago_c.ToShortDateString();
             lblFPago.Text = forma_c ?? "N/A";
             lblId.Text = identificador_c.ToString();
+            lblCuotas.Text = cuotas_c.ToString();   
         }
 
         private void Comprobante_Load_1(object sender, EventArgs e)

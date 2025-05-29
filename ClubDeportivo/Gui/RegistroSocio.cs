@@ -183,7 +183,7 @@ namespace ClubDeportivo.Gui
 
                         if (resultadoCuota != -1)
                         {
-                            MessageBox.Show($"{socio.nombreCompleto} registrado correctamente y se abono la cuota con vencimiento en {cuota.FechaVencimiento}.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show($"{socio.nombreCompleto} registrado correctamente y se abono la cuota con vencimiento en {cuota.FechaVencimiento.ToShortDateString}.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             ultimaCuotaRegistrada = cuota;
                             generarCuotaPdf();
                             Carnet carnet = new Carnet();

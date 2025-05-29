@@ -41,6 +41,8 @@
             lblFechaIns = new Label();
             label2 = new Label();
             panel4 = new Panel();
+            lbl10 = new Label();
+            lblCuotas = new Label();
             lblMonto = new Label();
             label10 = new Label();
             lblFechaP = new Label();
@@ -164,6 +166,8 @@
             // 
             // panel4
             // 
+            panel4.Controls.Add(lbl10);
+            panel4.Controls.Add(lblCuotas);
             panel4.Controls.Add(lblMonto);
             panel4.Controls.Add(label10);
             panel4.Controls.Add(lblFechaP);
@@ -175,11 +179,29 @@
             panel4.Size = new Size(555, 114);
             panel4.TabIndex = 20;
             // 
+            // lbl10
+            // 
+            lbl10.AutoSize = true;
+            lbl10.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
+            lbl10.Location = new Point(316, 71);
+            lbl10.Name = "lbl10";
+            lbl10.Size = new Size(70, 17);
+            lbl10.TabIndex = 10;
+            lbl10.Text = "CUOTAS";
+            // 
+            // lblCuotas
+            // 
+            lblCuotas.AutoSize = true;
+            lblCuotas.Location = new Point(403, 73);
+            lblCuotas.Name = "lblCuotas";
+            lblCuotas.Size = new Size(0, 15);
+            lblCuotas.TabIndex = 9;
+            // 
             // lblMonto
             // 
             lblMonto.AutoSize = true;
             lblMonto.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
-            lblMonto.Location = new Point(404, 42);
+            lblMonto.Location = new Point(411, 24);
             lblMonto.Name = "lblMonto";
             lblMonto.Size = new Size(0, 17);
             lblMonto.TabIndex = 8;
@@ -188,7 +210,7 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
-            label10.Location = new Point(315, 42);
+            label10.Location = new Point(316, 24);
             label10.Name = "label10";
             label10.Size = new Size(68, 17);
             label10.TabIndex = 7;
@@ -247,12 +269,14 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(610, 350);
+            ControlBox = false;
             Controls.Add(btbImprimir);
             Controls.Add(panel4);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "Comprobante";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Comprobante";
             Load += Comprobante_Load_1;
             panel1.ResumeLayout(false);
@@ -288,5 +312,7 @@
         private Label lblId;
         private Label label5;
         private Label label4;
+        private Label lbl10;
+        private Label lblCuotas;
     }
 }
