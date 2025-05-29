@@ -39,7 +39,13 @@
             FechaPago = new DataGridViewTextBoxColumn();
             FechaVenc = new DataGridViewTextBoxColumn();
             btnAtras = new Button();
+            groupBox1 = new GroupBox();
+            rbtTodo = new RadioButton();
+            rbtMes = new RadioButton();
+            rbtSemana = new RadioButton();
+            rbtDia = new RadioButton();
             ((System.ComponentModel.ISupportInitialize)dvgListSocio).BeginInit();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // dvgListSocio
@@ -63,11 +69,11 @@
             dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
             dvgListSocio.DefaultCellStyle = dataGridViewCellStyle4;
-            dvgListSocio.Location = new Point(12, 29);
+            dvgListSocio.Location = new Point(12, 80);
             dvgListSocio.Name = "dvgListSocio";
             dvgListSocio.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
             dvgListSocio.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dvgListSocio.Size = new Size(610, 395);
+            dvgListSocio.Size = new Size(610, 344);
             dvgListSocio.TabIndex = 0;
             // 
             // NroSocio
@@ -125,13 +131,72 @@
             // 
             // btnAtras
             // 
-            btnAtras.Location = new Point(628, 80);
+            btnAtras.Location = new Point(628, 12);
             btnAtras.Name = "btnAtras";
-            btnAtras.Size = new Size(56, 290);
+            btnAtras.Size = new Size(56, 412);
             btnAtras.TabIndex = 1;
             btnAtras.Text = "ATRAS";
             btnAtras.UseVisualStyleBackColor = true;
             btnAtras.Click += btnAtras_Click;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(rbtTodo);
+            groupBox1.Controls.Add(rbtMes);
+            groupBox1.Controls.Add(rbtSemana);
+            groupBox1.Controls.Add(rbtDia);
+            groupBox1.Location = new Point(20, 12);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(602, 62);
+            groupBox1.TabIndex = 2;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Periodos";
+            // 
+            // rbtTodo
+            // 
+            rbtTodo.AutoSize = true;
+            rbtTodo.Checked = true;
+            rbtTodo.Location = new Point(446, 28);
+            rbtTodo.Name = "rbtTodo";
+            rbtTodo.Size = new Size(56, 19);
+            rbtTodo.TabIndex = 3;
+            rbtTodo.TabStop = true;
+            rbtTodo.Text = "Todos";
+            rbtTodo.UseVisualStyleBackColor = true;
+            rbtTodo.CheckedChanged += rbtTodo_CheckedChanged;
+            // 
+            // rbtMes
+            // 
+            rbtMes.AutoSize = true;
+            rbtMes.Location = new Point(328, 28);
+            rbtMes.Name = "rbtMes";
+            rbtMes.Size = new Size(47, 19);
+            rbtMes.TabIndex = 2;
+            rbtMes.Text = "Mes";
+            rbtMes.UseVisualStyleBackColor = true;
+            rbtMes.CheckedChanged += rbtMes_CheckedChanged;
+            // 
+            // rbtSemana
+            // 
+            rbtSemana.AutoSize = true;
+            rbtSemana.Location = new Point(195, 28);
+            rbtSemana.Name = "rbtSemana";
+            rbtSemana.Size = new Size(67, 19);
+            rbtSemana.TabIndex = 1;
+            rbtSemana.Text = "Semana";
+            rbtSemana.UseVisualStyleBackColor = true;
+            rbtSemana.CheckedChanged += rbtSemana_CheckedChanged;
+            // 
+            // rbtDia
+            // 
+            rbtDia.AutoSize = true;
+            rbtDia.Location = new Point(79, 28);
+            rbtDia.Name = "rbtDia";
+            rbtDia.Size = new Size(42, 19);
+            rbtDia.TabIndex = 0;
+            rbtDia.Text = "Día";
+            rbtDia.UseVisualStyleBackColor = true;
+            rbtDia.CheckedChanged += rbtDia_CheckedChanged;
             // 
             // ListadoVencimientos
             // 
@@ -139,6 +204,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(696, 450);
             ControlBox = false;
+            Controls.Add(groupBox1);
             Controls.Add(btnAtras);
             Controls.Add(dvgListSocio);
             FormBorderStyle = FormBorderStyle.Fixed3D;
@@ -148,6 +214,8 @@
             Text = "Listado de Vencimientos";
             Load += ListadoVencimientos_Load;
             ((System.ComponentModel.ISupportInitialize)dvgListSocio).EndInit();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -160,5 +228,10 @@
         private DataGridViewTextBoxColumn Documento;
         private DataGridViewTextBoxColumn FechaPago;
         private DataGridViewTextBoxColumn FechaVenc;
+        private GroupBox groupBox1;
+        private RadioButton rbtTodo;
+        private RadioButton rbtMes;
+        private RadioButton rbtSemana;
+        private RadioButton rbtDia;
     }
 }

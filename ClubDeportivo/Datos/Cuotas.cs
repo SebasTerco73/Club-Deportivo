@@ -51,5 +51,59 @@ namespace ClubDeportivo.Datos
 
             return idGenerado;
         }
+
+        public List<CuotaConSocioDTO> ObtenerCuotasPorVencimiento(string filtro)
+        {
+            List<CuotaConSocioDTO> lista = new List<CuotaConSocioDTO>();
+
+            using (MySqlConnection sqlCon = Conexion.getInstancia().CrearConexion())
+            {
+                string queryBase = @"SELECT c.CodSocio, c.fechaPago, c.fechaVencimiento, s.NombreCompleto, s.Documento
+                             FROM cuota c
+                             INNER JOIN socios s ON c.codSocio = s.CodSocio
+                             WHERE c.fechaPago IS NOT NULL ";
+
+                switch (filtro)
+                {
+                    case "Dia":
+                        queryBase += "AND DATE(c.fechaVencimiento) = CURDATE() ";
+                        break;
+                    case "Semana":
+                        queryBase += "AND c.fechaVencimiento BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 6 DAY) ";
+                        break;
+                    case "Mes":
+                        queryBase += "AND c.fechaVencimiento BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 1 MONTH) ";
+                        break;
+                    case "Todos":
+                    default:
+                        // Sin filtro adicional
+                        break;
+                }
+
+                queryBase += "ORDER BY c.fechaVencimiento ASC";
+
+                using (MySqlCommand comando = new MySqlCommand(queryBase, sqlCon))
+                {
+                    sqlCon.Open();
+                    using (MySqlDataReader reader = comando.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            CuotaConSocioDTO dto = new CuotaConSocioDTO
+                            {
+                                CodSocio = reader.IsDBNull(0) ? 0 : reader.GetInt32(0),
+                                FechaPago = reader.IsDBNull(1) ? DateTime.MinValue : reader.GetDateTime(1),
+                                FechaVencimiento = reader.IsDBNull(2) ? DateTime.MinValue : reader.GetDateTime(2),
+                                NombreCompleto = reader.IsDBNull(3) ? "" : reader.GetString(3),
+                                Documento = reader.IsDBNull(4) ? "" : reader.GetString(4)
+                            };
+                            lista.Add(dto);
+                        }
+                    }
+                }
+            }
+
+            return lista;
+        }
     }
 }

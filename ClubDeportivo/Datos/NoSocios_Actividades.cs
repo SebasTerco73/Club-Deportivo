@@ -33,7 +33,7 @@ namespace ClubDeportivo.Datos
 
                 idGenerado = (int)comando.LastInsertedId; // Obtengo el id autogenerado
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // Log o manejo de error aquí
                 idGenerado = -1;
