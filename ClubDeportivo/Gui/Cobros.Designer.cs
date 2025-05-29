@@ -375,6 +375,7 @@
             ForeColor = SystemColors.ControlText;
             FormBorderStyle = FormBorderStyle.Fixed3D;
             MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Cobros";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Cobros";

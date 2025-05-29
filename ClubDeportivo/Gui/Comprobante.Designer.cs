@@ -247,12 +247,16 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(610, 350);
+            ControlBox = false;
             Controls.Add(btbImprimir);
             Controls.Add(panel4);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.None;
+            MinimizeBox = false;
             Name = "Comprobante";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Comprobante";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
