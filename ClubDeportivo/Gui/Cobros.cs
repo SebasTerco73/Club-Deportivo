@@ -1,26 +1,28 @@
-﻿using System;
+﻿using ClubDeportivo.Datos;
+using ClubDeportivo.Entidades;
+using MySql.Data.MySqlClient;
+using Mysqlx.Datatypes;
+using Org.BouncyCastle.Asn1.Crmf;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Globalization;
-using System.Runtime.Serialization;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ClubDeportivo.Datos;
-using ClubDeportivo.Entidades;
-using Mysqlx.Datatypes;
-using Org.BouncyCastle.Asn1.Crmf;
 
 namespace ClubDeportivo.Gui
 {
-    public partial class RegistroCliente : Form
+    public partial class Cobros : Form
     {
         private E_Cuota ultimaCuotaRegistrada;
-        public RegistroCliente()
+        private const decimal MONTO_MENSUAL_BASE = 5000.0m; // Ejemplo: 5000.00
+        public Cobros()
         {
             InitializeComponent();
             pnlActividad.Hide();
@@ -55,7 +57,7 @@ namespace ClubDeportivo.Gui
 
 
             // Estilo visual para los botones
-            Button[] botones = { btnRegistrar, btnVolver, btnLimpiar };
+            Button[] botones = { btnPagar, btnVolver, btnLimpiar };
             foreach (Button btn in botones)
             {
                 btn.BackColor = azulOscuro;
@@ -92,17 +94,11 @@ namespace ClubDeportivo.Gui
         private void LimpiarCampos()
         {
             // TextBox
-            txtDocumento.Clear();
-            txtNombreCompleto.Clear();
-            txtTelefono.Clear();
+            txtNoSocio.Clear();
+            txtSocio.Clear();
 
             // DateTimePicker
-            dtpFechaNac.Value = DateTime.Today;
             dtpFechaInscripcion.Value = DateTime.Today;
-
-            // CheckBox
-            ckbFicha.Checked = false;
-            ckbApto.Checked = false;
 
             // RadioButtons: Marca efectivo como default
             rbtEfectivo.Checked = true;
@@ -114,7 +110,7 @@ namespace ClubDeportivo.Gui
             // Panel de cuotas
             pnlCuota.Visible = true;
             pnlActividad.Visible = false;
-            txtDocumento.Focus();
+            btnLimpiar.Focus();
 
             botonActivo = btnSocio;
             botonActivo.BackColor = Color.FromArgb(173, 216, 230);
@@ -126,74 +122,6 @@ namespace ClubDeportivo.Gui
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
-        }
-
-        private void btnRegistrar_Click(object sender, EventArgs e)
-        {
-            bool esSocio = pnlCuota.Visible;
-
-            try
-            {
-                string documento = txtDocumento.Text;
-                string nombre = txtNombreCompleto.Text;
-                DateTime fechaNac = dtpFechaNac.Value;
-                string tel = txtTelefono.Text;
-                DateTime fechaInscri = dtpFechaInscripcion.Value;
-                bool FichaMedica = ckbFicha.Checked;
-                bool aptoMedico = ckbApto.Checked;
-
-                if (string.IsNullOrWhiteSpace(txtDocumento.Text))
-                {
-                    MessageBox.Show("El campo Documento es obligatorio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(txtNombreCompleto.Text))
-                {
-                    MessageBox.Show("El campo Nombre es obligatorio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(txtTelefono.Text))
-                {
-                    MessageBox.Show("El campo Teléfono es obligatorio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                E_Socio socio = new(documento, nombre, fechaNac, tel,
-                    fechaInscri, FichaMedica, aptoMedico);
-
-                if (esSocio)
-                {
-                    string medioPago = rbtEfectivo.Checked ? "Efectivo" : "Tarjeta";
-
-                    int resultadoSocio = new Socios().RegistrarSocio(socio);
-
-                    if (resultadoSocio == -1)
-                    {
-                        MessageBox.Show($"El socio con dni: {documento}, ya se encuentra registrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    else
-                    {
-                        int cuotas = int.Parse(cboCuotas.Text);
-                        E_Cuota cuota = new E_Cuota(resultadoSocio, fechaInscri, medioPago, cuotas);
-                        int resultadoCuota = new Cuotas().RegistrarCuota(cuota);
-                        cuota.idCuota = resultadoCuota;
-                        
-                        if (resultadoCuota != -1)
-                        {
-                            MessageBox.Show($"Socio registrado correctamente y se abono la cuota con id {resultadoCuota}.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            ultimaCuotaRegistrada = cuota;
-                            generarCuotaPdf();
-                            generarPdf();
-                        }
-                        LimpiarCampos();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message, "Excepción", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void btnSocio_Click(object sender, EventArgs e)
@@ -303,7 +231,7 @@ namespace ClubDeportivo.Gui
                 // Desmarcamos el botón anterior (si había uno)
                 if (botonActivo != null)
                     botonActivo.BackColor = Color.Transparent;
-                    botonActivo.Size = new Size(57, 53);
+                botonActivo.Size = new Size(57, 53);
 
                 // Marcamos el nuevo
                 botonClickeado.BackColor = Color.FromArgb(173, 216, 230); // o el color que prefieras
@@ -342,6 +270,7 @@ namespace ClubDeportivo.Gui
             }
         }
 
+        /* SE LO DEJO A UN EXPERTO
         private void generarPdf()
         {
             PrintDocument pd = new PrintDocument();  // Crea el documento que se va a imprimir
@@ -411,7 +340,8 @@ namespace ClubDeportivo.Gui
             y += 25;
             e.Graphics.DrawString($"Cantidad de cuotas: {ultimaCuotaRegistrada.cantCuotas}", fuente, Brushes.Black, x, y);
             y += 25;
-            if(ultimaCuotaRegistrada.MedioPago.Equals("Tarjeta") && (ultimaCuotaRegistrada.cantCuotas == 3 || ultimaCuotaRegistrada.cantCuotas == 6)){
+            if (ultimaCuotaRegistrada.MedioPago.Equals("Tarjeta") && (ultimaCuotaRegistrada.cantCuotas == 3 || ultimaCuotaRegistrada.cantCuotas == 6))
+            {
                 e.Graphics.DrawString($"Por pagar con tarjeta en 3 o 6 cuotas tiene un descuento del 10% {ultimaCuotaRegistrada.Monto} - {ultimaCuotaRegistrada.Monto * 0.1m}", fuente, Brushes.Black, x, y);
                 y += 25;
                 monto = monto * 0.90m; // para multiplicar un decimal con un double tengo que agregarle la m al double
@@ -420,6 +350,148 @@ namespace ClubDeportivo.Gui
             y += 25;
             e.Graphics.DrawString($"Estado del pago: {estado}", fuente, Brushes.Black, x, y);
             y += 25;
+        } */
+
+        private void txtSocio_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtSocio.Text))
+            {
+                // Simula click en btnSocio
+                btnSocio.PerformClick();
+
+                // Bloquea el otro campo y botón
+                txtNoSocio.Enabled = false;
+                btnNoSocio.Enabled = false;
+            }
+            else
+            {
+                // Desbloquea si se borra
+                txtNoSocio.Enabled = true;
+                btnNoSocio.Enabled = true;
+            }
         }
+
+        private void txtNoSocio_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(txtNoSocio.Text))
+            {
+                btnNoSocio.PerformClick();
+                txtSocio.Enabled = false;
+                btnSocio.Enabled = false;
+            }
+            else
+            {
+                txtSocio.Enabled = true;
+                btnSocio.Enabled = true;
+            }
+        }
+
+        private void btnPagar_Click(object sender, EventArgs e)
+        {
+            MySqlConnection sqlCon = null;
+            try
+            {
+                sqlCon = Conexion.getInstancia().CrearConexion();
+                sqlCon.Open();
+                MySqlCommand comando;
+                MySqlDataReader reader;
+
+                if (pnlCuota.Visible)
+                {
+                    if (string.IsNullOrWhiteSpace(txtSocio.Text))
+                    {
+                        MessageBox.Show("Por favor, ingrese el Número de Socio.", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    int codSocio;
+                    if (!int.TryParse(txtSocio.Text, out codSocio))
+                    {
+                        MessageBox.Show("Número de Socio inválido. Debe ser un número entero.", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    string querySocio = "SELECT NombreCompleto, FechaInscripcion FROM socios WHERE CodSocio = @CodSocio";
+                    comando = new MySqlCommand(querySocio, sqlCon);
+                    comando.Parameters.AddWithValue("@CodSocio", codSocio);
+                    reader = comando.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        reader.Read();
+                        decimal montoAPagar = MONTO_MENSUAL_BASE;
+                        string formaPago = rbtEfectivo.Checked ? "Efectivo" : "Tarjeta";
+                        if (rbtEfectivo.Checked)
+                        {
+                            montoAPagar *= 0.90m;
+                        }
+
+                        // Crear una nueva instancia de Comprobante con los datos
+                        Comprobante comprobante = new Comprobante(reader.GetString("NombreCompleto"),
+                    (float)montoAPagar,
+                    reader.GetDateTime("FechaInscripcion"),
+                    DateTime.Now,
+                    formaPago,
+                    codSocio);
+                        comprobante.nombre_c = reader.GetString("NombreCompleto");
+                        comprobante.monto_c = (float)montoAPagar;
+                        comprobante.fechaInscripcion_c = reader.GetDateTime("FechaInscripcion");
+                        comprobante.fechaPago_c = DateTime.Now;
+                        comprobante.forma_c = formaPago;
+                        comprobante.identificador_c = codSocio;
+                        
+
+                        reader.Close();
+
+                        // Insertar la cuota en la base de datos
+                        string insertCuotaQuery = @"
+                    INSERT INTO cuota
+                        (codSocio, fechaVencimiento, fechaPago, monto, estadoPago, medioPago, cantCuota)
+                    VALUES
+                        (@codSocio, @fechaVenc, @fechaPago, @monto, @estado, @medio, @cant)";
+                        MySqlCommand insertCmd = new MySqlCommand(insertCuotaQuery, sqlCon);
+                        insertCmd.Parameters.AddWithValue("@codSocio", codSocio);
+                        insertCmd.Parameters.AddWithValue("@fechaVenc", DateTime.Now.AddMonths(1));
+                        insertCmd.Parameters.AddWithValue("@fechaPago", DateTime.Now);
+                        insertCmd.Parameters.AddWithValue("@monto", montoAPagar);
+                        insertCmd.Parameters.AddWithValue("@estado", 1);
+                        insertCmd.Parameters.AddWithValue("@medio", formaPago);
+                        int cantCuotas = 1;
+                        if (formaPago == "Tarjeta" && cboCuotas.Enabled && cboCuotas.SelectedItem != null)
+                        {
+                            int.TryParse(cboCuotas.SelectedItem.ToString(), out cantCuotas);
+                            if (cantCuotas <= 0) cantCuotas = 1;
+                        }
+                        insertCmd.Parameters.AddWithValue("@cant", cantCuotas);
+                        insertCmd.ExecuteNonQuery();
+
+                        this.Hide();
+                        comprobante.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Número de Socio Inexistente.", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        if (reader != null && !reader.IsClosed) reader.Close();
+                    }
+                }
+            }
+            catch (MySqlException mysqlEx)
+            {
+                MessageBox.Show("Error de base de datos: " + mysqlEx.Message, "ERROR MYSQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error inesperado: " + ex.Message, "ERROR GENERAL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (sqlCon != null && sqlCon.State == ConnectionState.Open)
+                {
+                    sqlCon.Close();
+                }
+            }
+        }
+
     }
 }
+

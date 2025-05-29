@@ -4,7 +4,7 @@ USE `clubdeportivo`;
 --
 -- Host: localhost    Database: clubdeportivo
 -- ------------------------------------------------------
--- Server version	8.0.35
+-- Server version	8.0.42
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -32,6 +32,7 @@ CREATE TABLE `cuota` (
   `monto` decimal(10,2) DEFAULT NULL,
   `estadoPago` tinyint DEFAULT '0',
   `medioPago` varchar(30) DEFAULT NULL,
+  `cantCuota` int DEFAULT NULL,
   PRIMARY KEY (`idCuota`),
   KEY `codSocio` (`codSocio`),
   CONSTRAINT `cuota_ibfk_1` FOREIGN KEY (`codSocio`) REFERENCES `socios` (`codSocio`)
@@ -44,6 +45,7 @@ CREATE TABLE `cuota` (
 
 LOCK TABLES `cuota` WRITE;
 /*!40000 ALTER TABLE `cuota` DISABLE KEYS */;
+INSERT INTO `cuota` VALUES (3,9,'2025-06-22','2025-05-22',5000.00,1,'Tarjeta',1),(4,10,'2025-06-22','2025-05-22',5000.00,1,'Efectivo',1);
 /*!40000 ALTER TABLE `cuota` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -98,6 +100,7 @@ CREATE TABLE `socios` (
 
 LOCK TABLES `socios` WRITE;
 /*!40000 ALTER TABLE `socios` DISABLE KEYS */;
+INSERT INTO `socios` VALUES (7,'42776007','neyel vila','2000-07-10','123456','2025-05-22',1,1,1),(8,'42776008','juan perez','2025-05-22','11123132','2025-05-22',1,1,1),(9,'42778964','Neyel vila','2000-02-01','1124022966','2025-05-22',0,1,1),(10,'42645616','neyel','2025-05-22','1456','2025-05-22',0,0,1);
 /*!40000 ALTER TABLE `socios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -132,6 +135,10 @@ INSERT INTO `usuario` VALUES (1,'Ailen','1',120,1),(2,'Marcela','1',120,1),(3,'N
 UNLOCK TABLES;
 
 --
+-- Dumping events for database 'clubdeportivo'
+--
+
+--
 -- Dumping routines for database 'clubdeportivo'
 --
 /*!50003 DROP PROCEDURE IF EXISTS `IngresoLogin` */;
@@ -148,7 +155,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `IngresoLogin`(in Usu varchar(20),in
 begin
   
   select NomRol	from usuario u inner join roles r on u.RolUsu = r.RolUsu
-		where NombreUsu = Usu and PassUsu = Pass /* se compara con los parametros */
+		where BINARY NombreUsu = Usu and PassUsu = Pass /* se compara con los parametros */
 			and Activo = 1; /* el usuario debe estar activo */
 
 end ;;
@@ -204,6 +211,32 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `RegistrarUser` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RegistrarUser`(in Usu varchar(15),in Pass varchar(15))
+BEGIN
+    -- Validar si el usuario ya existe
+    IF NOT EXISTS (
+        SELECT 1 FROM usuario WHERE NombreUsu = Usu
+    ) THEN
+	 -- Insertar nuevo usuario
+        INSERT INTO usuario (NombreUsu, PassUsu, RolUsu, Activo)
+        VALUES (Usu, Pass, 120, 1);
+    END IF;
+end ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -214,4 +247,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-22 20:17:19
+-- Dump completed on 2025-05-23  0:35:28

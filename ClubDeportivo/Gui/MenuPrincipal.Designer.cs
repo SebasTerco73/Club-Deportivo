@@ -32,7 +32,6 @@
             lblIngreso = new Label();
             inicioSesionSocios = new Button();
             registroUsuario = new Button();
-            inicioNoSocios = new Button();
             logouds = new PictureBox();
             btnListado = new Button();
             btnSalir = new Button();
@@ -65,16 +64,7 @@
             registroUsuario.Name = "registroUsuario";
             registroUsuario.UseCompatibleTextRendering = true;
             registroUsuario.UseVisualStyleBackColor = false;
-            // 
-            // inicioNoSocios
-            // 
-            resources.ApplyResources(inicioNoSocios, "inicioNoSocios");
-            inicioNoSocios.BackColor = SystemColors.Control;
-            inicioNoSocios.Cursor = Cursors.Hand;
-            inicioNoSocios.ForeColor = SystemColors.MenuBar;
-            inicioNoSocios.Name = "inicioNoSocios";
-            inicioNoSocios.UseCompatibleTextRendering = true;
-            inicioNoSocios.UseVisualStyleBackColor = false;
+            registroUsuario.Click += registroUsuario_Click;
             // 
             // logouds
             // 
@@ -91,6 +81,7 @@
             btnListado.Name = "btnListado";
             btnListado.UseCompatibleTextRendering = true;
             btnListado.UseVisualStyleBackColor = false;
+            btnListado.Click += btnListado_Click;
             // 
             // btnSalir
             // 
@@ -107,7 +98,6 @@
             Controls.Add(btnSalir);
             Controls.Add(btnListado);
             Controls.Add(logouds);
-            Controls.Add(inicioNoSocios);
             Controls.Add(registroUsuario);
             Controls.Add(inicioSesionSocios);
             Controls.Add(lblIngreso);
@@ -129,7 +119,6 @@
         private System.Windows.Forms.PictureBox logouds;
         internal System.Windows.Forms.Button inicioSesionSocios;
         internal System.Windows.Forms.Button registroUsuario;
-        internal System.Windows.Forms.Button inicioNoSocios;
         internal Button btnListado;
         private Button btnSalir;
     }
