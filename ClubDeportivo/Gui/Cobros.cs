@@ -132,8 +132,6 @@ namespace ClubDeportivo.Gui
                 pnlCuota.Show();
             }
         }
-
-
         private void btnNoSocio_Click(object sender, EventArgs e)
         {
             if (pnlCuota.Visible)

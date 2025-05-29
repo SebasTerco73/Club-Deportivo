@@ -31,7 +31,7 @@ namespace ClubDeportivo.Gui
             identificador_c = identificador;
             this.Load += Comprobante_Load;
         }
-       
+
         private void btbImprimir_Click(object sender, EventArgs e)
         {
             btbImprimir.Visible = false;
@@ -40,9 +40,12 @@ namespace ClubDeportivo.Gui
             pd.Print();
 
             btbImprimir.Visible = true;
-            MessageBox.Show("Operación existosa", "AVISO DEL SISTEMA",MessageBoxButtons.OK, MessageBoxIcon.Information);
-            MenuPrincipal principal = new MenuPrincipal();
-            principal.Show();
+            MessageBox.Show("Operación existosa", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Form? menuPrincipal = Application.OpenForms["MenuPrincipal"];
+            if (menuPrincipal != null)
+            {
+                menuPrincipal.Show();
+            }
             this.Close();
         }
         private void ImprimirForm1(object o, PrintPageEventArgs e)
@@ -57,7 +60,7 @@ namespace ClubDeportivo.Gui
             Point p = new Point(100, 100);
             e.Graphics.DrawImage(img, p);
         }
-        private void Comprobante_Load (object sender, EventArgs e)
+        private void Comprobante_Load(object sender, EventArgs e)
         {
             lblNombre.Text = nombre_c ?? "N/A"; // Usa un valor por defecto si es null
             lblMonto.Text = monto_c.ToString("N2");
@@ -65,6 +68,11 @@ namespace ClubDeportivo.Gui
             lblFechaP.Text = fechaPago_c.ToShortDateString();
             lblFPago.Text = forma_c ?? "N/A";
             lblId.Text = identificador_c.ToString();
+        }
+
+        private void Comprobante_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
