@@ -29,7 +29,7 @@ namespace ClubDeportivo
             lblIngreso.ForeColor = azulOscuro;
 
             // Estilo visual para los botones
-            Button[] botones = { inicioSesionSocios, registroUsuario, inicioNoSocios, btnListado, btnSalir };
+            Button[] botones = { inicioSesionSocios, registroUsuario, btnListado, btnSalir };
             foreach (Button btn in botones)
             {
                 btn.BackColor = azulOscuro;
@@ -82,6 +82,13 @@ namespace ClubDeportivo
             this.Hide();
             ListadoVencimientos listado = new ListadoVencimientos();
             listado.Show();
+        }
+
+        private void registroUsuario_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Cobros cobros = new Cobros();
+            cobros.Show();
         }
     }
 }
