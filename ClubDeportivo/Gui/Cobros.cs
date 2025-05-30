@@ -22,6 +22,7 @@ namespace ClubDeportivo.Gui
     {
         private E_Cuota ultimaCuotaRegistrada;
         private const decimal MONTO_MENSUAL_BASE = 5000.0m; // Ejemplo: 5000.00
+
         public Cobros()
         {
             InitializeComponent();
@@ -132,8 +133,6 @@ namespace ClubDeportivo.Gui
                 pnlCuota.Show();
             }
         }
-
-
         private void btnNoSocio_Click(object sender, EventArgs e)
         {
             if (pnlCuota.Visible)
@@ -421,7 +420,7 @@ namespace ClubDeportivo.Gui
                         reader.Read();
                         decimal montoAPagar = MONTO_MENSUAL_BASE;
                         string formaPago = rbtEfectivo.Checked ? "Efectivo" : "Tarjeta";
-                        if (rbtEfectivo.Checked)
+                        if (rbtTarjeta.Checked && (cboCuotas.Equals("3") || cboCuotas.Equals("6")))
                         {
                             montoAPagar *= 0.90m;
                         }
@@ -432,15 +431,9 @@ namespace ClubDeportivo.Gui
                     reader.GetDateTime("FechaInscripcion"),
                     DateTime.Now,
                     formaPago,
-                    codSocio);
-                        comprobante.nombre_c = reader.GetString("NombreCompleto");
-                        comprobante.monto_c = (float)montoAPagar;
-                        comprobante.fechaInscripcion_c = reader.GetDateTime("FechaInscripcion");
-                        comprobante.fechaPago_c = DateTime.Now;
-                        comprobante.forma_c = formaPago;
-                        comprobante.identificador_c = codSocio;
-                        
-
+                    codSocio,
+                    cboCuotas.SelectedItem.ToString());
+                      
                         reader.Close();
 
                         // Insertar la cuota en la base de datos
@@ -492,6 +485,27 @@ namespace ClubDeportivo.Gui
             }
         }
 
+        private void Cobros_Load(object sender, EventArgs e)
+        {
+            List<E_Actividad> actividades = new Actividades().ListarActividades();
+
+            cbxActividades.DataSource = actividades;
+            cbxActividades.DisplayMember = "nombre";     // Lo que se ve
+            cbxActividades.ValueMember = "idActividad";  // El valor real
+
+            // Opcional: para evitar que se seleccione algo por defecto
+            cbxActividades.SelectedIndex = 0;
+            E_Actividad actividadSeleccionada = (E_Actividad)cbxActividades.SelectedItem;
+            txtCupo.Text = actividadSeleccionada.cupoActual.ToString();
+            txtPrecio.Text = actividadSeleccionada.valor.ToString("C", CultureInfo.CurrentCulture); // Formatea el precio como moneda local
+        }
+
+        private void cbxActividades_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            E_Actividad actividadSeleccionada = (E_Actividad)cbxActividades.SelectedItem;
+            txtCupo.Text = actividadSeleccionada.cupoActual.ToString();
+            txtPrecio.Text = actividadSeleccionada.valor.ToString("C", CultureInfo.CurrentCulture);
+        }
     }
 }
 

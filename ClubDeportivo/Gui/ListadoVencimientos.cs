@@ -1,4 +1,5 @@
 ﻿using ClubDeportivo.Datos;
+using ClubDeportivo.Entidades;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace ClubDeportivo.Gui
             this.BackColor = grisClaro;
 
             // Estilo visual para los botones
-            Button[] botones = { btnAtras};
+            Button[] botones = { btnAtras };
             foreach (Button btn in botones)
             {
                 btn.BackColor = azulOscuro;
@@ -55,59 +56,29 @@ namespace ClubDeportivo.Gui
         }
         public void CargaGrilla()
         {
-            MySqlConnection sqlCon = new MySqlConnection();
-            try
+            string filtro = "";
+            if (rbtDia.Checked)
+                filtro = "Dia";
+            else if (rbtSemana.Checked)
+                filtro = "Semana";
+            else if (rbtMes.Checked)
+                filtro = "Mes";
+            else if (rbtTodo.Checked)
+                filtro = "Todos";
+            Cuotas cuotas = new Cuotas();
+            List<CuotaConSocioDTO> listado = cuotas.ObtenerCuotasPorVencimiento(filtro);
+
+            dvgListSocio.Rows.Clear();
+
+            foreach (var cuota in listado)
             {
-                string query;
-                sqlCon = Conexion.getInstancia().CrearConexion();
+                int renglon = dvgListSocio.Rows.Add();
 
-                // Trae Nro. Socio, Documento, Fecha de Pago y Fecha de Vencimiento
-                query = "SELECT s.CodSocio,NombreCompleto, s.Documento, c.fechaPago, c.fechaVencimiento " + "FROM socios s " +
-                    "INNER JOIN cuota c ON s.CodSocio = c.codSocio " + "WHERE c.fechaPago IS NOT NULL " + "ORDER BY c.fechaVencimiento ASC;";
-
-
-                MySqlCommand comando = new MySqlCommand(query, sqlCon);
-                comando.CommandType = CommandType.Text;
-                sqlCon.Open();
-
-                MySqlDataReader reader = comando.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        int renglon = dvgListSocio.Rows.Add();
-
-                        // Nro. Socio
-                        dvgListSocio.Rows[renglon].Cells[0].Value = reader.IsDBNull(0) ? "" : reader.GetInt32(0).ToString();
-
-                        //Socio
-                        dvgListSocio.Rows[renglon].Cells[1].Value = reader.IsDBNull(1) ? "" : reader.GetString(1);
-
-                        // Documento
-                        dvgListSocio.Rows[renglon].Cells[2].Value = reader.IsDBNull(2) ? "" : reader.GetString(2);
-
-                        // Fecha de Pago
-                        dvgListSocio.Rows[renglon].Cells[3].Value = reader.IsDBNull(3) ? "" : reader.GetDateTime(3).ToString("yyyy-MM-dd");
-
-                        // Fecha de Vencimiento
-                        dvgListSocio.Rows[renglon].Cells[4].Value = reader.IsDBNull(4) ? "" : reader.GetDateTime(4).ToString("yyyy-MM-dd");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("NO HAY DATOS PARA LA CARGA DE LA GRILLA");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-            finally
-            {
-                if (sqlCon.State == ConnectionState.Open)
-                {
-                    sqlCon.Close();
-                }
+                dvgListSocio.Rows[renglon].Cells[0].Value = cuota.CodSocio.ToString();
+                dvgListSocio.Rows[renglon].Cells[1].Value = cuota.NombreCompleto;
+                dvgListSocio.Rows[renglon].Cells[2].Value = cuota.Documento;
+                dvgListSocio.Rows[renglon].Cells[3].Value = cuota.FechaPago.ToString("yyyy-MM-dd");
+                dvgListSocio.Rows[renglon].Cells[4].Value = cuota.FechaVencimiento.ToString("yyyy-MM-dd");
             }
         }
 
@@ -119,6 +90,26 @@ namespace ClubDeportivo.Gui
             {
                 menuPrincipal.Show();
             }
+        }
+
+        private void rbtTodo_CheckedChanged(object sender, EventArgs e)
+        {
+            CargaGrilla();
+        }
+
+        private void rbtMes_CheckedChanged(object sender, EventArgs e)
+        {
+            CargaGrilla();
+        }
+
+        private void rbtSemana_CheckedChanged(object sender, EventArgs e)
+        {
+            CargaGrilla();
+        }
+
+        private void rbtDia_CheckedChanged(object sender, EventArgs e)
+        {
+            CargaGrilla();
         }
     }
 

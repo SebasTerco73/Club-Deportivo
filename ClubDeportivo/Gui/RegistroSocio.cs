@@ -20,6 +20,8 @@ namespace ClubDeportivo.Gui
     public partial class RegistroSocio : Form
     {
         private E_Cuota ultimaCuotaRegistrada;
+        Button botonActivo;
+
         public RegistroSocio()
         {
             InitializeComponent();
@@ -79,6 +81,7 @@ namespace ClubDeportivo.Gui
             }
         }
 
+        
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -111,6 +114,8 @@ namespace ClubDeportivo.Gui
             cboCuotas.SelectedIndex = 0; // Asumiendo que el primer ítem es "1"
             cboCuotas.Enabled = false;
 
+            cboActividades.SelectedIndex = -1; // Limpiar selección de actividades
+
             // Panel de cuotas
             pnlCuota.Visible = true;
             pnlActividad.Visible = false;
@@ -130,8 +135,6 @@ namespace ClubDeportivo.Gui
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            bool esSocio = pnlCuota.Visible;
-
             try
             {
                 string documento = txtDocumento.Text;
@@ -161,10 +164,9 @@ namespace ClubDeportivo.Gui
                 E_Socio socio = new(documento, nombre, fechaNac, tel,
                     fechaInscri, FichaMedica, aptoMedico);
 
-                if (esSocio)
+                if (botonActivo == btnSocio)
                 {
                     string medioPago = rbtEfectivo.Checked ? "Efectivo" : "Tarjeta";
-
                     int resultadoSocio = new Socios().RegistrarSocio(socio);
 
                     if (resultadoSocio == -1)
@@ -178,16 +180,45 @@ namespace ClubDeportivo.Gui
                         E_Cuota cuota = new E_Cuota(resultadoSocio, fechaInscri, medioPago, cuotas);
                         int resultadoCuota = new Cuotas().RegistrarCuota(cuota);
                         cuota.idCuota = resultadoCuota;
-                        
+
                         if (resultadoCuota != -1)
                         {
-                            MessageBox.Show($"Socio registrado correctamente y se abono la cuota con id {resultadoCuota}.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show($"{socio.nombreCompleto} registrado correctamente y se abono la cuota con vencimiento en {cuota.FechaVencimiento.ToShortDateString}.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             ultimaCuotaRegistrada = cuota;
                             generarCuotaPdf();
-                            generarPdf();
+                            Carnet carnet = new Carnet();
+                            carnet.CarnetNombre = socio.nombreCompleto;
+                            carnet.CarnetDni = socio.documento;
+                            carnet.CarnetInscri = fechaInscri;
+                            carnet.CarnetNumero = resultadoSocio;
+                            this.Hide();
+                            carnet.Show();
                         }
                         LimpiarCampos();
                     }
+                } else if(botonActivo == btnNoSocio)
+                {
+                    int resultadoNoSocio = new NoSocios().RegistrarNoSocio(socio);
+                    if (resultadoNoSocio == -1)
+                    {
+                        MessageBox.Show($"El no socio con dni: {documento}, ya se encuentra registrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        
+                        return;
+                    }else
+                    {
+                        if (cboActividades.SelectedIndex != -1)
+                        {
+                            E_Actividad actividadSeleccionada = (E_Actividad)cboActividades.SelectedItem;
+                            NoSocios_Actividades noSocios_Actividades = new NoSocios_Actividades();
+                            int salida = noSocios_Actividades.RegistrarNoSocio_Actividad(resultadoNoSocio, actividadSeleccionada.idActividad);
+                            MessageBox.Show($"Se registrado a {socio.nombreCompleto} como No socio y se lo inscribio a {actividadSeleccionada.nombre}.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            generarNoSocioPdf(socio, actividadSeleccionada);
+                        } else
+                        {
+                            MessageBox.Show($"Se registrado a {socio.nombreCompleto} como No socio.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            generarNoSocioPdf(socio);
+                        }
+                    }                
                 }
             }
             catch (Exception ex)
@@ -204,7 +235,6 @@ namespace ClubDeportivo.Gui
                 pnlCuota.Show();
             }
         }
-
 
         private void btnNoSocio_Click(object sender, EventArgs e)
         {
@@ -288,7 +318,6 @@ namespace ClubDeportivo.Gui
             }
         }
 
-        Button botonActivo = null;
         private void Boton_Click(object sender, EventArgs e)
         {
 
@@ -303,7 +332,7 @@ namespace ClubDeportivo.Gui
                 // Desmarcamos el botón anterior (si había uno)
                 if (botonActivo != null)
                     botonActivo.BackColor = Color.Transparent;
-                    botonActivo.Size = new Size(57, 53);
+                botonActivo.Size = new Size(57, 53);
 
                 // Marcamos el nuevo
                 botonClickeado.BackColor = Color.FromArgb(173, 216, 230); // o el color que prefieras
@@ -342,40 +371,7 @@ namespace ClubDeportivo.Gui
             }
         }
 
-        private void generarPdf()
-        {
-            PrintDocument pd = new PrintDocument();  // Crea el documento que se va a imprimir
-            pd.PrintPage += new PrintPageEventHandler(ImprimirForm1);  // Asociamos el documento al metodo imprimir form
-            PrintPreviewDialog previewDialog = new PrintPreviewDialog();  // Cuadro de dialogo vista previa
-            previewDialog.Document = pd;  // Se le asigna el documento a la vista previa
-            previewDialog.ShowDialog(); // Muestra la vista previa
-        }
 
-        private void ImprimirForm1(object o, PrintPageEventArgs e)
-        {
-            int x = SystemInformation.WorkingArea.X;
-            int y = SystemInformation.WorkingArea.Y;
-            // ancho y alto: el tamaño del formulario(this) en pantalla.
-            int ancho = this.Width;
-            int alto = this.Height;
-            // Crea un rectángulo del tamaño del formulario para usar como referencia de captura.
-            Rectangle bounds = new Rectangle(x, y, ancho, alto);
-            // Crea una imagen en memoria (Bitmap) donde se va a "dibujar" el formulario.
-            Bitmap img = new Bitmap(ancho, alto);
-            // Dibuja visualmente el formulario completo dentro del Bitmap.
-            // Es como sacar una "captura de pantalla" del formulario(incluidos sus controles visibles).
-            this.DrawToBitmap(img, bounds);
-
-            Rectangle rectRecorte = new Rectangle(0, 0, ancho / 2, alto);
-            Bitmap imgRecortado = img.Clone(rectRecorte, img.PixelFormat);
-            //Dibuja la imagen generada en el objeto Graphics del documento para impresión.
-            //e.Graphics es el "lienzo" donde se está dibujando lo que irá impreso.
-            //En este caso, se coloca en el punto(100, 100) respecto al borde de la página.
-            Point p = new Point(100, 100);
-            e.Graphics.DrawImage(imgRecortado, p);
-            img.Dispose();
-            imgRecortado.Dispose();
-        }
         private void generarCuotaPdf()
         {
             PrintDocument pd = new PrintDocument();
@@ -411,7 +407,8 @@ namespace ClubDeportivo.Gui
             y += 25;
             e.Graphics.DrawString($"Cantidad de cuotas: {ultimaCuotaRegistrada.cantCuotas}", fuente, Brushes.Black, x, y);
             y += 25;
-            if(ultimaCuotaRegistrada.MedioPago.Equals("Tarjeta") && (ultimaCuotaRegistrada.cantCuotas == 3 || ultimaCuotaRegistrada.cantCuotas == 6)){
+            if (ultimaCuotaRegistrada.MedioPago.Equals("Tarjeta") && (ultimaCuotaRegistrada.cantCuotas == 3 || ultimaCuotaRegistrada.cantCuotas == 6))
+            {
                 e.Graphics.DrawString($"Por pagar con tarjeta en 3 o 6 cuotas tiene un descuento del 10% {ultimaCuotaRegistrada.Monto} - {ultimaCuotaRegistrada.Monto * 0.1m}", fuente, Brushes.Black, x, y);
                 y += 25;
                 monto = monto * 0.90m; // para multiplicar un decimal con un double tengo que agregarle la m al double
@@ -421,5 +418,87 @@ namespace ClubDeportivo.Gui
             e.Graphics.DrawString($"Estado del pago: {estado}", fuente, Brushes.Black, x, y);
             y += 25;
         }
+
+        private void RegistroSocio_Load(object sender, EventArgs e)
+        {
+            CargarActividades();
+        }
+
+        private void CargarActividades()
+        {
+            try
+            {
+                List<E_Actividad> actividades = new Actividades().ListarActividades();
+
+                cboActividades.DataSource = actividades;
+                cboActividades.DisplayMember = "nombre";     // Lo que se ve
+                cboActividades.ValueMember = "idActividad";  // El valor real
+
+                // Opcional: para evitar que se seleccione algo por defecto
+                cboActividades.SelectedIndex = -1;
+                // Limpiar TextBox para que estén vacíos al cargar el form
+                txbCupo.Text = "";
+                txbPrecio.Text = "";
+
+                // Reconectamos el evento
+                cboActividades.SelectedIndexChanged += cboActividades_SelectedIndexChanged;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar actividades: " + ex.Message);
+            }
+        }
+
+        private void cboActividades_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboActividades.SelectedIndex == -1)
+            {
+                txbCupo.Text = "";
+                txbPrecio.Text = "";
+                return;
+            }
+
+            if (cboActividades.SelectedItem is E_Actividad actividad)
+            {
+                txbCupo.Text = actividad.cupoActual.ToString();
+                txbPrecio.Text = actividad.valor.ToString("C", CultureInfo.CurrentCulture);
+            }
+        }
+
+        private void generarNoSocioPdf(E_Socio noSocio, E_Actividad? actividad = null)
+        {
+            PrintDocument pd = new PrintDocument();
+            pd.PrintPage += (sender, e) =>
+            {
+                Font fuente = new Font("Arial", 12);
+                float x = 100, y = 100;
+
+                e.Graphics.DrawString("Comprobante de Registro - No Socio", new Font("Arial", 16, FontStyle.Bold), Brushes.Black, x, y);
+                y += 40;
+                e.Graphics.DrawString($"Nombre completo: {noSocio.nombreCompleto}", fuente, Brushes.Black, x, y);
+                y += 25;
+                e.Graphics.DrawString($"Documento: {noSocio.documento}", fuente, Brushes.Black, x, y);
+                y += 25;
+                e.Graphics.DrawString($"Teléfono: {noSocio.telefono}", fuente, Brushes.Black, x, y);
+                y += 25;
+                e.Graphics.DrawString($"Fecha de inscripción: {noSocio.fechaInscripcion.ToShortDateString()}", fuente, Brushes.Black, x, y);
+                y += 25;
+                e.Graphics.DrawString($"Ficha Médica: {(noSocio.fichaMedica ? "Sí" : "No")}", fuente, Brushes.Black, x, y);
+                y += 25;
+                e.Graphics.DrawString($"Apto Médico: {(noSocio.aptoMedico ? "Sí" : "No")}", fuente, Brushes.Black, x, y);
+                y += 25;
+
+                if (actividad != null)
+                {
+                    e.Graphics.DrawString($"Actividad Inscripta: {actividad.nombre}", fuente, Brushes.Black, x, y);
+                    y += 25;
+                }
+
+            };
+            PrintPreviewDialog preview = new PrintPreviewDialog();
+            preview.Document = pd;
+            preview.ShowDialog();
+        }
+
     }
 }

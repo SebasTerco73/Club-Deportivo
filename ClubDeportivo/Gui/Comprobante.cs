@@ -20,7 +20,8 @@ namespace ClubDeportivo.Gui
         public int identificador_c;
         public DateTime fechaPago_c;
         public DateTime fechaInscripcion_c;
-        public Comprobante(string nombre, float monto, DateTime fechaInscripcion, DateTime fechaPago, string forma, int identificador)
+        public int cuotas_c;
+        public Comprobante(string nombre, float monto, DateTime fechaInscripcion, DateTime fechaPago, string forma, int identificador, string cuotas)
         {
             InitializeComponent();
             nombre_c = nombre;
@@ -29,6 +30,7 @@ namespace ClubDeportivo.Gui
             fechaPago_c = fechaPago;
             forma_c = forma;
             identificador_c = identificador;
+            cuotas_c = int.Parse(cuotas);
             this.Load += Comprobante_Load;
 
             // Colores basados en el logo
@@ -70,8 +72,7 @@ namespace ClubDeportivo.Gui
             pd.Print();
 
             btbImprimir.Visible = true;
-            MessageBox.Show("Operación existosa", "AVISO DEL SISTEMA",MessageBoxButtons.OK, MessageBoxIcon.Information);
-            this.Hide();
+            MessageBox.Show("Operación existosa", "AVISO DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Form? menuPrincipal = Application.OpenForms["MenuPrincipal"];
             if (menuPrincipal != null)
             {
@@ -91,7 +92,7 @@ namespace ClubDeportivo.Gui
             Point p = new Point(100, 100);
             e.Graphics.DrawImage(img, p);
         }
-        private void Comprobante_Load (object sender, EventArgs e)
+        private void Comprobante_Load(object sender, EventArgs e)
         {
             lblNombre.Text = nombre_c ?? "N/A"; // Usa un valor por defecto si es null
             lblMonto.Text = monto_c.ToString("N2");
@@ -99,6 +100,12 @@ namespace ClubDeportivo.Gui
             lblFechaP.Text = fechaPago_c.ToShortDateString();
             lblFPago.Text = forma_c ?? "N/A";
             lblId.Text = identificador_c.ToString();
+            lblCuotas.Text = cuotas_c.ToString();   
+        }
+
+        private void Comprobante_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

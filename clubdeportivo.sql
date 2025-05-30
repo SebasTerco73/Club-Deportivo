@@ -4,7 +4,7 @@ USE `clubdeportivo`;
 --
 -- Host: localhost    Database: clubdeportivo
 -- ------------------------------------------------------
--- Server version	8.0.42
+-- Server version	8.0.35
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,6 +16,33 @@ USE `clubdeportivo`;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `actividad`
+--
+
+DROP TABLE IF EXISTS `actividad`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `actividad` (
+  `idactividad` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(45) NOT NULL,
+  `cupoMax` int DEFAULT '30',
+  `cupoActual` int DEFAULT '30',
+  `valor` double DEFAULT NULL,
+  PRIMARY KEY (`idactividad`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `actividad`
+--
+
+LOCK TABLES `actividad` WRITE;
+/*!40000 ALTER TABLE `actividad` DISABLE KEYS */;
+INSERT INTO `actividad` VALUES (1,'Futbol',25,25,5000),(2,'Natacion',20,20,5000),(3,'Basquet',25,25,4000);
+/*!40000 ALTER TABLE `actividad` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `cuota`
@@ -32,11 +59,11 @@ CREATE TABLE `cuota` (
   `monto` decimal(10,2) DEFAULT NULL,
   `estadoPago` tinyint DEFAULT '0',
   `medioPago` varchar(30) DEFAULT NULL,
-  `cantCuota` int DEFAULT NULL,
+  `cantCuota` int DEFAULT '1',
   PRIMARY KEY (`idCuota`),
   KEY `codSocio` (`codSocio`),
   CONSTRAINT `cuota_ibfk_1` FOREIGN KEY (`codSocio`) REFERENCES `socios` (`codSocio`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,8 +72,65 @@ CREATE TABLE `cuota` (
 
 LOCK TABLES `cuota` WRITE;
 /*!40000 ALTER TABLE `cuota` DISABLE KEYS */;
-INSERT INTO `cuota` VALUES (3,9,'2025-06-22','2025-05-22',5000.00,1,'Tarjeta',1),(4,10,'2025-06-22','2025-05-22',5000.00,1,'Efectivo',1);
 /*!40000 ALTER TABLE `cuota` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `nosocio_actividad`
+--
+
+DROP TABLE IF EXISTS `nosocio_actividad`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `nosocio_actividad` (
+  `idNoSocio` int NOT NULL,
+  `idActividad` int NOT NULL,
+  `fechaRegistro` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`idNoSocio`,`idActividad`),
+  KEY `idActividad` (`idActividad`),
+  CONSTRAINT `nosocio_actividad_ibfk_1` FOREIGN KEY (`idNoSocio`) REFERENCES `nosocios` (`codNoSocio`),
+  CONSTRAINT `nosocio_actividad_ibfk_2` FOREIGN KEY (`idActividad`) REFERENCES `actividad` (`idactividad`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `nosocio_actividad`
+--
+
+LOCK TABLES `nosocio_actividad` WRITE;
+/*!40000 ALTER TABLE `nosocio_actividad` DISABLE KEYS */;
+/*!40000 ALTER TABLE `nosocio_actividad` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `nosocios`
+--
+
+DROP TABLE IF EXISTS `nosocios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `nosocios` (
+  `codNoSocio` int NOT NULL AUTO_INCREMENT,
+  `Documento` varchar(12) NOT NULL,
+  `NombreCompleto` varchar(45) NOT NULL,
+  `FechaNac` date NOT NULL,
+  `Telefono` varchar(15) NOT NULL,
+  `FechaInscripcion` date NOT NULL,
+  `FichaMedica` tinyint DEFAULT '0',
+  `AptoMedico` tinyint DEFAULT '0',
+  `activo` tinyint DEFAULT '1',
+  PRIMARY KEY (`codNoSocio`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `nosocios`
+--
+
+LOCK TABLES `nosocios` WRITE;
+/*!40000 ALTER TABLE `nosocios` DISABLE KEYS */;
+INSERT INTO `nosocios` VALUES (1,'111','Seqqeq','2025-05-29','1664','2025-05-29',1,1,1),(2,'111222','qqeert','2025-05-29','166441','2025-05-29',1,1,1);
+/*!40000 ALTER TABLE `nosocios` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -91,7 +175,7 @@ CREATE TABLE `socios` (
   `AptoMedico` tinyint DEFAULT '0',
   `activo` tinyint DEFAULT '1',
   PRIMARY KEY (`codSocio`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -100,7 +184,7 @@ CREATE TABLE `socios` (
 
 LOCK TABLES `socios` WRITE;
 /*!40000 ALTER TABLE `socios` DISABLE KEYS */;
-INSERT INTO `socios` VALUES (7,'42776007','neyel vila','2000-07-10','123456','2025-05-22',1,1,1),(8,'42776008','juan perez','2025-05-22','11123132','2025-05-22',1,1,1),(9,'42778964','Neyel vila','2000-02-01','1124022966','2025-05-22',0,1,1),(10,'42645616','neyel','2025-05-22','1456','2025-05-22',0,0,1);
+INSERT INTO `socios` VALUES (11,'666','Sebas Puche','1993-06-18','1234567890','2025-05-23',1,1,1),(12,'123456','Sebas','2025-05-29','123456','2025-05-29',1,1,1),(13,'1','Seeeeeeeebas','2025-05-29','12456','2025-05-29',0,0,1),(14,'12345566','Sebasty','2025-05-29','123','2025-05-29',1,1,1),(15,'12311111','aaqeqadq','2025-05-29','1234','2025-05-29',1,1,1),(16,'6666','Sergio Orlando','2025-05-29','666','2025-05-29',1,1,1);
 /*!40000 ALTER TABLE `socios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -135,10 +219,6 @@ INSERT INTO `usuario` VALUES (1,'Ailen','1',120,1),(2,'Marcela','1',120,1),(3,'N
 UNLOCK TABLES;
 
 --
--- Dumping events for database 'clubdeportivo'
---
-
---
 -- Dumping routines for database 'clubdeportivo'
 --
 /*!50003 DROP PROCEDURE IF EXISTS `IngresoLogin` */;
@@ -155,10 +235,57 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `IngresoLogin`(in Usu varchar(20),in
 begin
   
   select NomRol	from usuario u inner join roles r on u.RolUsu = r.RolUsu
-		where BINARY NombreUsu = Usu and PassUsu = Pass /* se compara con los parametros */
+		where NombreUsu = Usu and BINARY PassUsu = Pass /* se compara con los parametros */
 			and Activo = 1; /* el usuario debe estar activo */
 
 end ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `registrarNoSocio` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `registrarNoSocio`(
+    IN s_Documento VARCHAR(12),
+    IN s_NombreCompleto VARCHAR(45),
+    IN s_FechaNac DATE,
+    IN s_Telefono VARCHAR(15),
+    IN s_FechaInscripcion DATE,
+    IN s_FichaMedica TINYINT,
+    IN s_AptoMedico TINYINT,
+    OUT rta INT
+)
+BEGIN
+    DECLARE existe INT DEFAULT 0;
+
+    -- Verificamos si ya existe un socio con ese documento
+    SELECT COUNT(*) INTO existe FROM nosocios WHERE Documento = s_Documento;
+
+    IF existe = 0 THEN
+        -- No existe, insertamos el nuevo socio
+        INSERT INTO nosocios (
+            Documento, NombreCompleto, FechaNac, Telefono,
+            FechaInscripcion, FichaMedica, AptoMedico, activo
+        ) VALUES (
+            s_Documento, s_NombreCompleto, s_FechaNac, s_Telefono,
+            s_FechaInscripcion, s_FichaMedica, s_AptoMedico, 1
+        );
+
+        SET rta = LAST_INSERT_ID();
+    ELSE
+        -- Ya existe, devolvemos -1
+        SET rta = -1;
+    END IF;
+END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -211,32 +338,6 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `RegistrarUser` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `RegistrarUser`(in Usu varchar(15),in Pass varchar(15))
-BEGIN
-    -- Validar si el usuario ya existe
-    IF NOT EXISTS (
-        SELECT 1 FROM usuario WHERE NombreUsu = Usu
-    ) THEN
-	 -- Insertar nuevo usuario
-        INSERT INTO usuario (NombreUsu, PassUsu, RolUsu, Activo)
-        VALUES (Usu, Pass, 120, 1);
-    END IF;
-end ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -247,4 +348,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-23  0:35:28
+-- Dump completed on 2025-05-29 19:29:32

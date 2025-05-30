@@ -52,11 +52,11 @@
             dtpFechaInscripcion = new DateTimePicker();
             label11 = new Label();
             label10 = new Label();
-            comboBox2 = new ComboBox();
+            cbxActividades = new ComboBox();
             label12 = new Label();
             label13 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            txtCupo = new TextBox();
+            txtPrecio = new TextBox();
             pnlActividad = new Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             groupBox1.SuspendLayout();
@@ -293,13 +293,15 @@
             label10.TabIndex = 1;
             label10.Text = "Lista de Actividades";
             // 
-            // comboBox2
+            // cbxActividades
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(66, 171);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(121, 23);
-            comboBox2.TabIndex = 2;
+            cbxActividades.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxActividades.FormattingEnabled = true;
+            cbxActividades.Location = new Point(66, 171);
+            cbxActividades.Name = "cbxActividades";
+            cbxActividades.Size = new Size(121, 23);
+            cbxActividades.TabIndex = 2;
+            cbxActividades.SelectedIndexChanged += cbxActividades_SelectedIndexChanged;
             // 
             // label12
             // 
@@ -321,31 +323,31 @@
             label13.TabIndex = 4;
             label13.Text = "Precio";
             // 
-            // textBox1
+            // txtCupo
             // 
-            textBox1.Enabled = false;
-            textBox1.Location = new Point(95, 231);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(74, 23);
-            textBox1.TabIndex = 5;
+            txtCupo.Enabled = false;
+            txtCupo.Location = new Point(95, 231);
+            txtCupo.Name = "txtCupo";
+            txtCupo.ReadOnly = true;
+            txtCupo.Size = new Size(74, 23);
+            txtCupo.TabIndex = 5;
             // 
-            // textBox2
+            // txtPrecio
             // 
-            textBox2.Enabled = false;
-            textBox2.Location = new Point(95, 274);
-            textBox2.Name = "textBox2";
-            textBox2.ReadOnly = true;
-            textBox2.Size = new Size(74, 23);
-            textBox2.TabIndex = 6;
+            txtPrecio.Enabled = false;
+            txtPrecio.Location = new Point(95, 274);
+            txtPrecio.Name = "txtPrecio";
+            txtPrecio.ReadOnly = true;
+            txtPrecio.Size = new Size(74, 23);
+            txtPrecio.TabIndex = 6;
             // 
             // pnlActividad
             // 
-            pnlActividad.Controls.Add(textBox2);
-            pnlActividad.Controls.Add(textBox1);
+            pnlActividad.Controls.Add(txtPrecio);
+            pnlActividad.Controls.Add(txtCupo);
             pnlActividad.Controls.Add(label13);
             pnlActividad.Controls.Add(label12);
-            pnlActividad.Controls.Add(comboBox2);
+            pnlActividad.Controls.Add(cbxActividades);
             pnlActividad.Controls.Add(label10);
             pnlActividad.Controls.Add(label11);
             pnlActividad.Location = new Point(525, 26);
@@ -379,6 +381,7 @@
             Name = "Cobros";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Cobros";
+            Load += Cobros_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
@@ -413,11 +416,11 @@
         private DateTimePicker dtpFechaInscripcion;
         private Label label11;
         private Label label10;
-        private ComboBox comboBox2;
+        private ComboBox cbxActividades;
         private Label label12;
         private Label label13;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox txtCupo;
+        private TextBox txtPrecio;
         private Panel pnlActividad;
     }
 }

@@ -46,11 +46,11 @@
             btnSocio = new Button();
             btnNoSocio = new Button();
             pnlActividad = new Panel();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
+            txbPrecio = new TextBox();
+            txbCupo = new TextBox();
             label13 = new Label();
             label12 = new Label();
-            comboBox2 = new ComboBox();
+            cboActividades = new ComboBox();
             label10 = new Label();
             label11 = new Label();
             ckbFicha = new CheckBox();
@@ -238,11 +238,11 @@
             // 
             // pnlActividad
             // 
-            pnlActividad.Controls.Add(textBox2);
-            pnlActividad.Controls.Add(textBox1);
+            pnlActividad.Controls.Add(txbPrecio);
+            pnlActividad.Controls.Add(txbCupo);
             pnlActividad.Controls.Add(label13);
             pnlActividad.Controls.Add(label12);
-            pnlActividad.Controls.Add(comboBox2);
+            pnlActividad.Controls.Add(cboActividades);
             pnlActividad.Controls.Add(label10);
             pnlActividad.Controls.Add(label11);
             pnlActividad.Location = new Point(525, 26);
@@ -250,23 +250,23 @@
             pnlActividad.Size = new Size(254, 348);
             pnlActividad.TabIndex = 14;
             // 
-            // textBox2
+            // txbPrecio
             // 
-            textBox2.Enabled = false;
-            textBox2.Location = new Point(95, 274);
-            textBox2.Name = "textBox2";
-            textBox2.ReadOnly = true;
-            textBox2.Size = new Size(74, 23);
-            textBox2.TabIndex = 6;
+            txbPrecio.Enabled = false;
+            txbPrecio.Location = new Point(95, 274);
+            txbPrecio.Name = "txbPrecio";
+            txbPrecio.ReadOnly = true;
+            txbPrecio.Size = new Size(74, 23);
+            txbPrecio.TabIndex = 6;
             // 
-            // textBox1
+            // txbCupo
             // 
-            textBox1.Enabled = false;
-            textBox1.Location = new Point(95, 231);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(74, 23);
-            textBox1.TabIndex = 5;
+            txbCupo.Enabled = false;
+            txbCupo.Location = new Point(95, 231);
+            txbCupo.Name = "txbCupo";
+            txbCupo.ReadOnly = true;
+            txbCupo.Size = new Size(74, 23);
+            txbCupo.TabIndex = 5;
             // 
             // label13
             // 
@@ -288,13 +288,15 @@
             label12.TabIndex = 3;
             label12.Text = "Cupo";
             // 
-            // comboBox2
+            // cboActividades
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(66, 171);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(121, 23);
-            comboBox2.TabIndex = 2;
+            cboActividades.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboActividades.FormattingEnabled = true;
+            cboActividades.Location = new Point(66, 171);
+            cboActividades.Name = "cboActividades";
+            cboActividades.Size = new Size(121, 23);
+            cboActividades.TabIndex = 2;
+            cboActividades.SelectedIndexChanged += cboActividades_SelectedIndexChanged;
             // 
             // label10
             // 
@@ -459,6 +461,7 @@
             Name = "RegistroSocio";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Registrar Socio";
+            Load += RegistroSocio_Load;
             pnlActividad.ResumeLayout(false);
             pnlActividad.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -489,12 +492,12 @@
         private Button btnSocio;
         private Panel pnlActividad;
         private Label label12;
-        private ComboBox comboBox2;
+        private ComboBox cboActividades;
         private Label label10;
         private Label label11;
         private Label label13;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private TextBox txbPrecio;
+        private TextBox txbCupo;
         private CheckBox ckbFicha;
         private CheckBox ckbApto;
         private ToolTip ttSocio;
