@@ -32,9 +32,9 @@
             lblIngreso = new Label();
             inicioSesionSocios = new Button();
             registroUsuario = new Button();
-            logouds = new PictureBox();
             btnListado = new Button();
             btnSalir = new Button();
+            logouds = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)logouds).BeginInit();
             SuspendLayout();
             // 
@@ -66,12 +66,6 @@
             registroUsuario.UseVisualStyleBackColor = false;
             registroUsuario.Click += registroUsuario_Click;
             // 
-            // logouds
-            // 
-            resources.ApplyResources(logouds, "logouds");
-            logouds.Name = "logouds";
-            logouds.TabStop = false;
-            // 
             // btnListado
             // 
             resources.ApplyResources(btnListado, "btnListado");
@@ -90,6 +84,12 @@
             btnSalir.UseVisualStyleBackColor = true;
             btnSalir.Click += button2_Click;
             // 
+            // logouds
+            // 
+            resources.ApplyResources(logouds, "logouds");
+            logouds.Name = "logouds";
+            logouds.TabStop = false;
+            // 
             // MenuPrincipal
             // 
             resources.ApplyResources(this, "$this");
@@ -101,6 +101,7 @@
             Controls.Add(registroUsuario);
             Controls.Add(inicioSesionSocios);
             Controls.Add(lblIngreso);
+            DoubleBuffered = true;
             ForeColor = Color.MidnightBlue;
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             MinimizeBox = false;
@@ -116,11 +117,11 @@
         #endregion
 
         private System.Windows.Forms.Label lblIngreso;
-        private System.Windows.Forms.PictureBox logouds;
         internal System.Windows.Forms.Button inicioSesionSocios;
         internal System.Windows.Forms.Button registroUsuario;
         internal Button btnListado;
         private Button btnSalir;
+        private PictureBox logouds;
     }
 }
 

@@ -11,7 +11,7 @@ namespace ClubDeportivo.Datos
 {
     internal class NoSocios_Actividades
     {
-        public int RegistrarNoSocio_Actividad(int codNoSocio, int actividad)
+        public int RegistrarNoSocio_Actividad(int codNoSocio, int idActividad)
         {
             int idGenerado = -1;
             MySqlConnection sqlCon = new MySqlConnection();
@@ -19,23 +19,26 @@ namespace ClubDeportivo.Datos
             try
             {
                 sqlCon = Conexion.getInstancia().CrearConexion();
-                string sql = @"INSERT INTO noSocio_actividad
-                       (idNoSocio, idActividad)
-                       VALUES (@codNoSocio, @actividad);";
+                MySqlCommand comando = new MySqlCommand("RegistrarNoSocioActividad", sqlCon);
+                comando.CommandType = CommandType.StoredProcedure;
 
-                MySqlCommand comando = new MySqlCommand(sql, sqlCon);
+                // Agregar parámetros para el Stored Procedure
+                comando.Parameters.Add("p_idNoSocio", MySqlDbType.Int32).Value = codNoSocio;
+                comando.Parameters.Add("p_idActividad", MySqlDbType.Int32).Value = idActividad;
 
-                comando.Parameters.Add("@idNoSocio", MySqlDbType.Int32).Value = codNoSocio;
-                comando.Parameters.Add("@idActividad", MySqlDbType.Int32).Value = actividad;
+                // Parámetro de salida
+                MySqlParameter rta = new MySqlParameter("rta", MySqlDbType.Int32);
+                rta.Direction = ParameterDirection.Output;
+                comando.Parameters.Add(rta);
 
                 sqlCon.Open();
                 comando.ExecuteNonQuery();
 
-                idGenerado = (int)comando.LastInsertedId; // Obtengo el id autogenerado
+                // Si en null se le asigna -1
+                idGenerado = (rta.Value != DBNull.Value) ? Convert.ToInt32(rta.Value) : -1;
             }
             catch (Exception)
             {
-                // Log o manejo de error aquí
                 idGenerado = -1;
             }
             finally
@@ -43,8 +46,9 @@ namespace ClubDeportivo.Datos
                 if (sqlCon.State == ConnectionState.Open)
                     sqlCon.Close();
             }
-
             return idGenerado;
         }
     }
 }
+
+        
