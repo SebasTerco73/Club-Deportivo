@@ -1,6 +1,6 @@
 ﻿namespace ClubDeportivo.Gui
 {
-    partial class RegistroSocio
+    partial class RegistroCliente
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegistroSocio));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegistroCliente));
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -429,7 +429,7 @@
             pnlCuota.Size = new Size(254, 348);
             pnlCuota.TabIndex = 11;
             // 
-            // RegistroSocio
+            // RegistroCliente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -458,9 +458,9 @@
             ForeColor = SystemColors.ControlText;
             FormBorderStyle = FormBorderStyle.Fixed3D;
             MaximizeBox = false;
-            Name = "RegistroSocio";
+            Name = "RegistroCliente";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Registrar Socio";
+            Text = "Registrar Cliente";
             Load += RegistroSocio_Load;
             pnlActividad.ResumeLayout(false);
             pnlActividad.PerformLayout();

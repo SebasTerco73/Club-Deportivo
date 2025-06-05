@@ -63,7 +63,7 @@ namespace ClubDeportivo.Gui
             btbImprimir.Hide();
             lblBienvenida.Visible = true;
             generarPdf();
-            Form? registroSocio = Application.OpenForms["RegistroSocio"];
+            Form? registroSocio = Application.OpenForms["RegistroCliente"];
             if (registroSocio != null)
             {
                 registroSocio.Show();

@@ -17,12 +17,12 @@ using Org.BouncyCastle.Asn1.Crmf;
 
 namespace ClubDeportivo.Gui
 {
-    public partial class RegistroSocio : Form
+    public partial class RegistroCliente : Form
     {
         private E_Cuota ultimaCuotaRegistrada;
         Button botonActivo;
 
-        public RegistroSocio()
+        public RegistroCliente()
         {
             InitializeComponent();
             pnlActividad.Hide();
@@ -81,7 +81,7 @@ namespace ClubDeportivo.Gui
             }
         }
 
-        
+
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -161,13 +161,14 @@ namespace ClubDeportivo.Gui
                     return;
                 }
 
-                E_Socio socio = new(documento, nombre, fechaNac, tel,
-                    fechaInscri, FichaMedica, aptoMedico);
+                E_Persona cliente;
 
                 if (botonActivo == btnSocio)
                 {
+                    cliente = new E_Socio(documento, nombre, fechaNac, tel,
+                    fechaInscri, FichaMedica, aptoMedico);
                     string medioPago = rbtEfectivo.Checked ? "Efectivo" : "Tarjeta";
-                    int resultadoSocio = new Socios().RegistrarSocio(socio);
+                    int resultadoSocio = new Clientes().RegistrarCliente(cliente);
 
                     if (resultadoSocio == -1)
                     {
@@ -183,43 +184,54 @@ namespace ClubDeportivo.Gui
 
                         if (resultadoCuota != -1)
                         {
-                            MessageBox.Show($"{socio.nombreCompleto} registrado correctamente y se abono la cuota con vencimiento en {cuota.FechaVencimiento.ToShortDateString}.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show($"{cliente.nombreCompleto} registrado correctamente y se abono la cuota con vencimiento en {cuota.FechaVencimiento.ToShortDateString()}.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             ultimaCuotaRegistrada = cuota;
                             generarCuotaPdf();
                             Carnet carnet = new Carnet();
-                            carnet.CarnetNombre = socio.nombreCompleto;
-                            carnet.CarnetDni = socio.documento;
+                            carnet.CarnetNombre = cliente.nombreCompleto;
+                            carnet.CarnetDni = cliente.documento;
                             carnet.CarnetInscri = fechaInscri;
                             carnet.CarnetNumero = resultadoSocio;
                             this.Hide();
                             carnet.Show();
                         }
-                        LimpiarCampos();
                     }
-                } else if(botonActivo == btnNoSocio)
+                } else if (botonActivo == btnNoSocio)
                 {
-                    int resultadoNoSocio = new NoSocios().RegistrarNoSocio(socio);
+                    cliente = new E_NoSocio(documento, nombre, fechaNac, tel,
+                    fechaInscri, FichaMedica, aptoMedico);
+                    int resultadoNoSocio = new Clientes().RegistrarCliente(cliente);
                     if (resultadoNoSocio == -1)
                     {
                         MessageBox.Show($"El no socio con dni: {documento}, ya se encuentra registrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        
                         return;
-                    }else
+                    } else
                     {
                         if (cboActividades.SelectedIndex != -1)
                         {
                             E_Actividad actividadSeleccionada = (E_Actividad)cboActividades.SelectedItem;
                             NoSocios_Actividades noSocios_Actividades = new NoSocios_Actividades();
-                            int salida = noSocios_Actividades.RegistrarNoSocio_Actividad(resultadoNoSocio, actividadSeleccionada.idActividad);
-                            MessageBox.Show($"Se registrado a {socio.nombreCompleto} como No socio y se lo inscribio a {actividadSeleccionada.nombre}.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            generarNoSocioPdf(socio, actividadSeleccionada);
+                            bool salida = noSocios_Actividades.RegistrarNoSocio_Actividad(resultadoNoSocio, actividadSeleccionada.idActividad, fechaInscri);
+                            if (salida)
+                            {
+                                MessageBox.Show($"Se registró a {cliente.nombreCompleto} como No socio y se lo inscribió a {actividadSeleccionada.nombre}.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                generarNoSocioPdf(cliente, actividadSeleccionada);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Hubo un error al registrar la actividad.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            MessageBox.Show($"Se registrado a {cliente.nombreCompleto} como No socio y se lo inscribio a {actividadSeleccionada.nombre}.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            generarNoSocioPdf(cliente, actividadSeleccionada);
                         } else
                         {
-                            MessageBox.Show($"Se registrado a {socio.nombreCompleto} como No socio.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            generarNoSocioPdf(socio);
+                            MessageBox.Show($"Se registrado a {cliente.nombreCompleto} como No socio.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            generarNoSocioPdf(cliente);
                         }
-                    }                
+                    }
+         
                 }
+                LimpiarCampos();
             }
             catch (Exception ex)
             {
@@ -465,40 +477,43 @@ namespace ClubDeportivo.Gui
             }
         }
 
-        private void generarNoSocioPdf(E_Socio noSocio, E_Actividad? actividad = null)
+        private void generarNoSocioPdf(E_Persona cliente, E_Actividad? actividad = null)
         {
-            PrintDocument pd = new PrintDocument();
-            pd.PrintPage += (sender, e) =>
+            if (cliente is E_NoSocio noSocio)
             {
-                Font fuente = new Font("Arial", 12);
-                float x = 100, y = 100;
-
-                e.Graphics.DrawString("Comprobante de Registro - No Socio", new Font("Arial", 16, FontStyle.Bold), Brushes.Black, x, y);
-                y += 40;
-                e.Graphics.DrawString($"Nombre completo: {noSocio.nombreCompleto}", fuente, Brushes.Black, x, y);
-                y += 25;
-                e.Graphics.DrawString($"Documento: {noSocio.documento}", fuente, Brushes.Black, x, y);
-                y += 25;
-                e.Graphics.DrawString($"Teléfono: {noSocio.telefono}", fuente, Brushes.Black, x, y);
-                y += 25;
-                e.Graphics.DrawString($"Fecha de inscripción: {noSocio.fechaInscripcion.ToShortDateString()}", fuente, Brushes.Black, x, y);
-                y += 25;
-                e.Graphics.DrawString($"Ficha Médica: {(noSocio.fichaMedica ? "Sí" : "No")}", fuente, Brushes.Black, x, y);
-                y += 25;
-                e.Graphics.DrawString($"Apto Médico: {(noSocio.aptoMedico ? "Sí" : "No")}", fuente, Brushes.Black, x, y);
-                y += 25;
-
-                if (actividad != null)
+                PrintDocument pd = new PrintDocument();
+                pd.PrintPage += (sender, e) =>
                 {
-                    e.Graphics.DrawString($"Actividad Inscripta: {actividad.nombre}", fuente, Brushes.Black, x, y);
+                    Font fuente = new Font("Arial", 12);
+                    float x = 100, y = 100;
+
+                    e.Graphics.DrawString("Comprobante de Registro - No Socio", new Font("Arial", 16, FontStyle.Bold), Brushes.Black, x, y);
+                    y += 40;
+                    e.Graphics.DrawString($"Nombre completo: {noSocio.nombreCompleto}", fuente, Brushes.Black, x, y);
                     y += 25;
-                }
+                    e.Graphics.DrawString($"Documento: {noSocio.documento}", fuente, Brushes.Black, x, y);
+                    y += 25;
+                    e.Graphics.DrawString($"Teléfono: {noSocio.telefono}", fuente, Brushes.Black, x, y);
+                    y += 25;
+                    e.Graphics.DrawString($"Fecha de inscripción: {noSocio.fechaInscripcion.ToShortDateString()}", fuente, Brushes.Black, x, y);
+                    y += 25;
+                    e.Graphics.DrawString($"Ficha Médica: {(noSocio.fichaMedica ? "Sí" : "No")}", fuente, Brushes.Black, x, y);
+                    y += 25;
+                    e.Graphics.DrawString($"Apto Médico: {(noSocio.aptoMedico ? "Sí" : "No")}", fuente, Brushes.Black, x, y);
+                    y += 25;
 
-            };
-            PrintPreviewDialog preview = new PrintPreviewDialog();
-            preview.Document = pd;
-            preview.ShowDialog();
+                    if (actividad != null)
+                    {
+                        e.Graphics.DrawString($"Actividad Inscripta: {actividad.nombre}", fuente, Brushes.Black, x, y);
+                        y += 25;
+                    }
+                };
+                PrintPreviewDialog preview = new PrintPreviewDialog();
+                preview.Document = pd;
+                preview.ShowDialog();
+            }
         }
-
-    }
+    } 
 }
+
+ 

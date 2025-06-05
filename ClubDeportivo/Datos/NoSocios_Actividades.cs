@@ -11,9 +11,10 @@ namespace ClubDeportivo.Datos
 {
     internal class NoSocios_Actividades
     {
-        public int RegistrarNoSocio_Actividad(int codNoSocio, int idActividad)
+        public bool RegistrarNoSocio_Actividad(int codNoSocio, int idActividad, DateTime? registro = null)
+        
         {
-            int idGenerado = -1;
+            bool exito = false;
             MySqlConnection sqlCon = new MySqlConnection();
 
             try
@@ -23,8 +24,11 @@ namespace ClubDeportivo.Datos
                 comando.CommandType = CommandType.StoredProcedure;
 
                 // Agregar parámetros para el Stored Procedure
+                DateTime fechaRegistro = registro ?? DateTime.Now;
+
                 comando.Parameters.Add("p_idNoSocio", MySqlDbType.Int32).Value = codNoSocio;
                 comando.Parameters.Add("p_idActividad", MySqlDbType.Int32).Value = idActividad;
+                comando.Parameters.Add("p_fechaRegistro", MySqlDbType.DateTime).Value = fechaRegistro;
 
                 // Parámetro de salida
                 MySqlParameter rta = new MySqlParameter("rta", MySqlDbType.Int32);
@@ -34,19 +38,18 @@ namespace ClubDeportivo.Datos
                 sqlCon.Open();
                 comando.ExecuteNonQuery();
 
-                // Si en null se le asigna -1
-                idGenerado = (rta.Value != DBNull.Value) ? Convert.ToInt32(rta.Value) : -1;
+                exito = true;
             }
             catch (Exception)
             {
-                idGenerado = -1;
+                exito = false;
             }
             finally
             {
                 if (sqlCon.State == ConnectionState.Open)
                     sqlCon.Close();
             }
-            return idGenerado;
+            return exito;
         }
     }
 }
