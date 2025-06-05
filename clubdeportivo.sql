@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `clubdeportivo` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `clubdeportivo`;
--- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.42, for Win64 (x86_64)
 --
 -- Host: localhost    Database: clubdeportivo
 -- ------------------------------------------------------
--- Server version	8.0.35
+-- Server version	8.0.42
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -63,7 +61,7 @@ CREATE TABLE `cuota` (
   PRIMARY KEY (`idCuota`),
   KEY `codSocio` (`codSocio`),
   CONSTRAINT `cuota_ibfk_1` FOREIGN KEY (`codSocio`) REFERENCES `socios` (`codSocio`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,6 +70,7 @@ CREATE TABLE `cuota` (
 
 LOCK TABLES `cuota` WRITE;
 /*!40000 ALTER TABLE `cuota` DISABLE KEYS */;
+INSERT INTO `cuota` VALUES (15,17,'2025-06-01','2025-05-01',5000.00,1,'Efectivo',1),(16,12,'2025-06-30','2025-05-30',5000.00,1,'Efectivo',1),(17,12,'2025-06-30','2025-05-30',5000.00,1,'Efectivo',1),(18,12,'2025-06-30','2025-05-30',5000.00,1,'Efectivo',1),(19,12,'2025-07-05','2025-06-05',5000.00,1,'Efectivo',1),(20,18,'2025-07-05','2025-06-05',5000.00,1,'Tarjeta',6);
 /*!40000 ALTER TABLE `cuota` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,6 +84,7 @@ DROP TABLE IF EXISTS `nosocio_actividad`;
 CREATE TABLE `nosocio_actividad` (
   `idNoSocio` int NOT NULL,
   `idActividad` int NOT NULL,
+  `nombre` varchar(45) DEFAULT NULL,
   `fechaRegistro` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idNoSocio`,`idActividad`),
   KEY `idActividad` (`idActividad`),
@@ -99,6 +99,7 @@ CREATE TABLE `nosocio_actividad` (
 
 LOCK TABLES `nosocio_actividad` WRITE;
 /*!40000 ALTER TABLE `nosocio_actividad` DISABLE KEYS */;
+INSERT INTO `nosocio_actividad` VALUES (8,2,'dasd','2025-06-05 16:42:50'),(9,3,'Basquet','2025-06-05 16:45:52');
 /*!40000 ALTER TABLE `nosocio_actividad` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -120,7 +121,7 @@ CREATE TABLE `nosocios` (
   `AptoMedico` tinyint DEFAULT '0',
   `activo` tinyint DEFAULT '1',
   PRIMARY KEY (`codNoSocio`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -129,7 +130,7 @@ CREATE TABLE `nosocios` (
 
 LOCK TABLES `nosocios` WRITE;
 /*!40000 ALTER TABLE `nosocios` DISABLE KEYS */;
-INSERT INTO `nosocios` VALUES (1,'111','Seqqeq','2025-05-29','1664','2025-05-29',1,1,1),(2,'111222','qqeert','2025-05-29','166441','2025-05-29',1,1,1);
+INSERT INTO `nosocios` VALUES (1,'111','Seqqeq','2025-05-29','1664','2025-05-29',1,1,1),(2,'111222','qqeert','2025-05-29','166441','2025-05-29',1,1,1),(3,'42615619','juan ignacio rodriguez','1990-01-31','11662696496','2025-06-05',1,1,1),(4,'161616','el diablo','1895-07-24','666','2025-06-05',1,1,1),(5,'666','diablilla','2025-06-05','666','2025-06-05',1,1,1),(6,'999','noventay  nueve','2025-06-05','9898','2025-06-05',1,1,1),(7,'46546468','no sepo','2025-06-05','12645','2025-06-05',1,1,1),(8,'123','dasd','2025-06-05','1234','2025-06-05',1,1,1),(9,'456154645','sebas puche','2000-03-01','123456','2025-06-05',1,1,1);
 /*!40000 ALTER TABLE `nosocios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -175,7 +176,7 @@ CREATE TABLE `socios` (
   `AptoMedico` tinyint DEFAULT '0',
   `activo` tinyint DEFAULT '1',
   PRIMARY KEY (`codSocio`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -184,7 +185,7 @@ CREATE TABLE `socios` (
 
 LOCK TABLES `socios` WRITE;
 /*!40000 ALTER TABLE `socios` DISABLE KEYS */;
-INSERT INTO `socios` VALUES (11,'666','Sebas Puche','1993-06-18','1234567890','2025-05-23',1,1,1),(12,'123456','Sebas','2025-05-29','123456','2025-05-29',1,1,1),(13,'1','Seeeeeeeebas','2025-05-29','12456','2025-05-29',0,0,1),(14,'12345566','Sebasty','2025-05-29','123','2025-05-29',1,1,1),(15,'12311111','aaqeqadq','2025-05-29','1234','2025-05-29',1,1,1),(16,'6666','Sergio Orlando','2025-05-29','666','2025-05-29',1,1,1);
+INSERT INTO `socios` VALUES (11,'666','Sebas Puche','1993-06-18','1234567890','2025-05-23',1,1,1),(12,'123456','Sebas','2025-05-29','123456','2025-05-29',1,1,1),(13,'1','Seeeeeeeebas','2025-05-29','12456','2025-05-29',0,0,1),(14,'12345566','Sebasty','2025-05-29','123','2025-05-29',1,1,1),(15,'12311111','aaqeqadq','2025-05-29','1234','2025-05-29',1,1,1),(16,'6666','Sergio Orlando','2025-05-29','666','2025-05-29',1,1,1),(17,'123456789','Elisabeth Torner','1990-02-07','1163033656','2025-05-01',1,1,1),(18,'426156126','juan rodriguez','1990-01-31','11662696496','2025-06-05',1,1,1);
 /*!40000 ALTER TABLE `socios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -244,6 +245,40 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `ObtenerDetallesNoSocioActividad` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `ObtenerDetallesNoSocioActividad`(
+    IN p_idNoSocio INT,
+    IN p_idActividad INT
+)
+BEGIN
+    SELECT 
+        n.NombreCompleto AS NombreNoSocio,
+        a.nombre AS NombreActividad,
+        na.fechaRegistro
+    FROM 
+        nosocio n
+    JOIN 
+        nosocio_actividad na ON n.codNoSocio = na.idNoSocio
+    JOIN 
+        actividad a ON na.idActividad = a.idActividad
+    WHERE 
+        n.codNoSocio = p_idNoSocio AND 
+        na.idActividad = p_idActividad;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `registrarNoSocio` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -285,6 +320,29 @@ BEGIN
         -- Ya existe, devolvemos -1
         SET rta = -1;
     END IF;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `RegistrarNoSocioActividad` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RegistrarNoSocioActividad`(
+    IN p_idNoSocio INT,
+    IN p_idActividad INT
+)
+BEGIN
+    INSERT INTO nosocio_actividad (idNoSocio, idActividad, nombre, fechaRegistro)
+    VALUES (p_idNoSocio, p_idActividad, (SELECT nombre FROM actividad WHERE idactividad = p_idActividad), NOW());
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -338,6 +396,32 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `RegistrarUser` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `RegistrarUser`(in Usu varchar(15),in Pass varchar(15))
+BEGIN
+    -- Validar si el usuario ya existe
+    IF NOT EXISTS (
+        SELECT 1 FROM usuario WHERE NombreUsu = Usu
+    ) THEN
+	 -- Insertar nuevo usuario
+        INSERT INTO usuario (NombreUsu, PassUsu, RolUsu, Activo)
+        VALUES (Usu, Pass, 120, 1);
+    END IF;
+end ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -348,4 +432,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-29 19:29:32
+-- Dump completed on 2025-06-05 16:56:25
