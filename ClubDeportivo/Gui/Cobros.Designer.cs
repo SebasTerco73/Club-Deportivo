@@ -359,6 +359,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(814, 406);
             ControlBox = false;
             Controls.Add(dtpFechaInscripcion);
@@ -380,7 +382,7 @@
             MinimizeBox = false;
             Name = "Cobros";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Cobros";
+            Text = "COBROS";
             Load += Cobros_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             groupBox1.ResumeLayout(false);

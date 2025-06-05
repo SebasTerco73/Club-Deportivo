@@ -60,6 +60,9 @@
             // 
             // panel2
             // 
+            panel2.BackColor = SystemColors.InactiveCaption;
+            panel2.BackgroundImageLayout = ImageLayout.Stretch;
+            panel2.BorderStyle = BorderStyle.Fixed3D;
             panel2.Controls.Add(lblDni);
             panel2.Controls.Add(label3);
             panel2.Controls.Add(lblNumero);
@@ -147,6 +150,8 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.BackColor = SystemColors.InactiveCaption;
+            pictureBox1.BorderStyle = BorderStyle.Fixed3D;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(348, 12);
             pictureBox1.Margin = new Padding(3, 2, 3, 2);
@@ -158,6 +163,8 @@
             // 
             // panel1
             // 
+            panel1.BackColor = SystemColors.InactiveCaption;
+            panel1.BorderStyle = BorderStyle.Fixed3D;
             panel1.Controls.Add(label1);
             panel1.Location = new Point(24, 12);
             panel1.Name = "panel1";
@@ -178,10 +185,12 @@
             // lblBienvenida
             // 
             lblBienvenida.AutoSize = true;
+            lblBienvenida.BackColor = SystemColors.InactiveCaption;
+            lblBienvenida.BorderStyle = BorderStyle.Fixed3D;
             lblBienvenida.Font = new Font("Showcard Gothic", 15.75F);
             lblBienvenida.Location = new Point(110, 266);
             lblBienvenida.Name = "lblBienvenida";
-            lblBienvenida.Size = new Size(313, 27);
+            lblBienvenida.Size = new Size(315, 29);
             lblBienvenida.TabIndex = 27;
             lblBienvenida.Text = "Bienvenido a nuestro club!";
             lblBienvenida.Visible = false;
@@ -190,6 +199,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(520, 301);
             ControlBox = false;
             Controls.Add(lblBienvenida);
@@ -197,7 +208,7 @@
             Controls.Add(btbImprimir);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
+            FormBorderStyle = FormBorderStyle.None;
             Name = "Carnet";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Carnet";

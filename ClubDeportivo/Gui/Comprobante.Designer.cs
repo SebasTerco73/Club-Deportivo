@@ -59,6 +59,8 @@
             // 
             // panel1
             // 
+            panel1.BackColor = SystemColors.InactiveCaption;
+            panel1.BorderStyle = BorderStyle.Fixed3D;
             panel1.Controls.Add(label1);
             panel1.Location = new Point(31, 12);
             panel1.Name = "panel1";
@@ -77,25 +79,30 @@
             // 
             // panel2
             // 
+            panel2.BackColor = SystemColors.InactiveCaption;
+            panel2.BorderStyle = BorderStyle.Fixed3D;
             panel2.Controls.Add(pictureBox1);
             panel2.Location = new Point(31, 73);
             panel2.Name = "panel2";
-            panel2.Size = new Size(555, 101);
+            panel2.Size = new Size(265, 101);
             panel2.TabIndex = 1;
             // 
             // pictureBox1
             // 
+            pictureBox1.Dock = DockStyle.Fill;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(73, 2);
+            pictureBox1.Location = new Point(0, 0);
             pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(120, 99);
+            pictureBox1.Size = new Size(261, 97);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 18;
             pictureBox1.TabStop = false;
             // 
             // panel3
             // 
+            panel3.BackColor = SystemColors.InactiveCaption;
+            panel3.BorderStyle = BorderStyle.Fixed3D;
             panel3.Controls.Add(lblId);
             panel3.Controls.Add(label5);
             panel3.Controls.Add(label4);
@@ -166,6 +173,9 @@
             // 
             // panel4
             // 
+            panel4.BackgroundImage = (Image)resources.GetObject("panel4.BackgroundImage");
+            panel4.BackgroundImageLayout = ImageLayout.Stretch;
+            panel4.BorderStyle = BorderStyle.Fixed3D;
             panel4.Controls.Add(lbl10);
             panel4.Controls.Add(lblCuotas);
             panel4.Controls.Add(lblMonto);
@@ -268,6 +278,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImageLayout = ImageLayout.None;
             ClientSize = new Size(610, 350);
             ControlBox = false;
             Controls.Add(btbImprimir);
