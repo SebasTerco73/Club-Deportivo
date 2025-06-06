@@ -85,7 +85,7 @@ namespace ClubDeportivo.Gui
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
             Form? menuPrincipal = Application.OpenForms["MenuPrincipal"];
             if (menuPrincipal != null)
             {
@@ -131,6 +131,8 @@ namespace ClubDeportivo.Gui
             botonActivo.Size = new Size(65, 61);
             btnNoSocio.BackColor = Color.FromArgb(240, 240, 240);
             btnNoSocio.Size = new Size(57, 53);
+            btnNoSocio.Enabled = true; // Habilitar el botón No Socio para nuevas entradas
+            btnSocio.Enabled = true; // Habilitar el botón Socio para nuevas entradas
 
         }
         private void btnLimpiar_Click(object sender, EventArgs e)
@@ -228,16 +230,14 @@ namespace ClubDeportivo.Gui
                             {
                                 MessageBox.Show("Hubo un error al registrar la actividad.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
-                            MessageBox.Show($"Se registrado a {cliente.nombreCompleto} como No socio y se lo inscribio a {actividadSeleccionada.nombre}.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            generarNoSocioPdf(cliente, actividadSeleccionada);
                         }
                         else
                         {
-                            MessageBox.Show($"Se registrado a {cliente.nombreCompleto} como No socio.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show($"Se registró a {cliente.nombreCompleto} como No socio sin inscripcion a actividades.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             generarNoSocioPdf(cliente);
                         }
-                    }
 
+                    }
                 }
                 LimpiarCampos();
             }
@@ -291,7 +291,6 @@ namespace ClubDeportivo.Gui
             {
                 cboCuotas.Enabled = false;
             }
-
         }
 
         private void rbtEfectivo_CheckedChanged(object sender, EventArgs e)
@@ -513,6 +512,8 @@ namespace ClubDeportivo.Gui
                     {
                         e.Graphics.DrawString($"Actividad Inscripta: {actividad.nombre}", fuente, Brushes.Black, x, y);
                         y += 25;
+                        e.Graphics.DrawString($"Valor de la actividad: ${actividad.valor}", fuente, Brushes.Black, x, y);
+                        y += 25;
                     }
                 };
                 PrintPreviewDialog preview = new PrintPreviewDialog();
@@ -556,6 +557,7 @@ namespace ClubDeportivo.Gui
                         pictureBoxCheck.Visible = true;
                         txtDocumento.Enabled = false;
                         btnRegistrar.Enabled = true;
+                        btnNoSocio.Enabled = false; // Deshabilitar el botón No Socio si se busca un socio
                     }
                 } else {
                     busqueda = new NoSocios().BuscarNoSocioPorDni(dni);
@@ -569,6 +571,7 @@ namespace ClubDeportivo.Gui
                         pictureBoxCheck.Visible = true;
                         txtDocumento.Enabled = false;
                         btnRegistrar.Enabled = true;
+                        btnSocio.Enabled = false; // Deshabilitar el botón No Socio si se busca un no socio   
                     }
                 }
             } else

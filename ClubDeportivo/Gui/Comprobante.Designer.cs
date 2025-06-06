@@ -156,7 +156,7 @@
             // 
             lblFechaIns.AutoSize = true;
             lblFechaIns.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
-            lblFechaIns.Location = new Point(175, 12);
+            lblFechaIns.Location = new Point(173, 13);
             lblFechaIns.Name = "lblFechaIns";
             lblFechaIns.Size = new Size(0, 17);
             lblFechaIns.TabIndex = 3;
@@ -165,11 +165,11 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
-            label2.Location = new Point(3, 12);
+            label2.Location = new Point(8, 13);
             label2.Name = "label2";
-            label2.Size = new Size(166, 17);
+            label2.Size = new Size(140, 17);
             label2.TabIndex = 1;
-            label2.Text = "FECHA INSCRIPCION";
+            label2.Text = "FECHA DEL PAGO";
             // 
             // panel4
             // 
@@ -248,7 +248,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
-            label7.Location = new Point(73, 71);
+            label7.Location = new Point(31, 71);
             label7.Name = "label7";
             label7.Size = new Size(136, 17);
             label7.TabIndex = 1;
@@ -258,11 +258,11 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Times New Roman", 11.25F, FontStyle.Bold);
-            label6.Location = new Point(73, 24);
+            label6.Location = new Point(31, 24);
             label6.Name = "label6";
-            label6.Size = new Size(140, 17);
+            label6.Size = new Size(176, 17);
             label6.TabIndex = 0;
-            label6.Text = "FECHA DEL PAGO";
+            label6.Text = "FECHA VENCIMIENTO";
             // 
             // btbImprimir
             // 

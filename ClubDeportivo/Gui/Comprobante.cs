@@ -41,7 +41,7 @@ namespace ClubDeportivo.Gui
             // Color de fondo del formulario
             this.BackColor = grisClaro;
 
-           // Estilo visual para los botones
+            // Estilo visual para los botones
             Button[] botones = { btbImprimir };
             foreach (Button btn in botones)
             {
@@ -100,7 +100,7 @@ namespace ClubDeportivo.Gui
             lblFechaP.Text = fechaPago_c.ToShortDateString();
             lblFPago.Text = forma_c ?? "N/A";
             lblId.Text = identificador_c.ToString();
-            lblCuotas.Text = cuotas_c.ToString();   
+            lblCuotas.Text = cuotas_c.ToString();
         }
 
         private void Comprobante_Load_1(object sender, EventArgs e)

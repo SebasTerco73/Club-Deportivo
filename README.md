@@ -73,9 +73,9 @@
 | Proceso                          | Estado           |
 |----------------------------------|------------------|
 | Registro de socios               | 🟢 Activo        |
-| Registro de no socios            | 🟡 En desarrollo |
-| Pago de cuota mensual            | 🟡 En desarrollo |
-| Pago por actividad               | 🟡 En desarrollo |
+| Registro de no socios            | 🟢 Activo        |
+| Pago de cuota mensual            | 🟢 Activo        |
+| Pago por actividad               | 🟢 Activo        |
 | Emisión de carnet                | 🟢 Activo        |
 | Listado de vencimientos de cuota | 🟢 Activo        |
 | Login de usuario                 | 🟢 Activo        |

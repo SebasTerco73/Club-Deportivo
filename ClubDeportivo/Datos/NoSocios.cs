@@ -19,7 +19,7 @@ namespace ClubDeportivo.Datos
 
                 using (MySqlCommand comando = new MySqlCommand(query, sqlCon))
                 {
-                    comando.Parameters.AddWithValue("@id", dni);
+                    comando.Parameters.AddWithValue("@dni", dni);
                     sqlCon.Open();
                     object result = comando.ExecuteScalar();
                     return result != null;
@@ -27,18 +27,18 @@ namespace ClubDeportivo.Datos
             }
         }
 
-        public bool BuscarNoSocioPorId(int id)
+        public string BuscarNoSocioPorId(int id)
         {
             using (MySqlConnection sqlCon = Conexion.getInstancia().CrearConexion())
             {
-                string query = @"SELECT 1 FROM nosocios WHERE codNoSocio = @id LIMIT 1";
+                string query = @"SELECT NombreCompleto FROM nosocios WHERE codNoSocio = @id LIMIT 1";
 
                 using (MySqlCommand comando = new MySqlCommand(query, sqlCon))
                 {
                     comando.Parameters.AddWithValue("@id", id);
                     sqlCon.Open();
                     object result = comando.ExecuteScalar();
-                    return result != null;
+                    return result != null ? result.ToString() : null;
                 }
             }
 
