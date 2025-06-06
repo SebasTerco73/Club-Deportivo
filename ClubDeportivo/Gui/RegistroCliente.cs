@@ -1,19 +1,20 @@
-﻿using System;
+﻿using ClubDeportivo.Datos;
+using ClubDeportivo.Entidades;
+using Mysqlx.Datatypes;
+using MySqlX.XDevAPI;
+using Org.BouncyCastle.Asn1.Crmf;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Globalization;
-using System.Runtime.Serialization;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ClubDeportivo.Datos;
-using ClubDeportivo.Entidades;
-using Mysqlx.Datatypes;
-using Org.BouncyCastle.Asn1.Crmf;
 
 namespace ClubDeportivo.Gui
 {
@@ -57,7 +58,7 @@ namespace ClubDeportivo.Gui
 
 
             // Estilo visual para los botones
-            Button[] botones = { btnRegistrar, btnVolver, btnLimpiar };
+            Button[] botones = { btnRegistrar, btnVolver, btnLimpiar, btnBuscar };
             foreach (Button btn in botones)
             {
                 btn.BackColor = azulOscuro;
@@ -94,6 +95,10 @@ namespace ClubDeportivo.Gui
 
         private void LimpiarCampos()
         {
+            btnRegistrar.Enabled = false;    
+            pictureBoxCheck.Visible = false;
+            txtDocumento.Enabled = true; // Habilitar el campo Documento para nuevas entradas
+
             // TextBox
             txtDocumento.Clear();
             txtNombreCompleto.Clear();
@@ -196,7 +201,8 @@ namespace ClubDeportivo.Gui
                             carnet.Show();
                         }
                     }
-                } else if (botonActivo == btnNoSocio)
+                }
+                else if (botonActivo == btnNoSocio)
                 {
                     cliente = new E_NoSocio(documento, nombre, fechaNac, tel,
                     fechaInscri, FichaMedica, aptoMedico);
@@ -205,7 +211,8 @@ namespace ClubDeportivo.Gui
                     {
                         MessageBox.Show($"El no socio con dni: {documento}, ya se encuentra registrado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
-                    } else
+                    }
+                    else
                     {
                         if (cboActividades.SelectedIndex != -1)
                         {
@@ -223,13 +230,14 @@ namespace ClubDeportivo.Gui
                             }
                             MessageBox.Show($"Se registrado a {cliente.nombreCompleto} como No socio y se lo inscribio a {actividadSeleccionada.nombre}.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             generarNoSocioPdf(cliente, actividadSeleccionada);
-                        } else
+                        }
+                        else
                         {
                             MessageBox.Show($"Se registrado a {cliente.nombreCompleto} como No socio.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             generarNoSocioPdf(cliente);
                         }
                     }
-         
+
                 }
                 LimpiarCampos();
             }
@@ -383,7 +391,6 @@ namespace ClubDeportivo.Gui
             }
         }
 
-
         private void generarCuotaPdf()
         {
             PrintDocument pd = new PrintDocument();
@@ -513,7 +520,63 @@ namespace ClubDeportivo.Gui
                 preview.ShowDialog();
             }
         }
-    } 
+
+        private void txtDocumento_TextChanged(object sender, EventArgs e)
+        {
+            TextBox txt = (TextBox)sender;
+            int pos = txt.SelectionStart;
+
+            string textoOriginal = txt.Text;
+            string soloNumeros = new string(textoOriginal.Where(char.IsDigit).ToArray());
+
+            if (textoOriginal != soloNumeros)
+            {
+                txt.Text = soloNumeros;
+                // Restaurar el cursor lo más cerca posible del punto anterior
+                txt.SelectionStart = Math.Min(pos - (textoOriginal.Length - soloNumeros.Length), soloNumeros.Length);
+            }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            bool busqueda;
+            string dni = txtDocumento.Text;
+            if (!string.IsNullOrWhiteSpace(dni))
+            {
+                if (botonActivo == btnSocio)
+                {
+                    busqueda = new Socios().BuscarSocioPorDni(dni);
+                    if (busqueda)
+                    {
+                        MessageBox.Show($"El socio {dni} ya se encuentra registrado.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        txtDocumento.Clear();
+                    }
+                    else
+                    {
+                        pictureBoxCheck.Visible = true;
+                        txtDocumento.Enabled = false;
+                        btnRegistrar.Enabled = true;
+                    }
+                } else {
+                    busqueda = new NoSocios().BuscarNoSocioPorDni(dni);
+                    if (busqueda)
+                    {
+                        MessageBox.Show($"El no socio {dni} ya se encuentra registrado.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        txtDocumento.Clear();
+                    }
+                    else
+                    {
+                        pictureBoxCheck.Visible = true;
+                        txtDocumento.Enabled = false;
+                        btnRegistrar.Enabled = true;
+                    }
+                }
+            } else
+            {
+                MessageBox.Show("Por favor, ingrese un DNI para buscar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+    }
 }
 
  

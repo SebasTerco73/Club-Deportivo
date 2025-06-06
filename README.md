@@ -70,14 +70,14 @@
 ---------------------------------------------------------------------------
 ## 🔹 Procesos del sistema: (estado al momento de la entrega)
 
-| Proceso                          | Estado          |
-|----------------------------------|-----------------|
-| Registro de socios               | 🟡 En desarrollo |
-| Registro de no socios            | 🔴 Sin comenzar  |
-| Pago de cuota mensual            | 🔴 Sin comenzar  |
-| Pago por actividad               | 🔴 Sin comenzar  |
-| Emisión de carnet                | 🟡 En desarrollo |
-| Listado de vencimientos de cuota | 🔴 Sin comenzar  |
+| Proceso                          | Estado           |
+|----------------------------------|------------------|
+| Registro de socios               | 🟢 Activo        |
+| Registro de no socios            | 🟡 En desarrollo |
+| Pago de cuota mensual            | 🟡 En desarrollo |
+| Pago por actividad               | 🟡 En desarrollo |
+| Emisión de carnet                | 🟢 Activo        |
+| Listado de vencimientos de cuota | 🟢 Activo        |
 | Login de usuario                 | 🟢 Activo        |
 
 ---------------------------------------------------------------------------

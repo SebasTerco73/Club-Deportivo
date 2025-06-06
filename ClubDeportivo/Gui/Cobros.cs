@@ -33,6 +33,8 @@ namespace ClubDeportivo.Gui
             Color blanco = Color.White;
             Color grisClaro = Color.FromArgb(240, 240, 240); // Color de fondo del formulario
 
+            btnPagar.Enabled = false;
+
             Panel panelSombra = new Panel();
             panelSombra.Name = "panelSombra";
             panelSombra.Size = new Size(pnlCuota.Width, pnlCuota.Height);
@@ -58,7 +60,7 @@ namespace ClubDeportivo.Gui
 
 
             // Estilo visual para los botones
-            Button[] botones = { btnPagar, btnVolver, btnLimpiar };
+            Button[] botones = { btnPagar, btnVolver, btnLimpiar, btnBuscar };
             foreach (Button btn in botones)
             {
                 btn.BackColor = azulOscuro;
@@ -94,9 +96,17 @@ namespace ClubDeportivo.Gui
 
         private void LimpiarCampos()
         {
+            btnPagar.Enabled = false;
+            pbCheckSocio.Visible = false;
+            pbCheckNoSocio.Visible = false;
+
+
+
             // TextBox
             txtNoSocio.Clear();
+            txtNoSocio.Enabled = true;
             txtSocio.Clear();
+            txtSocio.Enabled = true;    
 
             // DateTimePicker
             dtpFechaInscripcion.Value = DateTime.Today;
@@ -433,7 +443,7 @@ namespace ClubDeportivo.Gui
                     formaPago,
                     codSocio,
                     cboCuotas.SelectedItem.ToString());
-                      
+
                         reader.Close();
 
                         // Insertar la cuota en la base de datos
@@ -506,6 +516,53 @@ namespace ClubDeportivo.Gui
             txtCupo.Text = actividadSeleccionada.cupoActual.ToString();
             txtPrecio.Text = actividadSeleccionada.valor.ToString("C", CultureInfo.CurrentCulture);
         }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            bool busqueda;
+
+            if (string.IsNullOrWhiteSpace(txtSocio.Text) && string.IsNullOrWhiteSpace(txtNoSocio.Text)){
+                MessageBox.Show("Por favor, ingrese un ID para buscar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
+            if (!string.IsNullOrWhiteSpace(txtSocio.Text) && string.IsNullOrWhiteSpace(txtNoSocio.Text))
+            {
+                int idSocio = int.Parse(txtSocio.Text);
+
+                busqueda = new Socios().BuscarSocioPorId(idSocio);
+                if (busqueda)
+                {
+                    MessageBox.Show($"El socio {idSocio} ya se encuentra registrado.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtSocio.Clear();
+                }
+                else
+                {
+                    pbCheckSocio.Visible = true;
+                    txtSocio.Enabled = false;
+                    txtNoSocio.Enabled = false;
+                    btnPagar.Enabled = true;
+                }
+            }
+            else
+            {
+                int idNoSocio = int.Parse(txtNoSocio.Text);
+                busqueda = new NoSocios().BuscarNoSocioPorId(idNoSocio);
+                if (busqueda)
+                {
+                    MessageBox.Show($"El no socio {idNoSocio} ya se encuentra registrado.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtNoSocio.Clear();
+                }
+                else
+                {
+                    pbCheckNoSocio.Visible = true;
+                    txtSocio.Enabled = false;
+                    txtNoSocio.Enabled = false;
+                    btnPagar.Enabled = true;
+                }
+            }
+        }   
     }
 }
 

@@ -58,10 +58,15 @@
             txtCupo = new TextBox();
             txtPrecio = new TextBox();
             pnlActividad = new Panel();
+            btnBuscar = new Button();
+            pbCheckNoSocio = new PictureBox();
+            pbCheckSocio = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             groupBox1.SuspendLayout();
             pnlCuota.SuspendLayout();
             pnlActividad.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pbCheckNoSocio).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbCheckSocio).BeginInit();
             SuspendLayout();
             // 
             // btnLimpiar
@@ -268,7 +273,7 @@
             // dtpFechaInscripcion
             // 
             dtpFechaInscripcion.Font = new Font("Palatino Linotype", 9F, FontStyle.Bold);
-            dtpFechaInscripcion.Location = new Point(146, 223);
+            dtpFechaInscripcion.Location = new Point(145, 251);
             dtpFechaInscripcion.Name = "dtpFechaInscripcion";
             dtpFechaInscripcion.Size = new Size(229, 24);
             dtpFechaInscripcion.TabIndex = 22;
@@ -355,6 +360,38 @@
             pnlActividad.Size = new Size(254, 348);
             pnlActividad.TabIndex = 14;
             // 
+            // btnBuscar
+            // 
+            btnBuscar.Location = new Point(216, 194);
+            btnBuscar.Name = "btnBuscar";
+            btnBuscar.Size = new Size(122, 23);
+            btnBuscar.TabIndex = 23;
+            btnBuscar.Text = "BUSCAR ID";
+            btnBuscar.UseVisualStyleBackColor = true;
+            btnBuscar.Click += btnBuscar_Click;
+            // 
+            // pbCheckNoSocio
+            // 
+            pbCheckNoSocio.Image = (Image)resources.GetObject("pbCheckNoSocio.Image");
+            pbCheckNoSocio.Location = new Point(344, 156);
+            pbCheckNoSocio.Name = "pbCheckNoSocio";
+            pbCheckNoSocio.Size = new Size(30, 23);
+            pbCheckNoSocio.SizeMode = PictureBoxSizeMode.Zoom;
+            pbCheckNoSocio.TabIndex = 24;
+            pbCheckNoSocio.TabStop = false;
+            pbCheckNoSocio.Visible = false;
+            // 
+            // pbCheckSocio
+            // 
+            pbCheckSocio.Image = (Image)resources.GetObject("pbCheckSocio.Image");
+            pbCheckSocio.Location = new Point(344, 109);
+            pbCheckSocio.Name = "pbCheckSocio";
+            pbCheckSocio.Size = new Size(30, 23);
+            pbCheckSocio.SizeMode = PictureBoxSizeMode.Zoom;
+            pbCheckSocio.TabIndex = 25;
+            pbCheckSocio.TabStop = false;
+            pbCheckSocio.Visible = false;
+            // 
             // Cobros
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -363,6 +400,9 @@
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(814, 406);
             ControlBox = false;
+            Controls.Add(pbCheckSocio);
+            Controls.Add(pbCheckNoSocio);
+            Controls.Add(btnBuscar);
             Controls.Add(dtpFechaInscripcion);
             Controls.Add(txtNoSocio);
             Controls.Add(txtSocio);
@@ -391,6 +431,8 @@
             pnlCuota.PerformLayout();
             pnlActividad.ResumeLayout(false);
             pnlActividad.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pbCheckNoSocio).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbCheckSocio).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -424,5 +466,8 @@
         private TextBox txtCupo;
         private TextBox txtPrecio;
         private Panel pnlActividad;
+        private Button btnBuscar;
+        private PictureBox pbCheckNoSocio;
+        private PictureBox pbCheckSocio;
     }
 }

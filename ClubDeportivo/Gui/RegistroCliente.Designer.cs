@@ -65,10 +65,13 @@
             label9 = new Label();
             cboCuotas = new ComboBox();
             pnlCuota = new Panel();
+            pictureBoxCheck = new PictureBox();
+            btnBuscar = new Button();
             pnlActividad.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             groupBox1.SuspendLayout();
             pnlCuota.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxCheck).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -143,6 +146,7 @@
             txtDocumento.Name = "txtDocumento";
             txtDocumento.Size = new Size(229, 23);
             txtDocumento.TabIndex = 3;
+            txtDocumento.TextChanged += txtDocumento_TextChanged;
             txtDocumento.KeyPress += txtDocumento_KeyPress;
             // 
             // txtNombreCompleto
@@ -162,6 +166,7 @@
             // 
             // btnRegistrar
             // 
+            btnRegistrar.Enabled = false;
             btnRegistrar.Location = new Point(57, 320);
             btnRegistrar.Margin = new Padding(3, 2, 3, 2);
             btnRegistrar.Name = "btnRegistrar";
@@ -429,12 +434,36 @@
             pnlCuota.Size = new Size(254, 348);
             pnlCuota.TabIndex = 11;
             // 
+            // pictureBoxCheck
+            // 
+            pictureBoxCheck.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBoxCheck.Image = (Image)resources.GetObject("pictureBoxCheck.Image");
+            pictureBoxCheck.Location = new Point(405, 63);
+            pictureBoxCheck.Name = "pictureBoxCheck";
+            pictureBoxCheck.Size = new Size(42, 36);
+            pictureBoxCheck.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxCheck.TabIndex = 18;
+            pictureBoxCheck.TabStop = false;
+            pictureBoxCheck.Visible = false;
+            // 
+            // btnBuscar
+            // 
+            btnBuscar.Location = new Point(209, 37);
+            btnBuscar.Name = "btnBuscar";
+            btnBuscar.Size = new Size(149, 29);
+            btnBuscar.TabIndex = 19;
+            btnBuscar.Text = "BUSCAR DNI";
+            btnBuscar.UseVisualStyleBackColor = true;
+            btnBuscar.Click += btnBuscar_Click;
+            // 
             // RegistroCliente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(814, 406);
             ControlBox = false;
+            Controls.Add(btnBuscar);
+            Controls.Add(pictureBoxCheck);
             Controls.Add(pictureBox1);
             Controls.Add(btnNoSocio);
             Controls.Add(btnSocio);
@@ -469,6 +498,7 @@
             groupBox1.PerformLayout();
             pnlCuota.ResumeLayout(false);
             pnlCuota.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxCheck).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -510,5 +540,7 @@
         private Label label9;
         private ComboBox cboCuotas;
         private Panel pnlCuota;
+        private PictureBox pictureBoxCheck;
+        private Button btnBuscar;
     }
 }
