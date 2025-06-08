@@ -84,17 +84,19 @@ DROP TABLE IF EXISTS `nosocio_actividad`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `nosocio_actividad` (
+  `idPagoActividad` int NOT NULL AUTO_INCREMENT,
   `idNoSocio` int NOT NULL,
   `idActividad` int NOT NULL,
-  `fechaRegistro` datetime DEFAULT CURRENT_TIMESTAMP,
-  `fechaVenci` datetime DEFAULT NULL,
-  `estado` tinyint DEFAULT '1',
-  `nombreAct` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`idNoSocio`,`idActividad`),
-  KEY `idActividad` (`idActividad`),
-  CONSTRAINT `nosocio_actividad_ibfk_1` FOREIGN KEY (`idNoSocio`) REFERENCES `nosocios` (`codNoSocio`),
-  CONSTRAINT `nosocio_actividad_ibfk_2` FOREIGN KEY (`idActividad`) REFERENCES `actividad` (`idactividad`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `fechaRegistro` datetime NOT NULL,
+  `fechaVenci` datetime NOT NULL,
+  `estado` tinyint NOT NULL,
+  `nombreAct` varchar(45) NOT NULL,
+  PRIMARY KEY (`idPagoActividad`),
+  KEY `fk_nosocioactividad_nosocio` (`idNoSocio`),
+  KEY `fk_nosocioactividad_actividad` (`idActividad`),
+  CONSTRAINT `fk_nosocioactividad_actividad` FOREIGN KEY (`idActividad`) REFERENCES `actividad` (`idactividad`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_nosocioactividad_nosocio` FOREIGN KEY (`idNoSocio`) REFERENCES `nosocios` (`codNoSocio`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,6 +105,7 @@ CREATE TABLE `nosocio_actividad` (
 
 LOCK TABLES `nosocio_actividad` WRITE;
 /*!40000 ALTER TABLE `nosocio_actividad` DISABLE KEYS */;
+INSERT INTO `nosocio_actividad` VALUES (1,20,3,'2025-06-07 21:32:21','2025-06-08 21:32:21',1,'Basquet');
 /*!40000 ALTER TABLE `nosocio_actividad` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,7 +127,7 @@ CREATE TABLE `nosocios` (
   `AptoMedico` tinyint DEFAULT '0',
   `activo` tinyint DEFAULT '1',
   PRIMARY KEY (`codNoSocio`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,6 +136,7 @@ CREATE TABLE `nosocios` (
 
 LOCK TABLES `nosocios` WRITE;
 /*!40000 ALTER TABLE `nosocios` DISABLE KEYS */;
+INSERT INTO `nosocios` VALUES (18,'12314','Juan Domingo','2025-06-07','11111','2025-06-07',1,1,1),(19,'11111','Eva Duarte','2025-06-10','1234','2025-06-07',0,0,1),(20,'1','EEEEE','2025-06-07','1111','2025-06-07',0,0,1),(21,'12','445','2025-06-07','111','2025-06-07',0,0,1);
 /*!40000 ALTER TABLE `nosocios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -388,4 +392,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-06-06 14:52:40
+-- Dump completed on 2025-06-07 22:06:48
