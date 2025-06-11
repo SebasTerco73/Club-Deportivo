@@ -77,7 +77,9 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
             label1.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic);
+            label1.ForeColor = SystemColors.ControlLightLight;
             label1.Location = new Point(78, 70);
             label1.Name = "label1";
             label1.Size = new Size(86, 19);
@@ -87,7 +89,9 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
             label2.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic);
+            label2.ForeColor = SystemColors.ControlLightLight;
             label2.Location = new Point(34, 99);
             label2.Name = "label2";
             label2.Size = new Size(130, 19);
@@ -97,7 +101,9 @@
             // label3
             // 
             label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
             label3.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic);
+            label3.ForeColor = SystemColors.ControlLightLight;
             label3.Location = new Point(12, 132);
             label3.Name = "label3";
             label3.Size = new Size(152, 19);
@@ -107,7 +113,9 @@
             // label4
             // 
             label4.AutoSize = true;
+            label4.BackColor = Color.Transparent;
             label4.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic);
+            label4.ForeColor = SystemColors.ControlLightLight;
             label4.Location = new Point(97, 161);
             label4.Name = "label4";
             label4.Size = new Size(67, 19);
@@ -117,7 +125,9 @@
             // label5
             // 
             label5.AutoSize = true;
+            label5.BackColor = Color.Transparent;
             label5.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic);
+            label5.ForeColor = SystemColors.ControlLightLight;
             label5.Location = new Point(36, 190);
             label5.Name = "label5";
             label5.Size = new Size(130, 19);
@@ -326,32 +336,37 @@
             // ckbFicha
             // 
             ckbFicha.AutoSize = true;
+            ckbFicha.BackColor = Color.Transparent;
             ckbFicha.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic);
+            ckbFicha.ForeColor = SystemColors.ControlLightLight;
             ckbFicha.Location = new Point(97, 262);
             ckbFicha.Name = "ckbFicha";
             ckbFicha.Size = new Size(119, 23);
             ckbFicha.TabIndex = 15;
             ckbFicha.Text = "Ficha medica";
-            ckbFicha.UseVisualStyleBackColor = true;
+            ckbFicha.UseVisualStyleBackColor = false;
             // 
             // ckbApto
             // 
             ckbApto.AutoSize = true;
+            ckbApto.BackColor = Color.Transparent;
             ckbApto.Font = new Font("Times New Roman", 12F, FontStyle.Bold | FontStyle.Italic);
+            ckbApto.ForeColor = SystemColors.ControlLightLight;
             ckbApto.Location = new Point(258, 262);
             ckbApto.Name = "ckbApto";
             ckbApto.Size = new Size(100, 23);
             ckbApto.TabIndex = 16;
             ckbApto.Text = "Apto fisico";
-            ckbApto.UseVisualStyleBackColor = true;
+            ckbApto.UseVisualStyleBackColor = false;
             // 
             // pictureBox1
             // 
+            pictureBox1.BackColor = Color.Transparent;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(-1, -3);
             pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(78, 63);
+            pictureBox1.Size = new Size(78, 81);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 17;
             pictureBox1.TabStop = false;
@@ -436,6 +451,7 @@
             // 
             // pictureBoxCheck
             // 
+            pictureBoxCheck.BackColor = Color.Transparent;
             pictureBoxCheck.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBoxCheck.Image = (Image)resources.GetObject("pictureBoxCheck.Image");
             pictureBoxCheck.Location = new Point(405, 63);
@@ -460,6 +476,9 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.WhiteSmoke;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(814, 406);
             ControlBox = false;
             Controls.Add(btnBuscar);
@@ -485,7 +504,6 @@
             Controls.Add(label2);
             Controls.Add(label1);
             ForeColor = SystemColors.ControlText;
-            FormBorderStyle = FormBorderStyle.Fixed3D;
             MaximizeBox = false;
             MdiChildrenMinimizedAnchorBottom = false;
             MinimizeBox = false;

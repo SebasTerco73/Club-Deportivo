@@ -41,6 +41,7 @@
             // lblIngreso
             // 
             resources.ApplyResources(lblIngreso, "lblIngreso");
+            lblIngreso.BackColor = Color.Transparent;
             lblIngreso.ForeColor = SystemColors.WindowFrame;
             lblIngreso.Name = "lblIngreso";
             // 
@@ -86,6 +87,7 @@
             // 
             // logouds
             // 
+            logouds.BackColor = Color.Transparent;
             resources.ApplyResources(logouds, "logouds");
             logouds.Name = "logouds";
             logouds.TabStop = false;

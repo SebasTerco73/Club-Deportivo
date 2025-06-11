@@ -44,6 +44,7 @@
             // labelUser
             // 
             labelUser.AutoSize = true;
+            labelUser.BackColor = Color.Transparent;
             labelUser.Font = new Font("Microsoft YaHei", 12F, FontStyle.Bold);
             labelUser.Location = new Point(357, 146);
             labelUser.Name = "labelUser";
@@ -54,6 +55,7 @@
             // labelContrasena
             // 
             labelContrasena.AutoSize = true;
+            labelContrasena.BackColor = Color.Transparent;
             labelContrasena.Font = new Font("Microsoft YaHei", 12F, FontStyle.Bold);
             labelContrasena.Location = new Point(336, 178);
             labelContrasena.Name = "labelContrasena";
@@ -71,6 +73,7 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.BackColor = Color.Transparent;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(33, 60);
             pictureBox1.Margin = new Padding(3, 2, 3, 2);
@@ -83,6 +86,7 @@
             // labelTitulo
             // 
             labelTitulo.AutoSize = true;
+            labelTitulo.BackColor = Color.Transparent;
             labelTitulo.Font = new Font("Microsoft YaHei", 25.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelTitulo.ForeColor = Color.Black;
             labelTitulo.Location = new Point(164, 9);
@@ -114,17 +118,20 @@
             // chkMostrarPass
             // 
             chkMostrarPass.AutoSize = true;
+            chkMostrarPass.BackColor = Color.Transparent;
+            chkMostrarPass.ForeColor = Color.White;
             chkMostrarPass.Location = new Point(552, 209);
             chkMostrarPass.Name = "chkMostrarPass";
             chkMostrarPass.Size = new Size(128, 19);
             chkMostrarPass.TabIndex = 4;
             chkMostrarPass.Text = "Mostrar contraseña";
-            chkMostrarPass.UseVisualStyleBackColor = true;
+            chkMostrarPass.UseVisualStyleBackColor = false;
             chkMostrarPass.CheckedChanged += chkMostrarPass_CheckedChanged;
             // 
             // lblMensajeError
             // 
             lblMensajeError.AutoSize = true;
+            lblMensajeError.BackColor = Color.Transparent;
             lblMensajeError.ForeColor = Color.Firebrick;
             lblMensajeError.Location = new Point(398, 244);
             lblMensajeError.Name = "lblMensajeError";
@@ -138,6 +145,8 @@
             AcceptButton = botonIngresar;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(700, 338);
             Controls.Add(lblMensajeError);
             Controls.Add(chkMostrarPass);

@@ -237,7 +237,9 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
             label1.Font = new Font("Times New Roman", 9F, FontStyle.Bold);
+            label1.ForeColor = SystemColors.ControlLightLight;
             label1.Location = new Point(76, 112);
             label1.Name = "label1";
             label1.Size = new Size(97, 15);
@@ -247,7 +249,9 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
             label2.Font = new Font("Times New Roman", 9F, FontStyle.Bold);
+            label2.ForeColor = SystemColors.ControlLightLight;
             label2.Location = new Point(67, 156);
             label2.Name = "label2";
             label2.Size = new Size(115, 15);
@@ -272,6 +276,7 @@
             // 
             // dtpFechaInscripcion
             // 
+            dtpFechaInscripcion.CalendarMonthBackground = Color.Transparent;
             dtpFechaInscripcion.Font = new Font("Palatino Linotype", 9F, FontStyle.Bold);
             dtpFechaInscripcion.Location = new Point(145, 251);
             dtpFechaInscripcion.Name = "dtpFechaInscripcion";
@@ -372,6 +377,7 @@
             // 
             // pbCheckNoSocio
             // 
+            pbCheckNoSocio.BackColor = Color.Transparent;
             pbCheckNoSocio.Image = (Image)resources.GetObject("pbCheckNoSocio.Image");
             pbCheckNoSocio.Location = new Point(344, 156);
             pbCheckNoSocio.Name = "pbCheckNoSocio";
@@ -383,6 +389,7 @@
             // 
             // pbCheckSocio
             // 
+            pbCheckSocio.BackColor = Color.Transparent;
             pbCheckSocio.Image = (Image)resources.GetObject("pbCheckSocio.Image");
             pbCheckSocio.Location = new Point(344, 109);
             pbCheckSocio.Name = "pbCheckSocio";

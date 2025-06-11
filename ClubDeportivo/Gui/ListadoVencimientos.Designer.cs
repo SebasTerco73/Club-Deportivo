@@ -32,6 +32,7 @@
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListadoVencimientos));
             dvgListSocio = new DataGridView();
             NroSocio = new DataGridViewTextBoxColumn();
             Socio = new DataGridViewTextBoxColumn();
@@ -141,13 +142,16 @@
             // 
             // groupBox1
             // 
+            groupBox1.BackColor = Color.Silver;
+            groupBox1.BackgroundImageLayout = ImageLayout.None;
             groupBox1.Controls.Add(rbtTodo);
             groupBox1.Controls.Add(rbtMes);
             groupBox1.Controls.Add(rbtSemana);
             groupBox1.Controls.Add(rbtDia);
-            groupBox1.Location = new Point(20, 12);
+            groupBox1.ForeColor = SystemColors.ControlText;
+            groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(602, 62);
+            groupBox1.Size = new Size(610, 62);
             groupBox1.TabIndex = 2;
             groupBox1.TabStop = false;
             groupBox1.Text = "Periodos";
@@ -202,6 +206,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(696, 450);
             ControlBox = false;
             Controls.Add(groupBox1);

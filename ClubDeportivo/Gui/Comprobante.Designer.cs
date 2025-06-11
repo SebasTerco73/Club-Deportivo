@@ -173,7 +173,7 @@
             // 
             // panel4
             // 
-            panel4.BackgroundImage = (Image)resources.GetObject("panel4.BackgroundImage");
+            panel4.BackColor = SystemColors.InactiveCaption;
             panel4.BackgroundImageLayout = ImageLayout.Stretch;
             panel4.BorderStyle = BorderStyle.Fixed3D;
             panel4.Controls.Add(lbl10);
@@ -278,7 +278,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImageLayout = ImageLayout.None;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(610, 350);
             ControlBox = false;
             Controls.Add(btbImprimir);
