@@ -25,24 +25,35 @@
 ## 📁 Estructura general
  - ClubDeportivo/
     - Datos/
+      - Actividades.cs
+      - Clientes.cs
       - Conexion.cs
+      - Cuotas.cs
       - NoSocios.cs
+      - NoSocios_Actividades.cs
       - Socios.cs
       - Usuarios.cs
+    - Documentacion/
+      - ManualTecnico_ClubDeportivo.docx
+      - ManualTecnico_ClubDeportivo.pdf
+      - ManualUsuario_ClubDeportivo.docx
+      - ManualUsuario_ClubDeportivo.pdf
     - Entidades/
+      - CuotaConSocioDTO.cs
+      - E_Actividad.cs
+      - E_Cuota.cs
+      - E_NoSocio.cs
+      - E_Persona.cs
       - E_Socio.cs
-      - Persona.cs
-      - Usuario.cs
+      - E_Usuario.cs
     - Gui/
+      - Carnet.cs
+      - Cobros.cs
+      - Comprobante.cs
+      - ListadoVencimientos.cs
       - Login.cs
-      - Login.Designer.cs
-      - Login.resx
       - MenuPrincipal.cs
-      - MenuPrincipal.Designer.cs
-      - MenuPrincipal.resx
-      - RegistroSocio.cs
-      - RegistroSocio.Designer.cs
-      - RegistroSocio.resx
+      - RegistroCliente.cs
     - Img/
     - ClubDeportivo.csproj
     - ClubDeportivo.sln
