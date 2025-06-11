@@ -72,11 +72,9 @@
 * Se valida que los datos que ingresa el usuario coincidan con un usuario existente.
 * En caso de datos incorrectos, se informa al usuario mediante una alerta.
 
-#### 📍 Registro de Nuevos Usuarios: 
-
-* Si el usuario no posee una cuenta, puede registrarse a través de otro formulario.
-* Se verifica si el nombre de usuario ya existe en la base de datos.
-* Si ya está registrado, se muestra una alerta indicando que el usuario ya existe.
+#### 📍 Registro de Clientes: 
+#### 📍 Cobros: 
+#### 📍 Vencimiento de cuotas: 
 
 ---------------------------------------------------------------------------
 ## 🔹 Procesos del sistema: (estado al momento de la entrega)
