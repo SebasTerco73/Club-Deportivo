@@ -149,6 +149,7 @@
             Controls.Add(labelContrasena);
             Controls.Add(labelUser);
             FormBorderStyle = FormBorderStyle.Fixed3D;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "Login";

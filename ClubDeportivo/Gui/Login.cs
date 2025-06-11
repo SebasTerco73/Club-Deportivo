@@ -75,11 +75,11 @@ namespace login
             // variable que contiene todas las caracteristicas de la clase
             ClubDeportivo.Datos.Usuarios dato = new ClubDeportivo.Datos.Usuarios();
             tablaLogin = dato.Log_Usu(txtUser.Text, txtPass.Text);
-            if (tablaLogin.Rows.Count > 0)
+            if (tablaLogin != null && tablaLogin.Rows.Count > 0)
             {
-                // quiere decir que el resultado tiene 1 fila por lo que el usuario EXISTE
+                // Login exitoso
                 lblMensajeError.Visible = false;
-                MessageBox.Show("Ingreso exitoso", "MENSAJES DEL SISTEMA",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Ingreso exitoso", "MENSAJES DEL SISTEMA", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 MenuPrincipal menuPrincipal = new MenuPrincipal();
                 menuPrincipal.usuario = txtUser.Text;
                 menuPrincipal.rol = Convert.ToString(tablaLogin.Rows[0][0]);
@@ -87,14 +87,12 @@ namespace login
                 this.Hide();
                 txtPass.Text = "";
                 txtUser.Text = "";
-
             }
             else
             {
                 lblMensajeError.Visible = true;
             }
-        }
-
+        } 
         private void chkMostrarPass_CheckedChanged(object sender, EventArgs e)
         {
             if (chkMostrarPass.Checked)

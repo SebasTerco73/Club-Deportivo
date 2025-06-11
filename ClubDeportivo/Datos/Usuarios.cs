@@ -27,9 +27,10 @@ namespace ClubDeportivo.Datos
                 tabla.Load(resultado);
                 return tabla;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                MessageBox.Show("Error inesperado: " + ex.Message, "Error general", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
             finally
             {

@@ -106,7 +106,6 @@
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             MinimizeBox = false;
             Name = "MenuPrincipal";
-            TransparencyKey = SystemColors.ControlDarkDark;
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)logouds).EndInit();
             ResumeLayout(false);
