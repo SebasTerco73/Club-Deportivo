@@ -279,6 +279,7 @@
             dtpFechaInscripcion.CalendarMonthBackground = Color.Transparent;
             dtpFechaInscripcion.Font = new Font("Palatino Linotype", 9F, FontStyle.Bold);
             dtpFechaInscripcion.Location = new Point(145, 251);
+            dtpFechaInscripcion.MinDate = new DateTime(2020, 1, 1, 0, 0, 0, 0);
             dtpFechaInscripcion.Name = "dtpFechaInscripcion";
             dtpFechaInscripcion.Size = new Size(229, 24);
             dtpFechaInscripcion.TabIndex = 22;
@@ -401,6 +402,7 @@
             // 
             // Cobros
             // 
+            AcceptButton = btnBuscar;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
@@ -425,11 +427,12 @@
             Controls.Add(btnLimpiar);
             ForeColor = SystemColors.ControlText;
             FormBorderStyle = FormBorderStyle.Fixed3D;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Cobros";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "COBROS";
+            Text = "Cobros";
             Load += Cobros_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             groupBox1.ResumeLayout(false);

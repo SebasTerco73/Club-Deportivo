@@ -39,14 +39,14 @@ namespace ClubDeportivo.Gui
             panelSombra.Size = new Size(pnlCuota.Width, pnlCuota.Height);
             panelSombra.Location = new Point(pnlCuota.Left + 8, pnlCuota.Top + 8);
             panelSombra.BackColor = Color.DarkGray;
-            panelSombra.BringToFront(); // Por si querés verlo encima (opcional)
+            panelSombra.BringToFront(); // Para verlo por encima
             botonActivo = btnSocio;
             botonActivo.BackColor = Color.FromArgb(173, 216, 230);
             botonActivo.Size = new Size(65, 61);
 
 
-            this.Controls.Add(panelSombra); // Agregalo al formulario
-            this.Controls.SetChildIndex(pnlCuota, 0); // Asegurá que el panel principal esté arriba
+            this.Controls.Add(panelSombra); // agrega al formulario
+            this.Controls.SetChildIndex(pnlCuota, 0); // Panel principal arriba
 
             // Color de fondo del formulario
             this.BackColor = grisClaro;

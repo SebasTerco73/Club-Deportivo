@@ -38,14 +38,12 @@ namespace login
             }
 
             // Aplicar color al Label de "Contraseña:"
-            // ¡Reemplaza "labelContrasena" con el nombre real del Label de "Contraseña:" en tu Form2!
             if (labelContrasena != null)
             {
                 labelContrasena.ForeColor = azulOscuro;
             }
 
             // Estilo visual para el botón "Ingresar"
-            // ¡Reemplaza "botonIngresar" con el nombre real del botón en tu Form2!
             if (botonIngresar != null && botonIngresar is Button)
             {
                 botonIngresar.BackColor = azulOscuro;

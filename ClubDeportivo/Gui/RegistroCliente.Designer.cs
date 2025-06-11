@@ -138,6 +138,7 @@
             // 
             dtpFechaNac.Font = new Font("Palatino Linotype", 9F, FontStyle.Bold);
             dtpFechaNac.Location = new Point(170, 133);
+            dtpFechaNac.MinDate = new DateTime(1915, 1, 1, 0, 0, 0, 0);
             dtpFechaNac.Name = "dtpFechaNac";
             dtpFechaNac.Size = new Size(229, 24);
             dtpFechaNac.TabIndex = 1;
@@ -146,6 +147,7 @@
             // 
             dtpFechaInscripcion.Font = new Font("Palatino Linotype", 9F, FontStyle.Bold);
             dtpFechaInscripcion.Location = new Point(172, 190);
+            dtpFechaInscripcion.MinDate = new DateTime(1915, 1, 1, 0, 0, 0, 0);
             dtpFechaInscripcion.Name = "dtpFechaInscripcion";
             dtpFechaInscripcion.Size = new Size(229, 24);
             dtpFechaInscripcion.TabIndex = 2;
@@ -474,6 +476,7 @@
             // 
             // RegistroCliente
             // 
+            AcceptButton = btnBuscar;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
@@ -504,6 +507,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             ForeColor = SystemColors.ControlText;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MdiChildrenMinimizedAnchorBottom = false;
             MinimizeBox = false;
