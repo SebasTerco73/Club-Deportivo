@@ -59,7 +59,7 @@
     - ClubDeportivo.sln
     - global.json
     - Program.cs
-    - .gitignore
+  - .gitignore
   - clubdeportivo.sql
   - README.md
 ----------------------------------------------------------------------------------------
