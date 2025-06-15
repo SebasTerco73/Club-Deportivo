@@ -25,30 +25,41 @@
 ## 📁 Estructura general
  - ClubDeportivo/
     - Datos/
+      - Actividades.cs
+      - Clientes.cs
       - Conexion.cs
+      - Cuotas.cs
       - NoSocios.cs
+      - NoSocios_Actividades.cs
       - Socios.cs
       - Usuarios.cs
+    - Documentacion/
+      - ManualTecnico_ClubDeportivo.docx
+      - ManualTecnico_ClubDeportivo.pdf
+      - ManualUsuario_ClubDeportivo.docx
+      - ManualUsuario_ClubDeportivo.pdf
     - Entidades/
+      - CuotaConSocioDTO.cs
+      - E_Actividad.cs
+      - E_Cuota.cs
+      - E_NoSocio.cs
+      - E_Persona.cs
       - E_Socio.cs
-      - Persona.cs
-      - Usuario.cs
+      - E_Usuario.cs
     - Gui/
+      - Carnet.cs
+      - Cobros.cs
+      - Comprobante.cs
+      - ListadoVencimientos.cs
       - Login.cs
-      - Login.Designer.cs
-      - Login.resx
       - MenuPrincipal.cs
-      - MenuPrincipal.Designer.cs
-      - MenuPrincipal.resx
-      - RegistroSocio.cs
-      - RegistroSocio.Designer.cs
-      - RegistroSocio.resx
+      - RegistroCliente.cs
     - Img/
     - ClubDeportivo.csproj
     - ClubDeportivo.sln
     - global.json
     - Program.cs
-    - .gitignore
+  - .gitignore
   - clubdeportivo.sql
   - README.md
 ----------------------------------------------------------------------------------------
@@ -61,11 +72,9 @@
 * Se valida que los datos que ingresa el usuario coincidan con un usuario existente.
 * En caso de datos incorrectos, se informa al usuario mediante una alerta.
 
-#### 📍 Registro de Nuevos Usuarios: 
-
-* Si el usuario no posee una cuenta, puede registrarse a través de otro formulario.
-* Se verifica si el nombre de usuario ya existe en la base de datos.
-* Si ya está registrado, se muestra una alerta indicando que el usuario ya existe.
+#### 📍 Registro de Clientes: 
+#### 📍 Cobros: 
+#### 📍 Vencimiento de cuotas: 
 
 ---------------------------------------------------------------------------
 ## 🔹 Procesos del sistema: (estado al momento de la entrega)
