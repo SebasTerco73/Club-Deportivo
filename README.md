@@ -20,7 +20,7 @@
 ![UnionDesarrolloSoftware](https://pbs.twimg.com/media/Gque8-_XEAA2NBG?format=jpg&name=large)
 
 
-***Este es el primer entregable de nuestro proyecto integrador de DSOO, con C# y conexión a base de datos MySQL.***
+***Este es el entregable final de nuestro proyecto integrador de DSOO, con C# y conexión a base de datos MySQL.***
 
 ## 📁 Estructura general
  - ClubDeportivo/
@@ -73,9 +73,15 @@
 * En caso de datos incorrectos, se informa al usuario mediante una alerta.
 
 #### 📍 Registro de Clientes: 
+* El sistema permite el regitro de socios que efectuan el pago de la cuota.
+* El sistema permite el regitro de no socios, que opcionalmente pueden anotarse a una actividad diaria.
+  
 #### 📍 Cobros: 
+* Se puede efectuar pagos de cuota de los socios.
+* Se puede efectuar pagos por actividades diarias de los no socios.
+  
 #### 📍 Vencimiento de cuotas: 
-
+* Se lista todas las cuotas, con distintos filtros de tiempo.
 ---------------------------------------------------------------------------
 ## 🔹 Procesos del sistema: (estado al momento de la entrega)
 
