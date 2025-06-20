@@ -26,6 +26,9 @@ namespace ClubDeportivo.Gui
         public RegistroCliente()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
+            this.UpdateStyles();
             pnlActividad.Hide();
             cboCuotas.SelectedIndex = 0;
             // Colores basados en el logo
@@ -42,6 +45,7 @@ namespace ClubDeportivo.Gui
             botonActivo = btnSocio;
             botonActivo.BackColor = Color.FromArgb(173, 216, 230);
             botonActivo.Size = new Size(65, 61);
+            btnNoSocio.Size = new Size(57, 53);
 
 
             this.Controls.Add(panelSombra); // agregar al formulario
@@ -77,9 +81,9 @@ namespace ClubDeportivo.Gui
                     btn.BackColor = azulOscuro;
                     btn.ForeColor = blanco;
                 };
-                btnSocio.Click += Boton_Click;
-                btnNoSocio.Click += Boton_Click;
             }
+            btnSocio.Click += Boton_Click;
+            btnNoSocio.Click += Boton_Click;
         }
 
 
@@ -129,7 +133,7 @@ namespace ClubDeportivo.Gui
             botonActivo = btnSocio;
             botonActivo.BackColor = Color.FromArgb(173, 216, 230);
             botonActivo.Size = new Size(65, 61);
-            btnNoSocio.BackColor = Color.FromArgb(240, 240, 240);
+            btnNoSocio.BackColor = Color.Transparent;
             btnNoSocio.Size = new Size(57, 53);
             btnNoSocio.Enabled = true; // Habilitar el botón No Socio para nuevas entradas
             btnSocio.Enabled = true; // Habilitar el botón Socio para nuevas entradas
@@ -324,17 +328,16 @@ namespace ClubDeportivo.Gui
             }
         }
 
+        Point posicionOriginalBtnSocio;
         private void btnSocio_MouseDown(object sender, MouseEventArgs e)
         {
-            btnSocio.Location = new Point(btnSocio.Location.X + 1, btnSocio.Location.Y + 1); // se mueve 1 px
+            posicionOriginalBtnSocio = btnSocio.Location;
+            btnSocio.Location = new Point(posicionOriginalBtnSocio.X + 1, posicionOriginalBtnSocio.Y + 1);
         }
 
         private void btnSocio_MouseUp(object sender, MouseEventArgs e)
         {
-            if (!btnSocio.Enabled)
-            {
-                btnSocio.Location = new Point(btnSocio.Location.X - 1, btnSocio.Location.Y - 1); // vuelve
-            }
+            btnSocio.Location = posicionOriginalBtnSocio;
         }
 
         private void Boton_Click(object sender, EventArgs e)
@@ -359,9 +362,11 @@ namespace ClubDeportivo.Gui
             }
         }
 
+        Point posicionOriginalBtnNoSocio;
         private void btnNoSocio_MouseDown(object sender, MouseEventArgs e)
         {
-            btnNoSocio.Location = new Point(btnNoSocio.Location.X + 1, btnNoSocio.Location.Y + 1); // se mueve 1 px
+            posicionOriginalBtnNoSocio = btnNoSocio.Location;
+            btnNoSocio.Location = new Point(posicionOriginalBtnNoSocio.X + 1, posicionOriginalBtnNoSocio.Y + 1);
         }
 
         private void btnNoSocio_MouseEnter(object sender, EventArgs e)
@@ -384,10 +389,7 @@ namespace ClubDeportivo.Gui
 
         private void btnNoSocio_MouseUp(object sender, MouseEventArgs e)
         {
-            if (!btnNoSocio.Enabled)
-            {
-                btnNoSocio.Location = new Point(btnNoSocio.Location.X - 1, btnNoSocio.Location.Y - 1); // vuelve
-            }
+            btnNoSocio.Location = posicionOriginalBtnNoSocio;
         }
 
         private void generarCuotaPdf()

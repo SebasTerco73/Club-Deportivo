@@ -25,6 +25,9 @@ namespace ClubDeportivo.Gui
         public Cobros()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
+            this.UpdateStyles();
             pnlActividad.Hide();
             cboCuotas.SelectedIndex = 0;
             // Colores basados en el logo
@@ -207,18 +210,16 @@ namespace ClubDeportivo.Gui
                 btnSocio.BackColor = Color.Transparent; // o el color base
             }
         }
-
+        Point posicionOriginalBtnSocio;
         private void btnSocio_MouseDown(object sender, MouseEventArgs e)
         {
-            btnSocio.Location = new Point(btnSocio.Location.X + 1, btnSocio.Location.Y + 1); // se mueve 1 px
+            posicionOriginalBtnSocio = btnSocio.Location;
+            btnSocio.Location = new Point(posicionOriginalBtnSocio.X + 1, posicionOriginalBtnSocio.Y + 1);
         }
 
         private void btnSocio_MouseUp(object sender, MouseEventArgs e)
         {
-            if (!btnSocio.Enabled)
-            {
-                btnSocio.Location = new Point(btnSocio.Location.X - 1, btnSocio.Location.Y - 1); // vuelve
-            }
+            btnSocio.Location = posicionOriginalBtnSocio;
         }
 
         Button botonActivo = null;
@@ -236,17 +237,19 @@ namespace ClubDeportivo.Gui
                 // Desmarcamos el botón anterior (si había uno)
                 if (botonActivo != null)
                     botonActivo.BackColor = Color.Transparent;
-                botonActivo.Size = new Size(57, 53);
+                    botonActivo.Size = new Size(57, 53);
 
                 // Marcamos el nuevo
-                botonClickeado.BackColor = Color.FromArgb(173, 216, 230); // o el color que prefieras
-                botonActivo = botonClickeado;
+                    botonClickeado.BackColor = Color.FromArgb(173, 216, 230); // o el color que prefieras
+                    botonActivo = botonClickeado;
             }
         }
 
+        Point posicionOriginalBtnNoSocio;
         private void btnNoSocio_MouseDown(object sender, MouseEventArgs e)
         {
-            btnNoSocio.Location = new Point(btnNoSocio.Location.X + 1, btnNoSocio.Location.Y + 1); // se mueve 1 px
+            posicionOriginalBtnNoSocio = btnNoSocio.Location;
+            btnNoSocio.Location = new Point(posicionOriginalBtnNoSocio.X + 1, posicionOriginalBtnNoSocio.Y + 1);
         }
 
         private void btnNoSocio_MouseEnter(object sender, EventArgs e)
@@ -269,10 +272,7 @@ namespace ClubDeportivo.Gui
 
         private void btnNoSocio_MouseUp(object sender, MouseEventArgs e)
         {
-            if (!btnNoSocio.Enabled)
-            {
-                btnNoSocio.Location = new Point(btnNoSocio.Location.X - 1, btnNoSocio.Location.Y - 1); // vuelve
-            }
+                btnNoSocio.Location = posicionOriginalBtnNoSocio;
         }
 
         private void txtSocio_TextChanged(object sender, EventArgs e)

@@ -25,7 +25,7 @@ namespace ClubDeportivo.Entidades
             this.CodSocio = CodSocio;
             this.FechaPago = fechaPago;
             this.FechaVencimiento = fechaPago.AddMonths(1);
-            this.Monto = 5000;
+            this.Monto = (medioPago.Equals("Tarjeta") && (cantCuotas == 3 || cantCuotas == 6)) ? 5000m * 0.90m : 5000m;
             this.EstadoPago = true;
             this.MedioPago = medioPago;
             this.cantCuotas = cantCuotas;
@@ -37,7 +37,7 @@ namespace ClubDeportivo.Entidades
             this.CodSocio = CodSocio;
             this.FechaPago = fechaPago;
             this.FechaVencimiento = vencimiento;
-            this.Monto = 5000;
+            this.Monto = (medioPago.Equals("Tarjeta") && (cantCuotas == 3 || cantCuotas == 6)) ? 5000m*0.90m:5000m;
             this.EstadoPago = true;
             this.MedioPago = medioPago;
             this.cantCuotas = cantCuotas;
