@@ -17,7 +17,6 @@ namespace login
         public Login()
         {
             InitializeComponent();
-
             // Colores basados en el logo (los mismos que en Form1)
             Color azulOscuro = Color.FromArgb(10, 45, 74);
             Color blanco = Color.White;

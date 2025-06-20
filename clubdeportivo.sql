@@ -64,7 +64,7 @@ CREATE TABLE `cuota` (
   PRIMARY KEY (`idCuota`),
   KEY `codSocio` (`codSocio`),
   CONSTRAINT `cuota_ibfk_1` FOREIGN KEY (`codSocio`) REFERENCES `socios` (`codSocio`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -73,6 +73,7 @@ CREATE TABLE `cuota` (
 
 LOCK TABLES `cuota` WRITE;
 /*!40000 ALTER TABLE `cuota` DISABLE KEYS */;
+INSERT INTO `cuota` VALUES (24,23,'2025-07-07','2025-06-07',5000.00,1,'Efectivo',1,0),(25,24,'2025-07-07','2025-06-07',5000.00,1,'Tarjeta',3,1),(26,25,'2025-07-07','2025-06-07',5000.00,1,'Efectivo',1,1),(27,26,'2025-07-07','2025-06-07',5000.00,1,'Tarjeta',6,1),(28,27,'2025-07-07','2025-06-07',5000.00,1,'Tarjeta',2,1),(29,23,'2025-08-07','2025-06-08',5000.00,1,'Tarjeta',1,0),(30,23,'2025-09-07','2025-06-08',5000.00,1,'Efectivo',1,1),(31,28,'2025-07-14','2025-06-14',5000.00,1,'Efectivo',1,1),(32,29,'2025-06-15','2025-05-15',5000.00,1,'Tarjeta',3,1),(33,30,'2025-06-20','2025-05-20',5000.00,1,'Tarjeta',3,1),(34,31,'2025-06-16','2025-05-16',5000.00,1,'Efectivo',1,1),(35,32,'2025-06-16','2025-05-16',5000.00,1,'Tarjeta',6,1),(36,33,'2025-07-19','2025-06-19',5000.00,1,'Efectivo',1,1),(37,34,'2025-06-17','2025-05-17',5000.00,1,'Tarjeta',1,1);
 /*!40000 ALTER TABLE `cuota` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,7 +97,7 @@ CREATE TABLE `nosocio_actividad` (
   KEY `fk_nosocioactividad_actividad` (`idActividad`),
   CONSTRAINT `fk_nosocioactividad_actividad` FOREIGN KEY (`idActividad`) REFERENCES `actividad` (`idactividad`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_nosocioactividad_nosocio` FOREIGN KEY (`idNoSocio`) REFERENCES `nosocios` (`codNoSocio`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -105,7 +106,7 @@ CREATE TABLE `nosocio_actividad` (
 
 LOCK TABLES `nosocio_actividad` WRITE;
 /*!40000 ALTER TABLE `nosocio_actividad` DISABLE KEYS */;
-INSERT INTO `nosocio_actividad` VALUES (1,20,3,'2025-06-07 21:32:21','2025-06-08 21:32:21',1,'Basquet');
+INSERT INTO `nosocio_actividad` VALUES (1,18,2,'2025-06-07 21:37:20','2025-06-08 21:37:20',1,'Natacion'),(2,18,2,'2025-06-07 23:02:15','2025-06-08 23:02:15',1,'Natacion'),(3,19,1,'2025-06-08 00:35:19','2025-06-09 00:35:19',1,'Futbol'),(4,20,3,'2025-06-08 00:37:25','2025-06-09 00:37:25',1,'Basquet'),(5,20,3,'2025-06-08 01:14:58','2025-06-09 01:14:58',1,'Basquet'),(6,20,3,'2025-06-08 01:16:51','2025-06-09 01:16:51',1,'Basquet');
 /*!40000 ALTER TABLE `nosocio_actividad` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,7 +137,7 @@ CREATE TABLE `nosocios` (
 
 LOCK TABLES `nosocios` WRITE;
 /*!40000 ALTER TABLE `nosocios` DISABLE KEYS */;
-INSERT INTO `nosocios` VALUES (18,'12314','Juan Domingo','2025-06-07','11111','2025-06-07',1,1,1),(19,'11111','Eva Duarte','2025-06-10','1234','2025-06-07',0,0,1),(20,'1','EEEEE','2025-06-07','1111','2025-06-07',0,0,1),(21,'12','445','2025-06-07','111','2025-06-07',0,0,1);
+INSERT INTO `nosocios` VALUES (18,'35593201','pipi lulu','2025-06-07','1111111','2025-06-07',1,1,1),(19,'36998888','Luciana Aimar','1990-10-27','1566666','2025-06-08',1,1,1),(20,'37996999','Ivana Gomez','2003-06-11','15242424','2025-06-08',1,1,1);
 /*!40000 ALTER TABLE `nosocios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -182,7 +183,7 @@ CREATE TABLE `socios` (
   `AptoMedico` tinyint DEFAULT '0',
   `activo` tinyint DEFAULT '1',
   PRIMARY KEY (`codSocio`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -191,6 +192,7 @@ CREATE TABLE `socios` (
 
 LOCK TABLES `socios` WRITE;
 /*!40000 ALTER TABLE `socios` DISABLE KEYS */;
+INSERT INTO `socios` VALUES (23,'38765432','Ana Laura González','1995-03-15','2235432109','2025-06-07',1,0,1),(24,'40123456','Martín Pérez','1999-07-22',' 2236789012','2025-06-07',1,1,1),(25,'35987654','Sofía Rodríguez','1990-11-05','112345678','2025-06-07',1,1,1),(26,'42000000','Lautaro Sánchez','2003-01-01','223 789-0123','2025-06-07',0,0,1),(27,'37555888','Florencia Gómez','1994-09-18','2231123344','2025-06-07',0,1,1),(28,'7899945','Daniel Perez','1934-06-05','15587999','2025-06-14',1,1,1),(29,'1258889','Laura Lauro','2001-05-15','20999355','2025-05-15',1,1,1),(30,'15299633','Ariana Montes','2003-11-20','152230300','2025-05-20',1,0,1),(31,'25399265','Lucas Mendez','2005-09-30','2944556325','2025-05-16',0,0,1),(32,'36999288','Gimena Serrano','1991-03-03','15228974','2025-05-16',1,1,1),(33,'22119222','Marina Tritón','1971-11-02','15299888','2025-06-19',1,1,1),(34,'49669857','Jeremias Springfield','2000-03-03','152222222','2025-05-17',1,1,1);
 /*!40000 ALTER TABLE `socios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -211,7 +213,7 @@ CREATE TABLE `usuario` (
   UNIQUE KEY `NombreUsu_UNIQUE` (`NombreUsu`),
   KEY `fk_usuario` (`RolUsu`),
   CONSTRAINT `fk_usuario` FOREIGN KEY (`RolUsu`) REFERENCES `roles` (`RolUsu`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -220,7 +222,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'Ailen','1',120,1),(2,'Marcela','1',120,1),(3,'Neyel','1',120,1),(4,'Sebas','1',120,1);
+INSERT INTO `usuario` VALUES (1,'Ailen','1',120,1),(2,'Marcela','1',120,1),(3,'Neyel','1',120,1),(4,'Sebas','1',120,1),(5,'Silvia','1',120,1);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -392,4 +394,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-06-07 22:06:48
+-- Dump completed on 2025-06-20 13:06:29
